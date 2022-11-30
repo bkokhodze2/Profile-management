@@ -2,29 +2,55 @@
 @tailwind utilities;
 @tailwind components;
 
-html,
+#__next {
+    background-color: #EDEEEF;
+    /*height: 100%;*/
+    display: flex;
+    flex-direction: column;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #EDEEEF;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.container, .con {
+    max-width: 1372px !important;
 }
 
-* {
-  box-sizing: border-box;
+#hover-red {
+    transition: .2s;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.group:hover #hover-red {
+    stroke: #DB0060;
+    transition: .2s;
+}
+
+.ticketsSwiper {
+    height: 100%;
+}
+.ticketsSwiper .swiper-slide {
+    padding-bottom: 25px;
+}
+
+.ticketsSwiper .swiper-pagination{
+    bottom: 17px;
+}
+
+.ticketsArrowPrev, .ticketsArrowNext {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ticketsArrowNext {
+    right: 0px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    display: none !important;
 }
