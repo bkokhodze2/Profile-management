@@ -5,10 +5,14 @@ import {ICONS, IMAGES} from "public/images";
 import Donut from "../components/charts/donut";
 import Layout from "../components/layouts/profile-layout";
 import {userBgIcon} from "../../public/images/icons";
-import Cards from "../../public/images/icons/nav/navCards";
-import Points from "../../public/images/icons/nav/navPoints";
+
+// @ts-ignore
+import Cards from "/public/images/icons/nav/navCards";
+// @ts-ignore
+import Points from "/public/images/icons/nav/navPoints";
 import CountUp from 'react-countup';
-import Tickets from "../../public/images/icons/nav/navTickets";
+// @ts-ignore
+import Tickets from "/public/images/icons/nav/navTickets";
 import Slider from "../components/UI/slider/tickets";
 
 export default function Profile() {
@@ -116,6 +120,8 @@ export default function Profile() {
               <Slider/>
             </div>
           </div>
+
+          <div className={"h-[2000px]"}></div>
 
         </div>
 

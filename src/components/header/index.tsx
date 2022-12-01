@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react"
 // @ts-ignore
-import {ICONS,IMAGES} from "public/images";
+import {ICONS, IMAGES} from "public/images";
 import Image from "next/image";
 import Link from "next/link";
 import {useRouter} from "next/router";
@@ -8,7 +8,6 @@ import axios from "axios";
 import _ from "lodash";
 // @ts-ignore
 import Lari from "/public/images/icons/lari";
-
 
 
 const Header: React.FC = () => {
@@ -29,7 +28,7 @@ const Header: React.FC = () => {
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>
               </Link>
               <Link href={"/"}>
-                  <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
+                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
               </Link>
 
               <Link href={"https://lot51.pirveli.ge"}>
@@ -63,16 +62,18 @@ const Header: React.FC = () => {
           </div>
         </div>
         <header className={"container w-full m-auto sticky top-[0px] z-20"}>
-          <div className={"flex justify-between h-[100px] w-full items-center bg-[#EDEEEF]"}>
-            <div>
+          <div className={"flex gap-[30px] justify-between h-[100px] w-full items-center bg-[#EDEEEF]"}>
+            <div className={"min-w-[312px]"}>
               <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
             </div>
-            <div>
-              <Image src={IMAGES.avatar} alt={"user avatar"} width={60} height={60}/>
+            <div className={"borders w-full grid grid-cols-2 gap-[30px] relative"}>
+              <div/>
+              <div className={"flex justify-end"}>
+                <Image src={IMAGES.avatar} alt={"user avatar"} width={60} height={60}/>
+              </div>
             </div>
           </div>
         </header>
-
 
       </>
   )

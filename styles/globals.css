@@ -13,6 +13,34 @@ body {
     background-color: #EDEEEF;
 }
 
+.textDots1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.textDots2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.textDots3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.textDots4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .container, .con {
     max-width: 1372px !important;
 }
@@ -29,11 +57,12 @@ body {
 .ticketsSwiper {
     height: 100%;
 }
+
 .ticketsSwiper .swiper-slide {
     padding-bottom: 25px;
 }
 
-.ticketsSwiper .swiper-pagination{
+.ticketsSwiper .swiper-pagination {
     bottom: 17px;
 }
 
@@ -48,9 +77,44 @@ body {
 }
 
 .ticketsArrowNext {
-    right: 0px;
+    right: 0;
 }
 
 .swiper-button-prev, .swiper-button-next {
     display: none !important;
+}
+
+.borders::after, .borders::before {
+    content: "";
+    position: absolute;
+    bottom: -37px;
+}
+
+.borders::after {
+    right: 0;
+    content: url(/images/icons/rightBorder.svg);
+}
+
+.borders::before {
+    left: 0;
+    content: url(/images/icons/leftBorder.svg);
+}
+
+:where(.css-dev-only-do-not-override-1s3dcof).ant-table-wrapper .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    display: none;
+}
+
+.pointsTable .ant-table-thead .ant-table-cell {
+    padding: 14px 16px;
+    border-bottom: none;
+    background-color: #d9d9d933;
+}
+
+.pointsTable thead>tr:first-child th:first-child{
+    border-start-start-radius: 16px !important;
+    border-end-start-radius: 16px !important;
+}
+.pointsTable thead > tr:first-child th:last-child {
+    border-start-end-radius: 16px !important;
+    border-end-end-radius: 16px !important;
 }

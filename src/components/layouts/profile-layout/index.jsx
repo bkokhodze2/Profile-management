@@ -24,9 +24,10 @@ export default function Layout({children}){
 				</Head>
 				<Header/>
 				<main style={{}}>
-					<div className={"flex gap-[30px] container m-auto"}>
+					<div className={"flex gap-[30px] pt-[32px] container m-auto h-full min-h-[calc(100vh-144px)]"}>
 						<div
-								className={"flex flex-col bg-[white] h-min rounded-xl min-w-[312px] pt-[44px] pb-[32px] pr-[32px] space-y-5"}>
+								className={"flex sticky top-[100px] flex-col bg-[white] h-min rounded-xl min-w-[312px] pt-[44px] pb-[32px] pr-[32px] space-y-5"}>
+
 							<Link href={"/"}>
 								<div className={"group w-full flex items-center h-[24px] pl-[35px]"}
 								     style={{
@@ -35,7 +36,7 @@ export default function Layout({children}){
 								>
 									<Dashboard
 											color={Router.pathname === "/" ? "#DB0060" : "#383838"}/>
-									<p className={"ml-[14px] text-sm group-hover:text-red"}
+									<p className={"ml-[14px] text-sm group-hover:!text-red"}
 									   style={{
 										   transition:"0.2s",
 										   color:Router.pathname === "/" ? "#DB0060" : "#383838"
@@ -66,74 +67,75 @@ export default function Layout({children}){
 								</div>
 							</Link>
 
-							<Link href={"/points"}>
+							<Link href={"/edit"}>
 								<div className={"group w-full flex items-center h-[24px] pl-[35px]"}
 								     style={{
-									     borderLeft:Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
+									     borderLeft:Router.pathname === "/edit" ? "2px solid #DB0060" : "2px solid transparent"
 								     }}
 								>
 									<User
-											color={Router.pathname === "/points" ? "#DB0060" : "#383838"}/>
+											color={Router.pathname === "/edit" ? "#DB0060" : "#383838"}/>
 									<p className={"ml-[14px] text-sm group-hover:!text-red"}
 									   style={{
 										   transition:"0.2s",
-										   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
+										   color:Router.pathname === "/edit" ? "#DB0060" : "#383838"
 									   }}
 									>რედაქტირება</p>
 								</div>
 							</Link>
 
-							<Link href={"/points"}>
+							<Link href={"/orders"}>
 								<div className={"group w-full flex items-center h-[24px] pl-[35px]"}
 								     style={{
-									     borderLeft:Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
+									     borderLeft:Router.pathname === "/orders" ? "2px solid #DB0060" : "2px solid transparent"
 								     }}
 								>
 									<History
-											color={Router.pathname === "/points" ? "#DB0060" : "#383838"}/>
+											color={Router.pathname === "/orders" ? "#DB0060" : "#383838"}/>
 									<p className={"ml-[14px] text-sm group-hover:!text-red"}
 									   style={{
 										   transition:"0.2s",
-										   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
+										   color:Router.pathname === "/orders" ? "#DB0060" : "#383838"
 									   }}
 									>ჩემი შეკვეთები</p>
 								</div>
 							</Link>
 
-							<Link href={"/points"}>
+							<Link href={"/tickets"}>
 								<div className={"group w-full flex items-center justify-between h-[24px] pl-[35px]"}
 								     style={{
-									     borderLeft:Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
+									     borderLeft:Router.pathname === "/tickets" ? "2px solid #DB0060" : "2px solid transparent"
 								     }}
 								>
 									<div className={"flex items-center"}>
 										<Tickets
-												color={Router.pathname === "/points" ? "#DB0060" : "#383838"}/>
+												color={Router.pathname === "/tickets" ? "#DB0060" : "#383838"}/>
 										<p className={"ml-[14px] text-sm group-hover:!text-red"}
 										   style={{
 											   transition:"0.2s",
-											   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
+											   color:Router.pathname === "/tickets" ? "#DB0060" : "#383838"
 										   }}
 										>ჩემი ბილეთები</p>
 									</div>
-									<div className={"h-full flex justify-center px-2 bg-[#7B92DC] rounded-[20px] min-w-[25px] items-center"}>
+									<div
+											className={"h-full flex justify-center px-2 bg-[#7B92DC] rounded-[20px] min-w-[25px] items-center"}>
 										<p className={"text-[12px] text-[white]"}>2</p>
 									</div>
 								</div>
 							</Link>
 
-							<Link href={"/points"}>
+							<Link href={"/cards"}>
 								<div className={"group w-full flex items-center h-[24px] pl-[35px]"}
 								     style={{
-									     borderLeft:Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
+									     borderLeft:Router.pathname === "/cards" ? "2px solid #DB0060" : "2px solid transparent"
 								     }}
 								>
 									<Cards
-											color={Router.pathname === "/points" ? "#DB0060" : "#383838"}/>
+											color={Router.pathname === "/cards" ? "#DB0060" : "#383838"}/>
 									<p className={"ml-[14px] text-sm group-hover:!text-red"}
 									   style={{
 										   transition:"0.2s",
-										   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
+										   color:Router.pathname === "/cards" ? "#DB0060" : "#383838"
 									   }}
 									>ჩემი ბარათები</p>
 								</div>
