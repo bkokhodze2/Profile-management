@@ -110,11 +110,64 @@ body {
     background-color: #d9d9d933;
 }
 
-.pointsTable thead>tr:first-child th:first-child{
+.pointsTable thead > tr:first-child th:first-child {
     border-start-start-radius: 16px !important;
     border-end-start-radius: 16px !important;
 }
+
 .pointsTable thead > tr:first-child th:last-child {
     border-start-end-radius: 16px !important;
     border-end-end-radius: 16px !important;
+}
+
+.ant-form-item-required::before {
+    display: none !important;
+}
+
+.point-filter .ant-select, .ant-select-selector, .point-filter .ant-input, .point-filter .ant-select-selection-search-input, .point-filter .ant-picker {
+    height: 48px !important;
+    border-color: rgba(56, 56, 56, 0.2) !important;
+
+}
+
+
+.profileInputs .ant-select, .ant-select-selector, .profileInputs .ant-input, .point-filter .ant-select-selection-search-input, .profileInputs.ant-picker {
+    border-color: transparent !important;
+}
+
+.profileInputs .ant-picker {
+    border-color: transparent !important;
+
+}
+
+.point-filter .ant-input, .point-filter .ant-select-selector, .point-filter .ant-picker {
+    padding-left: 24px !important;
+}
+
+.point-filter .ant-select-selection-search-input, .point-filter .ant-input, .point-filter .ant-select-selector, .point-filter .ant-picker {
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.point-filter .ant-form-item-label {
+    padding-bottom: 4px;
+}
+
+
+/*.point-filter .ant-select-selector {*/
+/*    overflow-y: scroll;*/
+/*}*/
+
+.point-filter .ant-select-selection-overflow-item {
+    margin-top: 10px;
+}
+
+.point-filter .ant-form-item-label label {
+    color: #38383899;
+    font-size: 14px;
+}
+
+.codeModel .ant-modal-content {
+    padding: 30px;
 }

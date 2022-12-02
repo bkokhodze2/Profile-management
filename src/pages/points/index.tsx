@@ -11,10 +11,13 @@ import Cards from "/public/images/icons/nav/navCards";
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React from "react";
-import {Space, Table, Tag} from 'antd';
+import {DatePicker, Form, Space, Table, Tag} from 'antd';
 import type {ColumnsType} from 'antd/es/table';
 import CountUp from "react-countup";
 import Donut from '../../components/charts/donut';
+import dayjs from 'dayjs';
+import {Select} from 'antd';
+import type {SelectProps} from 'antd';
 
 interface DataType {
   key: string;
@@ -24,8 +27,11 @@ interface DataType {
   tags: string[];
 }
 
-export default function PointsPage() {
+const dateFormat = 'YYYY/MM/DD';
 
+export default function PointsPage() {
+  const {RangePicker} = DatePicker;
+  const [form] = Form.useForm();
   const columns: ColumnsType<DataType> = [
     {
       title: () => {
@@ -82,6 +88,35 @@ export default function PointsPage() {
     },
   ];
 
+  const options: SelectProps['options'] = [];
+
+  for (let i = 10; i < 36; i++) {
+    options.push({
+      value: i.toString(36) + i,
+      label: i.toString(36) + i,
+    });
+  }
+
+  const handleChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onChange = (value: string) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onSearch = (value: string) => {
+    console.log('search:', value);
+  };
+
+  const onFinish = (values: any) => {
+    console.log('Received values of form: ', values);
+  };
+  const onOk = (values: any) => {
+    console.log('Received values of form: ', values);
+  };
+
+
   return (
       <div>
         <Head>
@@ -96,15 +131,12 @@ export default function PointsPage() {
             <h2 className={"text-[32px] text-[#383838] font-bold"}>
               ჩემი ქულები
             </h2>
-            <div className={"w-[200px] h-[48px] bg-[white]"}>
-              <p>search</p>
-            </div>
           </div>
-
 
           <div className={"h-[1000px] mt-[30px] px-6 pt-[36px] pb-[46px] bg-[white] rounded-xl"}>
 
-            <div className={"mt-4 flex space-x-[25px]"}>
+            {/*/statistic*/}
+            <div className={"mt-4 flex space-x-[25px] mb-[44px]"}>
               <div className={"w-[117px] h-[117px] "}>
                 <Donut/>
               </div>
@@ -131,6 +163,104 @@ export default function PointsPage() {
                 </div>
               </div>
             </div>
+            {/*/statistic*/}
+            {/*<Form*/}
+            {/*    form={form}*/}
+            {/*    name="register"*/}
+            {/*    className={"grid grid-cols-4 gap-x-6 mt-[44px] mb-[50px] point-filter"}*/}
+            {/*    onFinish={onFinish}*/}
+            {/*    onValuesChange={() => form.submit()}*/}
+            {/*    initialValues={{}}*/}
+            {/*>*/}
+            {/*  <div>*/}
+            {/*    <Form.Item*/}
+            {/*        name="platforma">*/}
+            {/*      <Select*/}
+            {/*          mode="tags"*/}
+            {/*          style={{width: '100%'}}*/}
+            {/*          placeholder="პლატფორმა"*/}
+            {/*          onChange={handleChange}*/}
+            {/*          options={options}*/}
+            {/*      />*/}
+            {/*    </Form.Item>*/}
+            {/*  </div>*/}
+            {/*  <div>*/}
+            {/*    <Form.Item*/}
+            {/*        name="date">*/}
+            {/*      <RangePicker*/}
+            {/*          // defaultValue={[dayjs('2015/01/01', dateFormat), dayjs('2015/01/01', dateFormat)]}*/}
+            {/*          placeholder={["დასაწყისი", "დასასრული"]}*/}
+            {/*          format={dateFormat}*/}
+            {/*          onOk={onOk}*/}
+
+            {/*      />*/}
+            {/*    </Form.Item>*/}
+            {/*  </div>*/}
+            {/*  <div>*/}
+            {/*    <Form.Item*/}
+            {/*        name="points">*/}
+            {/*      <Select*/}
+            {/*          showSearch*/}
+            {/*          style={{*/}
+            {/*            width: "100%"*/}
+            {/*          }}*/}
+            {/*          placeholder="დაგროვებული ქულები"*/}
+            {/*          optionFilterProp="children"*/}
+            {/*          onChange={onChange}*/}
+            {/*          onSearch={onSearch}*/}
+            {/*          filterOption={(input, option) =>*/}
+            {/*              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())*/}
+            {/*          }*/}
+            {/*          options={[*/}
+            {/*            {*/}
+            {/*              value: 'jack',*/}
+            {/*              label: 'Jack',*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*              value: 'lucy',*/}
+            {/*              label: 'Lucy',*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*              value: 'tom',*/}
+            {/*              label: 'Tom',*/}
+            {/*            },*/}
+            {/*          ]}*/}
+            {/*      />*/}
+            {/*    </Form.Item>*/}
+            {/*  </div>*/}
+            {/*  <div className={"pl-[30px]"}>*/}
+            {/*    <Form.Item*/}
+            {/*        name="sort">*/}
+            {/*      <Select*/}
+            {/*          showSearch*/}
+            {/*          style={{*/}
+            {/*            width: "100%"*/}
+            {/*          }}*/}
+            {/*          placeholder="სორტირება"*/}
+            {/*          optionFilterProp="children"*/}
+            {/*          onChange={onChange}*/}
+            {/*          onSearch={onSearch}*/}
+            {/*          filterOption={(input, option) =>*/}
+            {/*              (option?.label ?? '').toLowerCase().includes(input.toLowerCase())*/}
+            {/*          }*/}
+            {/*          options={[*/}
+            {/*            {*/}
+            {/*              value: 'jack',*/}
+            {/*              label: 'Jack',*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*              value: 'lucy',*/}
+            {/*              label: 'Lucy',*/}
+            {/*            },*/}
+            {/*            {*/}
+            {/*              value: 'tom',*/}
+            {/*              label: 'Tom',*/}
+            {/*            },*/}
+            {/*          ]}*/}
+            {/*      />*/}
+            {/*    </Form.Item>*/}
+            {/*  </div>*/}
+            {/*</Form>*/}
 
             <Table
                 className={"pointsTable"}

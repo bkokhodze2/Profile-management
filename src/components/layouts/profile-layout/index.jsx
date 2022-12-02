@@ -67,18 +67,18 @@ export default function Layout({children}){
 								</div>
 							</Link>
 
-							<Link href={"/edit"}>
+							<Link href={"/profile-edit"}>
 								<div className={"group w-full flex items-center h-[24px] pl-[35px]"}
 								     style={{
-									     borderLeft:Router.pathname === "/edit" ? "2px solid #DB0060" : "2px solid transparent"
+									     borderLeft:Router.pathname === "/profile-edit" ? "2px solid #DB0060" : "2px solid transparent"
 								     }}
 								>
 									<User
-											color={Router.pathname === "/edit" ? "#DB0060" : "#383838"}/>
+											color={Router.pathname === "/profile-edit" ? "#DB0060" : "#383838"}/>
 									<p className={"ml-[14px] text-sm group-hover:!text-red"}
 									   style={{
 										   transition:"0.2s",
-										   color:Router.pathname === "/edit" ? "#DB0060" : "#383838"
+										   color:Router.pathname === "/profile-edit" ? "#DB0060" : "#383838"
 									   }}
 									>რედაქტირება</p>
 								</div>
