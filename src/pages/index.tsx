@@ -14,8 +14,82 @@ import CountUp from 'react-countup';
 // @ts-ignore
 import Tickets from "/public/images/icons/nav/navTickets";
 import Slider from "../components/UI/slider/tickets";
+import {Form, Table} from "antd";
+import React from "react";
+import {ColumnsType} from "antd/es/table";
+import Transaction from "../../public/images/icons/nav/transaction";
+
+interface DataType {
+  key: string;
+  name: string;
+  platform: string;
+  date: string;
+  points: string;
+}
+
+// @ts-ignore
+const columns: ColumnsType<DataType> = [
+  {
+    title: () => {
+      return <p className={"text-dark text-[14px] font-[400]"}>ტრანზაქციის სახელი</p>
+    },
+    width: 200,
+    dataIndex: 'name',
+    key: 'name',
+    render: (text) => <a>{text}</a>,
+  },
+  {
+    title: () => {
+      return <p className={"text-dark text-[14px] font-[400]"}>თარიღი</p>
+    },
+    dataIndex: 'date',
+    key: 'date',
+  },
+  {
+    title: () => {
+      return <p className={"text-dark text-[14px] font-[400]"}>პლატფორმა</p>
+    },
+    dataIndex: 'platform',
+    key: 'platform',
+  },
+  {
+    title: () => {
+      return <p className={"text-dark text-[14px] font-[500]"}>ქულები</p>
+    },
+    // @ts-ignore
+    align: "end",
+    dataIndex: 'points',
+    key: 'points',
+  }
+];
+
+const data: DataType[] = [
+  {
+    key: '1',
+    name: 'John Brown',
+    platform: 'platform1',
+    date: "01.02.2022 ",
+    points: '123',
+  },
+  {
+    key: '2',
+    name: 'Jim Green',
+    platform: 'platform2',
+    date: "01.02.2022 ",
+    points: '-5678',
+  },
+  {
+    key: '3',
+    name: 'Joe Black',
+    platform: 'platform3',
+    date: "01.02.2022 ",
+    points: '923',
+  },
+];
 
 export default function Profile() {
+  const [form] = Form.useForm();
+
   return (
       <div>
         <Head>
@@ -121,7 +195,24 @@ export default function Profile() {
             </div>
           </div>
 
-          <div className={"h-[2000px]"}></div>
+
+
+          <div className={"col-span-2 pt-[30px] bg-[white] rounded-xl px-[30px]"}>
+
+            <div className={"flex justify-between items-center pb-[3px]"}>
+              <p className={"text-base text-dark font-bold"}>ქულების ტრანზაქციები</p>
+              <div className={"rounded-[50%] flex justify-center items-center bg-[#9766F0] w-[44px] h-[44px]"}>
+                <Transaction color={"#FFFFFF"}/>
+              </div>
+            </div>
+
+            <Table
+                className={"dashboard-point"}
+                columns={columns}
+                dataSource={data}
+                pagination={false}
+            />
+          </div>
 
         </div>
 

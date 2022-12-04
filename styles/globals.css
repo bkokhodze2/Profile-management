@@ -171,3 +171,27 @@ body {
 .codeModel .ant-modal-content {
     padding: 30px;
 }
+
+.dashboard-point {
+
+}
+
+.dashboard-point .ant-table-cell {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.dashboard-point th.ant-table-cell {
+    background-color: white !important;
+    color: #383838 !important;
+    font-weight: 400 !important;
+}
+
+.dashboard-point td.ant-table-cell {
+    color: #383838B3 !important;
+}
+
+.dashboard-point .ant-table-cell {
+    padding: 14px 16px !important;
+    border-bottom: none;
+}
