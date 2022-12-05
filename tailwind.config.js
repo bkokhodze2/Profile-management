@@ -7,6 +7,10 @@ module.exports = {
 	theme: {
 		colors: {
 			gray: "#383838b3",
+			dark: "#383838",
+			dark7: "#383838B3",
+			dark6: "#38383899",
+			red: "#DB0060",
 			orange: "#E35A43",
 			purple: "#8338EC"
 		},

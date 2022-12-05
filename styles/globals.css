@@ -2,29 +2,196 @@
 @tailwind utilities;
 @tailwind components;
 
-html,
+#__next {
+    background-color: #EDEEEF;
+    /*height: 100%;*/
+    display: flex;
+    flex-direction: column;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    background-color: #EDEEEF;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.textDots1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-* {
-  box-sizing: border-box;
+.textDots2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.textDots3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.textDots4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.container, .con {
+    max-width: 1372px !important;
+}
+
+#hover-red {
+    transition: .2s;
+}
+
+.group:hover #hover-red {
+    stroke: #DB0060;
+    transition: .2s;
+}
+
+.ticketsSwiper {
+    height: 100%;
+}
+
+.ticketsSwiper .swiper-slide {
+    padding-bottom: 25px;
+}
+
+.ticketsSwiper .swiper-pagination {
+    bottom: 17px;
+}
+
+.ticketsArrowPrev, .ticketsArrowNext {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.ticketsArrowNext {
+    right: 0;
+}
+
+.swiper-button-prev, .swiper-button-next {
+    display: none !important;
+}
+
+.borders::after, .borders::before {
+    content: "";
+    position: absolute;
+    bottom: -37px;
+}
+
+.borders::after {
+    right: 0;
+    content: url(/images/icons/rightBorder.svg);
+}
+
+.borders::before {
+    left: 0;
+    content: url(/images/icons/leftBorder.svg);
+}
+
+:where(.css-dev-only-do-not-override-1s3dcof).ant-table-wrapper .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    display: none;
+}
+
+.pointsTable .ant-table-thead .ant-table-cell {
+    padding: 14px 16px;
+    border-bottom: none;
+    background-color: #d9d9d933;
+}
+
+.pointsTable thead > tr:first-child th:first-child {
+    border-start-start-radius: 16px !important;
+    border-end-start-radius: 16px !important;
+}
+
+.pointsTable thead > tr:first-child th:last-child {
+    border-start-end-radius: 16px !important;
+    border-end-end-radius: 16px !important;
+}
+
+.ant-form-item-required::before {
+    display: none !important;
+}
+
+.point-filter .ant-select, .ant-select-selector, .point-filter .ant-input, .point-filter .ant-select-selection-search-input, .point-filter .ant-picker {
+    height: 48px !important;
+    border-color: rgba(56, 56, 56, 0.2) !important;
+
+}
+
+
+.profileInputs .ant-select, .ant-select-selector, .profileInputs .ant-input, .point-filter .ant-select-selection-search-input, .profileInputs.ant-picker {
+    border-color: transparent !important;
+}
+
+.profileInputs .ant-picker {
+    border-color: transparent !important;
+
+}
+
+.point-filter .ant-input, .point-filter .ant-select-selector, .point-filter .ant-picker {
+    padding-left: 24px !important;
+}
+
+.point-filter .ant-select-selection-search-input, .point-filter .ant-input, .point-filter .ant-select-selector, .point-filter .ant-picker {
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+}
+
+.point-filter .ant-form-item-label {
+    padding-bottom: 4px;
+}
+
+
+/*.point-filter .ant-select-selector {*/
+/*    overflow-y: scroll;*/
+/*}*/
+
+.point-filter .ant-select-selection-overflow-item {
+    margin-top: 10px;
+}
+
+.point-filter .ant-form-item-label label {
+    color: #38383899;
+    font-size: 14px;
+}
+
+.codeModel .ant-modal-content {
+    padding: 30px;
+}
+
+.dashboard-point {
+
+}
+
+.dashboard-point .ant-table-cell {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.dashboard-point th.ant-table-cell {
+    background-color: white !important;
+    color: #383838 !important;
+    font-weight: 400 !important;
+}
+
+.dashboard-point td.ant-table-cell {
+    color: #383838B3 !important;
+}
+
+.dashboard-point .ant-table-cell {
+    padding: 14px 16px !important;
+    border-bottom: none;
 }
