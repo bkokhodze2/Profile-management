@@ -195,17 +195,32 @@ body {
     padding: 14px 16px !important;
     border-bottom: none;
 }
- .ant-picker-cell-range-end.ant-picker-cell-in-view .ant-picker-cell-inner{
+
+.ant-picker-cell-range-end.ant-picker-cell-in-view .ant-picker-cell-inner {
     background-color: #DB0060 !important;
 }
 
 .ant-picker-cell-range-start .ant-picker-cell-inner {
     background-color: #DB0060 !important;
 }
-.ant-picker-cell-inner{
+
+.ant-picker-cell-inner {
     color: #383838;
 }
 
-.ant-picker-content th{
+.ant-picker-content th {
     color: #383838;
+}
+
+.leaderboard .ant-table-cell {
+    padding: 0 !important;
+    height: 50px;
+}
+
+.leaderboard .ant-table-thead {
+    display: none;
+}
+
+.rang{
+    background-image: url(/images/icons/rang.svg);
 }
