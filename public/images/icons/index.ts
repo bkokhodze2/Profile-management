@@ -10,4 +10,9 @@ export {default as next} from './next.svg';
 export {default as prev} from './prev.svg';
 export {default as done} from './done.svg';
 export {default as change} from './change.svg';
+export {default as leaderboard} from './leaderboard.svg';
+
+export {default as rangUp} from './rang/up.svg';
+export {default as rangDown} from './rang/down.svg';
+export {default as rangEqual} from './rang/equal.svg';
 

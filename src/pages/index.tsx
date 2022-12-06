@@ -5,8 +5,6 @@ import {ICONS, IMAGES} from "public/images";
 import Donut from "../components/charts/donut";
 import Layout from "../components/layouts/profile-layout";
 
-import colors from "../components/UI/colors"
-
 // @ts-ignore
 import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
@@ -19,10 +17,8 @@ import {Form, Input, Modal, Table} from "antd";
 import React, {useState} from "react";
 import {ColumnsType} from "antd/es/table";
 import Transaction from "../../public/images/icons/nav/transaction";
-import {avatar2} from "../../public/images/images";
-import ColorsSlider from "../components/UI/slider/colors";
-
 import ChangeAvatar from "../components/UI/modal/ChangeAvatar"
+import LeaderBoard from "../components/blocks/leaderboaord";
 
 interface DataType {
   key: string;
@@ -31,7 +27,6 @@ interface DataType {
   date: string;
   points: string;
 }
-
 // @ts-ignore
 const columns: ColumnsType<DataType> = [
   {
@@ -93,11 +88,7 @@ const data: DataType[] = [
 ];
 
 export default function Profile() {
-  const [form] = Form.useForm();
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
-  const [chosenAvatarImg, setChosenAvatarImg] = useState<number>(1);
-  const [chosenAvatarBg, setChosenAvatarBg] = useState<string>("#F44336");
-
 
   return (
       <div>
@@ -111,14 +102,6 @@ export default function Profile() {
 
         <div className={"grid grid-cols-2 gap-[30px]"}>
           <div className={"bg-[white] flex items-center rounded-xl p-[30px] relative"}>
-            {/*<div*/}
-            {/*    className={"w-[88px] h-[88px] group hover:bg-red mr-5"}*/}
-            {/*    */}
-
-            {/*>*/}
-            {/*  <img src={IMAGES.avatar.src} alt={"avatar"}/>*/}
-            {/*</div>*/}
-
             <div
                 onClick={() => setIsOpenChooseModal(true)}
                 className={"group w-[88px] h-[88px] mr-5 relative flex bg-[#D9D9D9] items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
@@ -132,10 +115,11 @@ export default function Profile() {
                     transition: "0.5s"
                   }}
               >
-                <div className={"opacity-0 rotate-90 group-hover:rotate-0 scale-75 group-hover:scale-125 group-hover:opacity-100"}
-                     style={{
-                       transition: "0.3s"
-                     }}
+                <div
+                    className={"opacity-0 rotate-90 group-hover:rotate-0 scale-75 group-hover:scale-125 group-hover:opacity-100"}
+                    style={{
+                      transition: "0.3s"
+                    }}
                 >
                   <Image src={ICONS.change} alt={"change icon"}/>
 
@@ -239,11 +223,15 @@ export default function Profile() {
           </div>
 
 
+          <div className={"col-span-2 py-[30px]  bg-[white] rounded-xl px-[30px]"}>
+            <LeaderBoard/>
+          </div>
+
           <div className={"col-span-2 pt-[30px] bg-[white] rounded-xl px-[30px]"}>
 
-            <div className={"flex justify-between items-center pb-[3px]"}>
+            <div className={"flex justify-between items-center pb-[px]"}>
               <p className={"text-base text-dark font-bold"}>ქულების ტრანზაქციები</p>
-              <div className={"rounded-[50%] flex justify-center items-center bg-[#9766F0] w-[44px] h-[44px]"}>
+              <div className={"rounded-[50%] flex justify-center items-center bg-[#5DB039] w-[44px] h-[44px]"}>
                 <Transaction color={"#FFFFFF"}/>
               </div>
             </div>
@@ -254,7 +242,9 @@ export default function Profile() {
                 dataSource={data}
                 pagination={false}
             />
+
           </div>
+
 
         </div>
 
