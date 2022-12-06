@@ -17,13 +17,18 @@ const nextConfig = {
     ],
     formats:['image/avif','image/webp'],
   },
-  env:{
-    // for local
-    // baseApi:"http://accounting.pirveli.ge/api/racoon-transactions",
-
-    // for server
-    baseApi:"https://vouchers.pirveli.ge/api/racoon-transactions",
-  }
+  env: {
+    basePath: "https://profile.pirveli.ge",
+    baseApi: "https://profile.pirveli.ge/api",
+  },
+  // env:{
+  //
+  //   // for local
+  //   // baseApi:"http://accounting.pirveli.ge/api/racoon-transactions",
+  //
+  //   // for server
+  //   baseApi:"https://vouchers.pirveli.ge/api/racoon-transactions",
+  // }
 }
 
 module.exports = nextConfig

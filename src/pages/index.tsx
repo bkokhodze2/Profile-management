@@ -4,7 +4,8 @@ import Image from 'next/image';
 import {ICONS, IMAGES} from "public/images";
 import Donut from "../components/charts/donut";
 import Layout from "../components/layouts/profile-layout";
-import {userBgIcon} from "../../public/images/icons";
+
+import colors from "../components/UI/colors"
 
 // @ts-ignore
 import Cards from "/public/images/icons/nav/navCards";
@@ -14,10 +15,14 @@ import CountUp from 'react-countup';
 // @ts-ignore
 import Tickets from "/public/images/icons/nav/navTickets";
 import Slider from "../components/UI/slider/tickets";
-import {Form, Table} from "antd";
-import React from "react";
+import {Form, Input, Modal, Table} from "antd";
+import React, {useState} from "react";
 import {ColumnsType} from "antd/es/table";
 import Transaction from "../../public/images/icons/nav/transaction";
+import {avatar2} from "../../public/images/images";
+import ColorsSlider from "../components/UI/slider/colors";
+
+import ChangeAvatar from "../components/UI/modal/ChangeAvatar"
 
 interface DataType {
   key: string;
@@ -89,6 +94,10 @@ const data: DataType[] = [
 
 export default function Profile() {
   const [form] = Form.useForm();
+  const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
+  const [chosenAvatarImg, setChosenAvatarImg] = useState<number>(1);
+  const [chosenAvatarBg, setChosenAvatarBg] = useState<string>("#F44336");
+
 
   return (
       <div>
@@ -98,11 +107,45 @@ export default function Profile() {
           <link rel="icon" href="/public/favicon.ico"/>
         </Head>
 
+        <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+
         <div className={"grid grid-cols-2 gap-[30px]"}>
           <div className={"bg-[white] flex items-center rounded-xl p-[30px] relative"}>
-            <div className={"w-[88px] h-[88px] mr-5"}>
-              <img src={IMAGES.avatar.src} alt={"avatar"}/>
+            {/*<div*/}
+            {/*    className={"w-[88px] h-[88px] group hover:bg-red mr-5"}*/}
+            {/*    */}
+
+            {/*>*/}
+            {/*  <img src={IMAGES.avatar.src} alt={"avatar"}/>*/}
+            {/*</div>*/}
+
+            <div
+                onClick={() => setIsOpenChooseModal(true)}
+                className={"group w-[88px] h-[88px] mr-5 relative flex bg-[#D9D9D9] items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                style={{
+                  transition: "0.5s"
+                }}>
+
+              <div
+                  className={"absolute bottom-0 top-0 left-0 right-0 rounded-[50%] bg-transparent group-hover:bg-[#3838387F] flex items-center justify-center"}
+                  style={{
+                    transition: "0.5s"
+                  }}
+              >
+                <div className={"opacity-0 rotate-90 group-hover:rotate-0 scale-75 group-hover:scale-125 group-hover:opacity-100"}
+                     style={{
+                       transition: "0.3s"
+                     }}
+                >
+                  <Image src={ICONS.change} alt={"change icon"}/>
+
+                </div>
+              </div>
+              <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
+                     width={88} height={88}
+                     style={{objectFit: "cover", height: "100%", width: "auto"}}/>
             </div>
+
             <p className={"text-dark6 text-[18px]"}>ვანო თვაური</p>
             <div className={"absolute right-6 bottom-0"}>
               <Image src={ICONS.userBgIcon} alt={"background"}/>
@@ -194,7 +237,6 @@ export default function Profile() {
               <Slider/>
             </div>
           </div>
-
 
 
           <div className={"col-span-2 pt-[30px] bg-[white] rounded-xl px-[30px]"}>

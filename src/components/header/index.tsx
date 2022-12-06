@@ -8,13 +8,24 @@ import axios from "axios";
 import _ from "lodash";
 // @ts-ignore
 import Lari from "/public/images/icons/lari";
-
+import {useDispatch, useSelector} from "react-redux";
+import {getUserInfo} from "../slices/userSlice";
 
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
+  const dispatch = useDispatch();
   const [IsLoading, setIsLoading] = useState<boolean>(false);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const userInfo = useSelector((state: any) => state.user.userInfo);
 
+  useEffect(() => {
+    if (!userInfo) {
+      // @ts-ignore
+      dispatch(getUserInfo())
+    }
+
+    console.log("useDispatch",userInfo)
+  }, [])
 
   return (
       <>
