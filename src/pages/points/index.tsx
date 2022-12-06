@@ -10,14 +10,23 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React from "react";
-import {DatePicker, Form, Space, Table, Tag} from 'antd';
+import React, {useRef, useState} from "react";
+import {DatePicker, Form, Modal, Rate, Space, Table, Tag} from 'antd';
 import type {ColumnsType} from 'antd/es/table';
 import CountUp from "react-countup";
 import Donut from '../../components/charts/donut';
 import dayjs from 'dayjs';
 import {Select} from 'antd';
 import type {SelectProps} from 'antd';
+// import 'dayjs/locale/fr.js';
+// import locale from 'antd/lib/locale/fr_FR';
+
+import 'dayjs/locale/ka';
+
+import locale from 'antd/lib/locale/ka_GE';
+
+import {ConfigProvider} from 'antd';
+import Button from 'antd/lib/button/button';
 
 interface DataType {
   key: string;
@@ -27,11 +36,16 @@ interface DataType {
   tags: string[];
 }
 
-const dateFormat = 'YYYY/MM/DD';
+const dateFormat = 'YYYY-MM-DD';
 
 export default function PointsPage() {
   const {RangePicker} = DatePicker;
   const [form] = Form.useForm();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [range, setRange] = useState<any>(null);
+  const [rangeAns, setRangeAns] = useState<any>(null);
+  const bodyref = useRef<any>(null);
+
   const columns: ColumnsType<DataType> = [
     {
       title: () => {
@@ -63,7 +77,6 @@ export default function PointsPage() {
       key: 'address',
     }
   ];
-
   const data: DataType[] = [
     {
       key: '1',
@@ -97,26 +110,37 @@ export default function PointsPage() {
     });
   }
 
-  const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setRange({})
   };
 
-  const onChange = (value: string) => {
-    console.log(`selected ${value}`);
-  };
+  const pick = (val) => {
 
-  const onSearch = (value: string) => {
-    console.log('search:', value);
-  };
+    console.log("val", val)
+    if (val[0] && val[1]) {
+      setRange({
+        from: val[0].format('YYYY-MM-DD'),
+        to: val[1].format('YYYY-MM-DD')
+      })
 
-  const onFinish = (values: any) => {
-    console.log('Received values of form: ', values);
-  };
-  const onOk = (values: any) => {
-    console.log('Received values of form: ', values);
-  };
+      console.log("dataaa", {
+        from: val[0].format('YYYY-MM-DD'),
+        to: val[1].format('YYYY-MM-DD')
+      })
+    }
+  }
 
+  const pickerSubmit = () => {
+    setRangeAns(range);
+    setRange(rangeAns);
+    console.log("range", range)
+  }
 
+  console.log("range", range)
+  console.log("rangeAns", rangeAns)
+
+  // @ts-ignore
   return (
       <div>
         <Head>
@@ -125,10 +149,53 @@ export default function PointsPage() {
           <link rel="icon" href="/public/favicon.ico"/>
         </Head>
 
+        <Modal
+            className={"reviewModal"}
+            open={isModalOpen}
+            onCancel={handleCancel}
+            footer={""}
+            title={""}
+            width={600}
+        >
+          <div className={"w-full h-[500px]"}>
+            <h2 className={"text-center text-[18px] mb-8"}>აირჩიეთ თარიღი</h2>
+            <div className={"flex w-full rounded-[16px] justify-between items-center"} ref={bodyref}>
+              <ConfigProvider locale={locale}>
+                {isModalOpen && <RangePicker
+										style={{
+                      width: "350px",
+                      height: "40px"
+                    }}
+
+                    // getPopupContainer={() => bodyref.current}
+                    // locale={locale}
+										onChange={pick}
+                    // defaultValue={[dayjs('2015/01/01', dateFormat), dayjs('2015/01/01', dateFormat)]}
+										open={isModalOpen}
+                    // renderExtraFooter={() => <Button onClick={pickerSubmit}>Apply</Button>}
+										placeholder={["დასაწყისი", "დასასრული"]}
+										format={"MMM DD ,YYYY"}
+								/>}
+
+                <div className={"flex justify-end"} onClick={pickerSubmit}>
+                  <button type={"submit"}
+                          className={"bg-red px-[32px] h-[48px] w-min self-end rounded-xl cursor-pointer"}>
+                    <p className={"text-[white]"}>არჩევა</p>
+                  </button>
+                </div>
+
+              </ConfigProvider>
+
+            </div>
+          </div>
+
+
+        </Modal>
+
         <div className={"w-full"}>
 
           <div className={"flex justify-between"}>
-            <h2 className={"text-[32px] text-[#383838] font-bold"}>
+            <h2 className={"text-[32px] text-[#383838] font-bold"} onClick={() => setIsModalOpen(true)}>
               ჩემი ქულები
             </h2>
           </div>
@@ -191,7 +258,7 @@ export default function PointsPage() {
             {/*          // defaultValue={[dayjs('2015/01/01', dateFormat), dayjs('2015/01/01', dateFormat)]}*/}
             {/*          placeholder={["დასაწყისი", "დასასრული"]}*/}
             {/*          format={dateFormat}*/}
-            {/*          onOk={onOk}*/}
+            {/*          onOk={onOk}/>*/}
 
             {/*      />*/}
             {/*    </Form.Item>*/}

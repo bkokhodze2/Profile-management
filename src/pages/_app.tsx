@@ -1,8 +1,11 @@
+import {Provider} from 'react-redux';
 import "../../styles/globals.css"
 import "../../styles/font.css"
 import type {ReactElement, ReactNode} from 'react'
 import type {NextPage} from 'next'
 import type {AppProps} from 'next/app'
+import Script from 'next/script'
+import store from "../components/store/index"
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -18,7 +21,10 @@ export default function MyApp({Component, pageProps}: AppPropsWithLayout) {
 
   return getLayout(
       <>
+        <Script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.6/locale/ka.min.js"/>
+        <Provider store={store}>
           <Component {...pageProps} />
+        </Provider>
       </>
   )
 }

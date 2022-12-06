@@ -18,18 +18,20 @@ import dayjs from 'dayjs';
 
 import weekday from "dayjs/plugin/weekday"
 import localeData from "dayjs/plugin/localeData"
+import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
+const dateFormat = 'YYYY-MM-DD';
 
 export default function Profile() {
+  const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
   const {Option} = Select;
-  const dateFormat = 'YYYY-MM-DD';
-  const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
 
   const onFinish = (fieldsValue: any) => {
     const values = {
@@ -44,7 +46,6 @@ export default function Profile() {
   const onFinishCode = (values) => {
     console.log("codeval", values)
   }
-
 
   const openCodeModal = () => {
     setIsModalOpen(true)
@@ -104,6 +105,8 @@ export default function Profile() {
 
         </Modal>
 
+        <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+
         <div className={"w-full"}>
 
           <h2 className={"text-[32px] text-[#383838] font-bold"}>
@@ -112,7 +115,7 @@ export default function Profile() {
 
           <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
             <div className={""}>
-              <div className={"bg-red rounded-xl"}>
+              <div className={"bg-red rounded-xl"} onClick={()=>setIsOpenChooseModal(true)}>
                 <img src={IMAGES.bigAvatar.src} alt={""}/>
               </div>
               <p className={"text-dark6 mt-[14px] text-[14px]"}>ავატარის შესაცვლელად დააკლიკე ფოტოს</p>

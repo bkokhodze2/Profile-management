@@ -25,7 +25,7 @@ export default function Tickets() {
         <div className={"w-full"}>
 
           <h2 className={"text-[32px] text-[#383838] font-bold"}>
-            ჩემი შეკვეთები
+            ჩემი ბილეთები
           </h2>
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>

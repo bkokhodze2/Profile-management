@@ -8,3 +8,6 @@ export {default as ticketsBg} from './ticketsBg.svg';
 
 export {default as next} from './next.svg';
 export {default as prev} from './prev.svg';
+export {default as done} from './done.svg';
+export {default as change} from './change.svg';
+
