@@ -14,11 +14,14 @@ import CountUp from 'react-countup';
 import Tickets from "/public/images/icons/nav/navTickets";
 import Slider from "../components/UI/slider/tickets";
 import {Form, Input, Modal, Table} from "antd";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ColumnsType} from "antd/es/table";
 import Transaction from "../../public/images/icons/nav/transaction";
 import ChangeAvatar from "../components/UI/modal/ChangeAvatar"
 import LeaderBoard from "../components/blocks/leaderboaord";
+import {useSelector} from "react-redux";
+import TransactionsTable from "../components/blocks/transactions-table";
+import Link from "next/link";
 
 interface DataType {
   key: string;
@@ -27,6 +30,7 @@ interface DataType {
   date: string;
   points: string;
 }
+
 // @ts-ignore
 const columns: ColumnsType<DataType> = [
   {
@@ -89,6 +93,38 @@ const data: DataType[] = [
 
 export default function Profile() {
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
+  const [currentPoints, setCurrentPoints] = useState(0);
+  const [spentPoints, setSpentPoints] = useState(0);
+  const userInfo = useSelector((state: any) => state.user.userInfo);
+
+  useEffect(() => {
+    setCurrentPoints(userInfo?.accountDetail?.amountOfPoint?.amountOfPoints)
+    setSpentPoints(userInfo?.accountDetail?.amountOfSpentPoints?.amountOfSpentPoints)
+  }, [userInfo])
+
+  const getChosenAvatar = () => {
+
+    switch (parseInt(userInfo?.avatar.path)) {
+      case 1:
+        return IMAGES.avatar1.src
+      case 2:
+        return IMAGES.avatar2.src
+      case 3:
+        return IMAGES.avatar3.src
+      case 4:
+        return IMAGES.avatar4.src
+      case 5:
+        return IMAGES.avatar5.src
+      case 6:
+        return IMAGES.avatar6.src
+      default :
+        return  IMAGES.avatar1.src
+
+    }
+
+  }
+
+  console.log("balansi", userInfo?.accountDetail?.amountOfGel?.amountOfGel)
 
   return (
       <div>
@@ -100,13 +136,14 @@ export default function Profile() {
 
         <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
-        <div className={"grid grid-cols-2 gap-[30px]"}>
+        <div className={"grid grid-cols-2 gap-[30px] pb-[30px]"}>
           <div className={"bg-[white] flex items-center rounded-xl p-[30px] relative"}>
             <div
                 onClick={() => setIsOpenChooseModal(true)}
-                className={"group w-[88px] h-[88px] mr-5 relative flex bg-[#D9D9D9] items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                className={"group w-[88px] h-[88px] mr-4 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                 style={{
-                  transition: "0.5s"
+                  transition: "0.5s",
+                  backgroundColor: "#" + userInfo?.avatar?.colorCode
                 }}>
 
               <div
@@ -122,21 +159,23 @@ export default function Profile() {
                     }}
                 >
                   <Image src={ICONS.change} alt={"change icon"}/>
-
                 </div>
               </div>
-              <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
+              <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
                      width={88} height={88}
                      style={{objectFit: "cover", height: "100%", width: "auto"}}/>
             </div>
 
-            <p className={"text-dark6 text-[18px]"}>ვანო თვაური</p>
+            <p className={"text-dar text-[18px] font-bold"}>{userInfo?.details?.firstName} {userInfo?.details?.lastName}</p>
             <div className={"absolute right-6 bottom-0"}>
               <Image src={ICONS.userBgIcon} alt={"background"}/>
             </div>
-            <div className={"absolute right-6 top-6 cursor-pointer"}>
-              <Image src={ICONS.edit} alt={"edit icon"}/>
-            </div>
+            <Link href={"/profile-edit"}>
+              <div className={"absolute right-6 top-6 cursor-pointer"}>
+                <Image src={ICONS.edit} alt={"edit icon"}/>
+              </div>
+            </Link>
+
           </div>
           <div
               className={"bg-[white] rounded-xl p-[30px] pb-[22px] pt-[24px] pr-[24px] flex justify-between items-start relative"}>
@@ -145,16 +184,16 @@ export default function Profile() {
                 <p className={"text-base text-dark font-bold"}>ბალანსი</p>
                 <p className={"text-[24px] text-dark mb-[17px] "}>
                   <CountUp duration={1}
-                           end={12567}
+                           end={userInfo?.accountDetail?.amountOfGel?.amountOfGel}
                            separator=","
                       // decimals={4}
-                           decimal="," start={12567 * 0.85}/>
+                           decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
                 </p>
                 <span className={"text-[14px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
               </div>
               <div>
                 <p className={"text-base text-dark font-bold"}>ID</p>
-                <p className={"text-dark7 text-base"}>01211098145</p>
+                <p className={"text-dark7 text-base"}>{userInfo?.details?.id}</p>
               </div>
             </div>
 
@@ -182,22 +221,23 @@ export default function Profile() {
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-red rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>გამომუშავებული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={19670} separator=","
-                                                                       start={19670 * 0.75}/>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints + spentPoints}
+                                                                       separator=","
+                                                                       start={(currentPoints + spentPoints) * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-[#9766F0] rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>მიმდინარე</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={17445} separator=","
-                                                                       start={17445 * 0.75}/>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints} separator=","
+                                                                       start={currentPoints * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-[#EDC520] rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>დახარჯული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={2225} separator=","
-                                                                       start={2225 * 0.75}/></p>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={spentPoints} separator=","
+                                                                       start={spentPoints * 0.75}/></p>
                 </div>
               </div>
             </div>
@@ -227,21 +267,16 @@ export default function Profile() {
             <LeaderBoard/>
           </div>
 
-          <div className={"col-span-2 pt-[30px] bg-[white] rounded-xl px-[30px]"}>
+          <div className={"removeHeaderBg col-span-2 pt-[30px] bg-[white] rounded-xl px-[30px]"}>
 
-            <div className={"flex justify-between items-center pb-[px]"}>
+            <div className={"flex justify-between items-center pb-[px] mb-[19px]"}>
               <p className={"text-base text-dark font-bold"}>ქულების ტრანზაქციები</p>
               <div className={"rounded-[50%] flex justify-center items-center bg-[#5DB039] w-[44px] h-[44px]"}>
                 <Transaction color={"#FFFFFF"}/>
               </div>
             </div>
 
-            <Table
-                className={"dashboard-point"}
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-            />
+            <TransactionsTable/>
 
           </div>
 

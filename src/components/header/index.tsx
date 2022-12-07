@@ -18,13 +18,34 @@ const Header: React.FC = () => {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
 
+  const getChosenAvatar = () => {
+
+    switch (parseInt(userInfo?.avatar.path)) {
+      case 1:
+        return IMAGES.avatar1.src
+      case 2:
+        return IMAGES.avatar2.src
+      case 3:
+        return IMAGES.avatar3.src
+      case 4:
+        return IMAGES.avatar4.src
+      case 5:
+        return IMAGES.avatar5.src
+      case 6:
+        return IMAGES.avatar6.src
+      default :
+        return  IMAGES.avatar1.src
+    }
+
+  }
+
   useEffect(() => {
     if (!userInfo) {
       // @ts-ignore
       dispatch(getUserInfo())
     }
 
-    console.log("useDispatch",userInfo)
+
   }, [])
 
   return (
@@ -62,7 +83,8 @@ const Header: React.FC = () => {
                   alt={"coin icon"}
               />
               <p className={"text-sm text-[white] mr-8 ml-[5px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
-                40,076</p>
+                {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}
+              </p>
               <div className={"flex cursor-pointer"}>
                 <img className={"mr-[11px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
 
@@ -80,7 +102,17 @@ const Header: React.FC = () => {
             <div className={"borders w-full grid grid-cols-2 gap-[30px] relative"}>
               <div/>
               <div className={"flex justify-end"}>
-                <Image src={IMAGES.avatar} alt={"user avatar"} width={60} height={60}/>
+                <div
+                    className={"group w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                    style={{
+                      transition: "0.5s",
+                      backgroundColor: "#" + userInfo?.avatar?.colorCode
+                    }}>
+
+                  <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
+                         width={60} height={60}
+                         style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+                </div>
               </div>
             </div>
           </div>

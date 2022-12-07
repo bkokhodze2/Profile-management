@@ -10,7 +10,7 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
 import {DatePicker, Form, Input, Modal, Rate, Select} from "antd";
 import Button from "../../components/UI/button";
@@ -19,25 +19,84 @@ import dayjs from 'dayjs';
 import weekday from "dayjs/plugin/weekday"
 import localeData from "dayjs/plugin/localeData"
 import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
+import {useSelector} from "react-redux";
+import axios from "axios";
+import {getUserInfo} from "../../components/slices/userSlice";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
 const dateFormat = 'YYYY-MM-DD';
 
 export default function Profile() {
+  const baseApi = process.env.baseApi;
+
+
   const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
+  const [cities, setCities] = useState<any>([
+    {
+      "id": 1,
+      "title": "Abasha"
+    },
+    {
+      "id": 2,
+      "title": "Adigeni"
+    }
+
+  ]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const userInfo = useSelector((state: any) => state.user.userInfo);
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
   const {Option} = Select;
 
+  useEffect(() => {
+    axios.get(`${baseApi}/user/municipalities`).then((res) => {
+      setCities(res.data)
+    })
+
+  }, [userInfo])
+
   const onFinish = (fieldsValue: any) => {
     const values = {
       ...fieldsValue,
-      'birth_date': fieldsValue['birth_date'].format('YYYY-MM-DD'),
+      'personDbo': fieldsValue['personDbo']?.format('YYYY-MM-DD'),
+      uuid: fieldsValue['personalId'],
+      contactInfo: [
+        {
+          "regId": 2000248,
+          "prefix": "995",
+          "value": fieldsValue['phone']?.toString(),
+          "info": "my phone number",
+          "contactInfoType": "phone",
+          "contactInfoTag": "main",
+          "serviceType": "personal"
+        },
+        {
+          "regId": 2000248,
+          "prefix": "mail",
+          "value": fieldsValue['email']?.toString(),
+          "info": "my mail ",
+          "contactInfoType": "mail",
+          "contactInfoTag": "work",
+          "serviceType": "personal"
+        }
+      ]
     };
+
+    delete values.email;
+    delete values.phone;
+
+
+    axios.post(`${baseApi}/user/user/uuuu`, values)
+        .then((res) => {
+          console.log("resss", res)
+          // @ts-ignore
+          dispatch(getUserInfo())
+          setIsOpenChooseModal(false)
+
+        })
 
     console.log("values", values)
 
@@ -70,7 +129,8 @@ export default function Profile() {
             width={487}>
           <p className={"text-[24px] text-dark font-bold"}>ელ-ფოსტის შეცვლა</p>
           <div className={"p-[25px] mt-[42px] pt-0 pb-0"}>
-            <p className={"text-dark6 text-[14px]"}>ერთჯერადი კოდი გამოგზავნილია
+            <p className={"text-dark6 text-[14px]"}>
+              ერთჯერადი კოდი გამოგზავნილია
               მითითებულ მეილზე , გთხოვთ გადაამოწმოთ.</p>
             <Form
                 className={"w-full col-span-2 point-filter"}
@@ -125,22 +185,23 @@ export default function Profile() {
                 className={"w-full col-span-2 point-filter profileInputs"}
                 form={profileForm}
                 layout="vertical"
+                // onChange={onFinish}
                 initialValues={{
-                  name: "სახელი",
+                  firstName: userInfo?.details?.firstName,
                   email: "b_kokhodze2@cu.edu.ge",
-                  birth_date: dayjs('2015-01-01', dateFormat),
-                  city: "kutaisi",
-                  id_number: "543",
-                  last_name: "სახელი",
+                  personDbo: dayjs('2015-01-01', dateFormat),
+                  city: 4,
+                  personalId: "543",
+                  lastName: userInfo?.details?.lastName,
                   phone: "სახელი",
-                  gender: "male",
-                  address: "სახელი",
+                  gender: userInfo?.details?.gender,
+                  address: "address",
                 }}
                 onFinish={onFinish}
             >
               <div className={"grid grid-cols-2 gap-x-[30px] "}>
                 <div className={"space-y-[30px]"}>
-                  <Form.Item label="სახელი" name={"name"}
+                  <Form.Item label="სახელი" name={"firstName"}
                              rules={[
                                {
                                  required: true,
@@ -152,34 +213,52 @@ export default function Profile() {
                         placeholder="სახელი"/>
                   </Form.Item>
 
-                  {
-                    isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>
-                      <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>
-                      <div
-                          className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>
-                        d
-                      </div>
-                    </div> : <Form.Item
-                        label="ელ.ფოსტა"
-                        name={"email"}
-                        rules={[
-                          {
-                            type: 'email',
-                            message: 'ემაილი არ არის ვალიდური'
-                          },
-                          {
-                            required: true,
-                            message: "ველი სავალდებულოა"
-                          }
-                        ]}
-                    >
-                      <Input
-                          placeholder="ელ.ფოსტა"/>
-                    </Form.Item>
-                  }
+                  {/*{*/}
+                  {/*  isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>*/}
+                  {/*    <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>*/}
+                  {/*    <div*/}
+                  {/*        className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>*/}
+                  {/*      d*/}
+                  {/*    </div>*/}
+                  {/*  </div> : <Form.Item*/}
+                  {/*      label="ელ.ფოსტა"*/}
+                  {/*      name={"email"}*/}
+                  {/*      rules={[*/}
+                  {/*        {*/}
+                  {/*          type: 'email',*/}
+                  {/*          message: 'ემაილი არ არის ვალიდური'*/}
+                  {/*        },*/}
+                  {/*        {*/}
+                  {/*          required: true,*/}
+                  {/*          message: "ველი სავალდებულოა"*/}
+                  {/*        }*/}
+                  {/*      ]}*/}
+                  {/*  >*/}
+                  {/*    <Input*/}
+                  {/*        placeholder="ელ.ფოსტა"/>*/}
+                  {/*  </Form.Item>*/}
+                  {/*}*/}
+
+                  <Form.Item
+                      label="ელ.ფოსტა"
+                      name={"email"}
+                      rules={[
+                        {
+                          type: 'email',
+                          message: 'ემაილი არ არის ვალიდური'
+                        },
+                        {
+                          required: true,
+                          message: "ველი სავალდებულოა"
+                        }
+                      ]}
+                  >
+                    <Input
+                        placeholder="ელ.ფოსტა"/>
+                  </Form.Item>
 
 
-                  <Form.Item label="დაბადების თარიღი" name={"birth_date"} rules={[
+                  <Form.Item label="დაბადების თარიღი" name={"personDbo"} rules={[
                     {
                       required: true,
                       message: "ველი სავალდებულოა"
@@ -202,21 +281,19 @@ export default function Profile() {
                           message: "ველი სავალდებულოა"
                         }
                       ]}
+
                   >
-                    <Select placeholder="ქალაქი">
-                      <Option value="tbilisi">tbilisi</Option>
-                      <Option value="kutaisi">kutaisi</Option>
-                      <Option value="batumi">batumi</Option>
+                    <Select placeholder="ქალაქი"
+                    >
+                      {cities?.map((item, index) => {
+                        return <Option key={index} value={item?.id}>{item?.title}</Option>
+                      })}
+
                     </Select>
                   </Form.Item>
 
-                  <Form.Item label="პირადი ნომერი" name={"id_number"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
+                  <Form.Item label="პირადი ნომერი" name={"personalId"}
+                  >
                     <Input
                         disabled={true}
                         placeholder="პირადი ნომერი"/>
@@ -224,7 +301,7 @@ export default function Profile() {
 
                 </div>
                 <div className={"space-y-[30px]"}>
-                  <Form.Item label="გვარი" name={"last_name"}
+                  <Form.Item label="გვარი" name={"lastName"}
                              rules={[
                                {
                                  required: true,
@@ -255,9 +332,8 @@ export default function Profile() {
                       ]}
                   >
                     <Select placeholder="სქესი">
-                      <Option value="male">Male</Option>
-                      <Option value="female">Female</Option>
-                      <Option value="other">Other</Option>
+                      <Option value="m">Male</Option>
+                      <Option value="f">Female</Option>
                     </Select>
                   </Form.Item>
 

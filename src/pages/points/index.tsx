@@ -10,7 +10,7 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {DatePicker, Form, Modal, Rate, Space, Table, Tag} from 'antd';
 import type {ColumnsType} from 'antd/es/table';
 import CountUp from "react-countup";
@@ -27,79 +27,22 @@ import locale from 'antd/lib/locale/ka_GE';
 
 import {ConfigProvider} from 'antd';
 import Button from 'antd/lib/button/button';
-
-interface DataType {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-  tags: string[];
-}
-
-const dateFormat = 'YYYY-MM-DD';
+import axios from "axios";
+import {useSelector} from "react-redux";
+import TransactionsTable from "../../components/blocks/transactions-table";
 
 export default function PointsPage() {
+  const baseApi = process.env.baseApi;
+  const [currentPoints, setCurrentPoints] = useState(0);
+  const [spentPoints, setSpentPoints] = useState(0);
+  const [transactions, setTransactions] = useState([]);
+  const userInfo = useSelector((state: any) => state.user.userInfo);
   const {RangePicker} = DatePicker;
   const [form] = Form.useForm();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [range, setRange] = useState<any>(null);
   const [rangeAns, setRangeAns] = useState<any>(null);
   const bodyref = useRef<any>(null);
-
-  const columns: ColumnsType<DataType> = [
-    {
-      title: () => {
-        return <p className={"text-dark text-[14px] font-[500]"}>ტრანზაქციის სახელი</p>
-      },
-      dataIndex: 'name',
-      key: 'name',
-      render: (text) => <a>{text}</a>,
-    },
-    {
-      title: () => {
-        return <p className={"text-dark text-[14px] font-[500]"}>თარიღი</p>
-      },
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: () => {
-        return <p className={"text-dark text-[14px] font-[500]"}>პლატფორმა</p>
-      },
-      dataIndex: 'address',
-      key: 'address',
-    },
-    {
-      title: () => {
-        return <p className={"text-dark text-[14px] font-[500]"}>ქულები</p>
-      },
-      dataIndex: 'address',
-      key: 'address',
-    }
-  ];
-  const data: DataType[] = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
 
   const options: SelectProps['options'] = [];
 
@@ -137,8 +80,22 @@ export default function PointsPage() {
     console.log("range", range)
   }
 
-  console.log("range", range)
-  console.log("rangeAns", rangeAns)
+  useEffect(() => {
+    setCurrentPoints(userInfo?.accountDetail?.amountOfPoint?.amountOfPoints)
+    setSpentPoints(userInfo?.accountDetail?.amountOfSpentPoints?.amountOfSpentPoints)
+  }, [userInfo])
+
+  useEffect(() => {
+
+    if(userInfo?.details?.id){
+      axios.get(`${baseApi}/user/user/point-transactions/${userInfo?.details?.id}`).then((res) => {
+        setTransactions(res.data)
+      })
+    }
+
+  }, [userInfo])
+
+  console.log("transactions", transactions)
 
   // @ts-ignore
   return (
@@ -211,22 +168,23 @@ export default function PointsPage() {
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-red rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>გამომუშავებული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={19670} separator=","
-                                                                       start={19670 * 0.75}/>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints + spentPoints}
+                                                                       separator=","
+                                                                       start={(currentPoints + spentPoints) * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-[#9766F0] rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>მიმდინარე</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={17445} separator=","
-                                                                       start={17445 * 0.75}/>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints} separator=","
+                                                                       start={currentPoints * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex items-center"}>
                   <div className={"w-[10px] h-[10px] bg-[#EDC520] rounded-[50%]"}/>
                   <p className={"text-dark7 text-[12px] ml-[6px]"}>დახარჯული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={2225} separator=","
-                                                                       start={2225 * 0.75}/></p>
+                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={spentPoints} separator=","
+                                                                       start={spentPoints * 0.75}/></p>
                 </div>
               </div>
             </div>
@@ -329,12 +287,7 @@ export default function PointsPage() {
             {/*  </div>*/}
             {/*</Form>*/}
 
-            <Table
-                className={"pointsTable"}
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-            />
+            <TransactionsTable/>
           </div>
 
         </div>

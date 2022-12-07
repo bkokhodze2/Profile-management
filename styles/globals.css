@@ -224,3 +224,7 @@ body {
 .rang{
     background-image: url(/images/icons/rang.svg);
 }
+
+.removeHeaderBg .ant-table-thead .ant-table-cell{
+    background-color: transparent !important;
+}
