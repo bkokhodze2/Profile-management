@@ -115,7 +115,7 @@ export default function Profile() {
 
           <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
             <div className={""}>
-              <div className={"bg-red rounded-xl"} onClick={()=>setIsOpenChooseModal(true)}>
+              <div className={"bg-red rounded-xl cursor-pointer"} onClick={() => setIsOpenChooseModal(true)}>
                 <img src={IMAGES.bigAvatar.src} alt={""}/>
               </div>
               <p className={"text-dark6 mt-[14px] text-[14px]"}>ავატარის შესაცვლელად დააკლიკე ფოტოს</p>

@@ -1,15 +1,12 @@
 import React, {useState} from 'react';
 // @ts-ignore// @ts-ignore
-import Tickets from "/public/images/icons/nav/navTickets";
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
-import {Rate, Table} from "antd";
-import Button from "../../UI/button";
+import {Table} from "antd";
 import Image from "next/image";
 import {ColumnsType} from "antd/es/table";
 // @ts-ignore
 import Lari from '/public/images/icons/lari';
-import {rangUp} from "../../../../public/images/icons";
 
 interface DataType {
   key: string;
@@ -96,7 +93,6 @@ const data: DataType[] = [
 ];
 
 const LeaderBoard = () => {
-
 
   return <>
     <div className={"flex justify-between items-center pb-[9px]"}>
