@@ -47,7 +47,7 @@ export default function CardsPage() {
     }
 
     axios.post(`https://vouchers.pirveli.ge/api/bog/orders`, obj).then((res) => {
-      let link = res.data.links[1].href;
+      let link = res?.data?.links[1]?.href;
       typeof window !== 'undefined' && window.open(link, '_blank');
 
     })
