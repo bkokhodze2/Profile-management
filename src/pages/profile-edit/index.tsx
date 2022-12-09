@@ -12,7 +12,7 @@ import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
-import {DatePicker, Form, Input, Modal, Rate, Select} from "antd";
+import {DatePicker, Form, Input, Modal, notification, Rate, Select} from "antd";
 import Button from "../../components/UI/button";
 import dayjs from 'dayjs';
 import _ from "lodash";
@@ -183,7 +183,9 @@ export default function Profile() {
           // @ts-ignore
           dispatch(getUserInfo())
           setIsOpenChooseModal(false)
-
+          notification['success']({
+            message: 'ინფორმაცია წამრატებით დარედაქტირდა',
+          });
           Router.push("/")
         })
 

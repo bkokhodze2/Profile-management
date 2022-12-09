@@ -1,6 +1,6 @@
 import Image from "next/image";
 import ColorsSlider from "../slider/colors";
-import {Modal} from "antd";
+import {Modal, notification} from "antd";
 import React, {useEffect, useState} from "react";
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
@@ -54,6 +54,9 @@ export default function ChangeAvatar({isOpenChooseModal, setIsOpenChooseModal}) 
       // @ts-ignore
       dispatch(getUserInfo())
       setIsOpenChooseModal(false)
+      notification['success']({
+        message: 'ავატარი წამრატებით შეიცვალა',
+      });
 
     })
   }
