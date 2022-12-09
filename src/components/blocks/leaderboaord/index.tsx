@@ -20,46 +20,63 @@ interface DataType {
 // @ts-ignore
 const columns: ColumnsType<DataType> = [
   {
-    width: 100,
+    width: 115,
     dataIndex: 'rang',
     key: 'rang',
-    render: (text) => <div className={"flex text-[#000000]"}>
-      <p className={"mr-[30px]"}>{text}.</p>
-      <Image src={ICONS.rangUp} alt={"up arrow icon"}/>
-    </div>,
+    render: (text, obj) => obj.rang === 6 ?
+        <Image src={ICONS.rangEqual} alt={"equal arrow icon"} className={"ml-[15px]"}/> :
+        <div className={"pl-[15px] h-full flex items-center text-[#000000]  justify-between gap-[30px] pr-[26px]"}
+             style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}
+        >
+          <p className={""}>{obj.rang}.</p>
+          <Image src={ICONS.rangUp} alt={"up arrow icon"}/>
+        </div>
   },
   {
     width: 53,
     dataIndex: 'avatarUrl',
     key: 'avatarUrl',
-    render: (text) => <div className={"rang flex justify-center items-center h-full h-[43px] w-[53px]"}>
-      <div className={"w-[28px] h-[28px] flex items-center justify-center bg-[#5DB039] rounded-[50%] relative p-[3px]"}>
-        <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
-               width={28} height={28}
-               style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-      </div>
-    </div>,
-
+    render: (text, obj) => obj.rang === 6 ? <div className={"w-[30px] h-[30px] rounded-[50%] bg-[#EDEEEF] m-[auto]"}/> :
+        <div className={"flex items-center h-full"}
+             style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}>
+          <div className={`${obj.rang <= 5 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
+            <div
+                className={"w-[28px] h-[28px] flex items-center justify-center bg-[#5DB039] rounded-[50%] relative p-[3px]"}>
+              <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
+                     width={28} height={28}
+                     style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+            </div>
+          </div>
+        </div>,
   },
   {
     width: 210,
     dataIndex: 'name',
     key: 'name',
-    render: (text) => <p className={"text-[#383838] pl-[25px]"}>{text}</p>,
-
+    render: (text, obj) => obj.rang === 6 ?
+        <div className={"w-[133px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
+        <p className={"text-[#383838] h-full flex items-center pl-[25px]"}
+           style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}
+        >{text}</p>,
   },
   {
     dataIndex: 'price',
     key: 'price',
-    render: (text) => <p className={"flex items-center text-[#383838]"}>{text} <Lari classes={"ml-2"}
-                                                                                     color={"#383838"}/></p>,
+    render: (text, obj) => obj.rang === 6 ? <div className={"w-[70px] h-[8px] rounded-[20px] bg-[#EDEEEF]"}/> :
+        <p className={"flex h-full  items-center text-[#383838]"}
+           style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}>{text} <Lari classes={"ml-2"}
+                                                                                                color={"#383838"}/></p>,
   },
   {
     // @ts-ignore
     align: "end",
     dataIndex: 'points',
     key: 'points',
-    render: (text) => <p>{text} ქულა</p>,
+    render: (text, obj) => obj.rang === 6 ?
+        <div className={"w-[92px] ml-[auto] h-[8px] rounded-[20px] bg-[#EDEEEF] mr-[8px]"}/> :
+        <p className={"pr-[15px] h-full flex justify-end items-center text-dark7"}
+           style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}
+        >{text} ქულა</p>,
   }
 ];
 
@@ -88,6 +105,55 @@ const data: DataType[] = [
     price: 6365,
     points: 3312
   },
+  {
+    key: '4',
+    rang: 4,
+    avatarUrl: "dsdds",
+    name: "saxeli",
+    price: 1244,
+    points: 155
+  },
+
+  {
+    key: '5',
+    rang: 5,
+    avatarUrl: "url",
+    name: "xsxsxav.ხ",
+    price: 6365,
+    points: 3312
+  },
+  {
+    key: '6',
+    rang: 6,
+    avatarUrl: null,
+    name: null,
+    price: null,
+    points: null
+  },
+  {
+    key: '7',
+    rang: 99,
+    avatarUrl: "url",
+    name: "მიხეილ.ხ",
+    price: 6365,
+    points: 3312
+  },
+  {
+    key: '8',
+    rang: 100,
+    avatarUrl: "url",
+    name: "user me",
+    price: 4567890,
+    points: 456789
+  },
+  {
+    key: '9',
+    rang: 101,
+    avatarUrl: "url",
+    name: "dvgfgლ.ხ",
+    price: 6365,
+    points: 3312
+  },
 
 
 ];
@@ -107,6 +173,7 @@ const LeaderBoard = () => {
         columns={columns}
         dataSource={data}
         pagination={false}
+        rowKey={"key"}
     />
   </>
 };

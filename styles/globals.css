@@ -228,3 +228,8 @@ body {
 .removeHeaderBg .ant-table-thead .ant-table-cell{
     background-color: transparent !important;
 }
+
+tr[data-row-key="4"] {
+    /*background-color: yellow;*/
+    /*display: none;*/
+}

@@ -22,6 +22,7 @@ import LeaderBoard from "../components/blocks/leaderboaord";
 import {useSelector} from "react-redux";
 import TransactionsTable from "../components/blocks/transactions-table";
 import Link from "next/link";
+import Lari from "../../public/images/icons/lari";
 
 interface DataType {
   key: string;
@@ -118,7 +119,7 @@ export default function Profile() {
       case 6:
         return IMAGES.avatar6.src
       default :
-        return  IMAGES.avatar1.src
+        return IMAGES.avatar1.src
 
     }
 
@@ -182,12 +183,13 @@ export default function Profile() {
             <div className={"flex h-full"}>
               <div className={"h-full"}>
                 <p className={"text-base text-dark font-bold"}>ბალანსი</p>
-                <p className={"text-[24px] text-dark mb-[17px] "}>
+                <p className={"text-[24px] text-dark mb-[17px] flex items-center"}>
                   <CountUp duration={1}
                            end={userInfo?.accountDetail?.amountOfGel?.amountOfGel}
                            separator=","
                       // decimals={4}
                            decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
+                  <Lari classes={"ml-[2px]"} color={"#383838"} width={18} height={20}/>
                 </p>
                 <span className={"text-[14px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
               </div>

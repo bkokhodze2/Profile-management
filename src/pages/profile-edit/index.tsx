@@ -15,11 +15,11 @@ import TicketItem from "../../components/blocks/ticket-item";
 import {DatePicker, Form, Input, Modal, Rate, Select} from "antd";
 import Button from "../../components/UI/button";
 import dayjs from 'dayjs';
-
+import _ from "lodash";
 import weekday from "dayjs/plugin/weekday"
 import localeData from "dayjs/plugin/localeData"
 import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
 
@@ -27,12 +27,18 @@ dayjs.extend(weekday)
 dayjs.extend(localeData)
 const dateFormat = 'YYYY-MM-DD';
 
+interface ICity {
+  id: number,
+  title: string,
+
+}
+
 export default function Profile() {
   const baseApi = process.env.baseApi;
 
 
   const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
-  const [cities, setCities] = useState<any>([
+  const [cities, setCities] = useState<ICity[]>([
     {
       "id": 1,
       "title": "Abasha"
@@ -50,46 +56,126 @@ export default function Profile() {
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
   const {Option} = Select;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     axios.get(`${baseApi}/user/municipalities`).then((res) => {
       setCities(res.data)
     })
+    profileForm.resetFields();
 
   }, [userInfo])
 
+
+  const getNumber = (type: string) => {
+    let ifPhoneExist = userInfo?.details?.contactInfos?.filter((e) => {
+      return e?.contactInfoType === "phone"
+    })
+
+    if (type === 'value') {
+      return _.get(ifPhoneExist, '[0].value', null)
+    } else if (type === "id") {
+      return _.get(ifPhoneExist, '[0].id', null)
+    }
+
+  }
+
+  const getEmail = (type: string) => {
+    let ifEmailExist = userInfo?.details?.contactInfos?.filter((e) => {
+      return e?.contactInfoType === "mail"
+    })
+
+    if (type === 'value') {
+      return _.get(ifEmailExist, '[0].value', null)
+    } else if (type === "id") {
+      return _.get(ifEmailExist, '[0].id', null)
+    }
+
+  }
+
+
+  // {
+  //   "legalAddress":{
+  //   "municipality":{
+  //     "id": 80
+  //   },
+  //   "address": "AAAAA qucha 7"
+  // },
+  //   "physicalAddress":{
+  //   "municipality":{
+  //     "id": 80
+  //   },
+  //   "address": "BBBB 5"
+  // }
+  // }
+
+
   const onFinish = (fieldsValue: any) => {
+
     const values = {
       ...fieldsValue,
-      'personDbo': fieldsValue['personDbo']?.format('YYYY-MM-DD'),
+      'personDob': fieldsValue['personDob']?.format('YYYY-MM-DD'),
       uuid: fieldsValue['personalId'],
-      contactInfo: [
+      userAddress:
+          {
+            legalAddress: {
+              municipality: {
+                id: userInfo?.details?.legalAddress?.municipality?.id ? userInfo?.details?.legalAddress?.municipality?.id : 1
+              },
+              address: userInfo?.details?.legalAddress?.municipality?.address ? userInfo?.details?.legalAddress?.municipality?.address : "test"
+            },
+            physicalAddress: {
+              municipality: {
+                id: fieldsValue['city']
+              },
+              address: fieldsValue['address']
+            }
+          }
+
+      // {
+      //   "legalAddress": null,
+      //   "physicalAddress": {
+      //     "id": null, //cvladi
+      //     "municipalityId": fieldsValue['city'],
+      //     "municipality": {
+      //       "id": null,
+      //       "title": null
+      //     },
+      //     "address": fieldsValue['address']
+      //   }
+      // }
+
+      ,
+      contactInfos: [
         {
-          "regId": 2000248,
-          "prefix": "995",
-          "value": fieldsValue['phone']?.toString(),
-          "info": "my phone number",
-          "contactInfoType": "phone",
-          "contactInfoTag": "main",
-          "serviceType": "personal"
+          id: getNumber('id'),
+          prefix: "995",
+          value: fieldsValue['phone']?.toString(),
+          info: "my phone number",
+          contactInfoType: "phone",
+          contactInfoTag: "main",
+          serviceType: "personal"
         },
         {
-          "regId": 2000248,
-          "prefix": "mail",
-          "value": fieldsValue['email']?.toString(),
-          "info": "my mail ",
-          "contactInfoType": "mail",
-          "contactInfoTag": "work",
-          "serviceType": "personal"
+          id: getEmail('id'),
+          prefix: "mail",
+          value: fieldsValue['email']?.toString(),
+          info: "my mail ",
+          contactInfoType: "mail",
+          contactInfoTag: "work",
+          serviceType: "personal"
         }
       ]
     };
 
+    // !userInfo?.details?.legalAddress?.municipality?.id && delete values.userAddress.legalAddress
+
     delete values.email;
     delete values.phone;
+    delete values.address;
+    delete values.city;
 
-
-    axios.post(`${baseApi}/user/user/uuuu`, values)
+    axios.put(`${baseApi}/user/user/${userInfo?.details?.id}`, values)
         .then((res) => {
           console.log("resss", res)
           // @ts-ignore
@@ -112,6 +198,28 @@ export default function Profile() {
   const handleCancel = () => {
     setIsModalOpen(false)
   }
+
+  const getChosenAvatar = () => {
+
+    switch (parseInt(userInfo?.avatar.path)) {
+      case 1:
+        return IMAGES.avatar1.src
+      case 2:
+        return IMAGES.avatar2.src
+      case 3:
+        return IMAGES.avatar3.src
+      case 4:
+        return IMAGES.avatar4.src
+      case 5:
+        return IMAGES.avatar5.src
+      case 6:
+        return IMAGES.avatar6.src
+      default :
+        return IMAGES.avatar1.src
+    }
+
+  }
+
 
   return (
       <>
@@ -175,8 +283,22 @@ export default function Profile() {
 
           <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
             <div className={""}>
-              <div className={"bg-red rounded-xl cursor-pointer"} onClick={() => setIsOpenChooseModal(true)}>
-                <img src={IMAGES.bigAvatar.src} alt={""}/>
+              <div
+                  className={"bg-red py-[10px] rounded-xl relative w-auto cursor-pointer h-[312px] justify-center items-center"}
+                  onClick={() => setIsOpenChooseModal(true)}
+                  style={{
+                    transition: "0.5s",
+                    backgroundColor: "#" + userInfo?.avatar?.colorCode
+                  }}
+              >
+                <Image src={getChosenAvatar()}
+                       alt={"profile avatar"}
+                       layout={"contain"}
+                       width={312}
+                       height={312}
+                       style={{height: "100%", width: "auto", objectFit: "cover", margin: "auto"}}
+                />
+
               </div>
               <p className={"text-dark6 mt-[14px] text-[14px]"}>ავატარის შესაცვლელად დააკლიკე ფოტოს</p>
             </div>
@@ -188,14 +310,14 @@ export default function Profile() {
                 // onChange={onFinish}
                 initialValues={{
                   firstName: userInfo?.details?.firstName,
-                  email: "b_kokhodze2@cu.edu.ge",
-                  personDbo: dayjs('2015-01-01', dateFormat),
-                  city: 4,
-                  personalId: "543",
+                  email: getEmail('value'),
+                  personDob: userInfo?.details?.personDob ? dayjs(userInfo?.details?.personDob, dateFormat) : dayjs("2000-01-01", dateFormat),
+                  city: userInfo?.details?.physicalAddress?.municipality?.id,
+                  personalId: userInfo?.details?.personalId,
                   lastName: userInfo?.details?.lastName,
-                  phone: "სახელი",
+                  phone: getNumber('value'),
                   gender: userInfo?.details?.gender,
-                  address: "address",
+                  address: userInfo?.details?.physicalAddress?.address
                 }}
                 onFinish={onFinish}
             >
@@ -258,7 +380,7 @@ export default function Profile() {
                   </Form.Item>
 
 
-                  <Form.Item label="დაბადების თარიღი" name={"personDbo"} rules={[
+                  <Form.Item label="დაბადების თარიღი" name={"personDob"} rules={[
                     {
                       required: true,
                       message: "ველი სავალდებულოა"
@@ -283,8 +405,7 @@ export default function Profile() {
                       ]}
 
                   >
-                    <Select placeholder="ქალაქი"
-                    >
+                    <Select placeholder="ქალაქი">
                       {cities?.map((item, index) => {
                         return <Option key={index} value={item?.id}>{item?.title}</Option>
                       })}
@@ -292,10 +413,32 @@ export default function Profile() {
                     </Select>
                   </Form.Item>
 
-                  <Form.Item label="პირადი ნომერი" name={"personalId"}
+                  <Form.Item
+                      label="პირადი ნომერი"
+                      name={"personalId"}
+                      rules={[
+                        {
+                          required: true,
+                          message: "ველი სავალდებულოა"
+                        },
+                        {
+                          min: 11,
+                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                        },
+                        {
+                          max: 11,
+                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                        },
+                        {
+                          pattern: new RegExp("^[0-9]*$"),
+                          message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
+                        }
+                      ]}
                   >
                     <Input
-                        disabled={true}
+                        // disabled={userInfo?.details?.personalId}
+                        disabled={null}
+                        type={'number'}
                         placeholder="პირადი ნომერი"/>
                   </Form.Item>
 
@@ -332,8 +475,8 @@ export default function Profile() {
                       ]}
                   >
                     <Select placeholder="სქესი">
-                      <Option value="m">Male</Option>
-                      <Option value="f">Female</Option>
+                      <Option value="m">მამრობითი</Option>
+                      <Option value="f">მდედრობითი</Option>
                     </Select>
                   </Form.Item>
 

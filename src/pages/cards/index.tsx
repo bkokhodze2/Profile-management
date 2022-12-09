@@ -10,48 +10,25 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React from "react";
+import React, {useEffect} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
 import axios from "axios";
 
 export default function CardsPage() {
 
   const addCard = () => {
-    let obj = {
-      "user_id": null,
-      "contract_id": null,
-      "party_id": null,
-      "bog_order_request_dto": {
-        "intent": "AUTHORIZE",
-        "items": [{
-          "amount": 1,
-          "description": "123",
-          "quantity": 1,
-          "product_id": 123
-        }]
-        ,
-        "locale": "ka",
-        "shop_order_id": "123456",
-        "redirect_url": "https://bog-banking.pirveli.ge/api/bog/callback/statusChange",
-        "show_shop_order_id_on_extract": true,
-        "capture_method": "AUTOMATIC",
-        "purchase_units": [
-          {
-            "amount": {
-              "currency_code": "GEL",
-              "value": 1
-            }
-          }
-        ]
-      }
-    }
-
-    axios.post(`https://vouchers.pirveli.ge/api/bog/orders`, obj).then((res) => {
+    axios.post(`https://bog-banking.pirveli.ge/api/bog/saveCard`).then((res) => {
       let link = res?.data?.links[1]?.href;
-      typeof window !== 'undefined' && window.open(link, '_blank');
+      typeof window !== 'undefined' && window.open(link, '_self');
 
     })
   }
+
+  useEffect(() => {
+    axios.get(`https://bog-banking.pirveli.ge/api/bog/getSavedCards`).then((res) => {
+      console.log("res", res)
+    })
+  })
 
   return (
       <div>

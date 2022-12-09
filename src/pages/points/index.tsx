@@ -152,7 +152,8 @@ export default function PointsPage() {
         <div className={"w-full"}>
 
           <div className={"flex justify-between"}>
-            <h2 className={"text-[32px] text-[#383838] font-bold"} onClick={() => setIsModalOpen(true)}>
+            {/*onClick={() => setIsModalOpen(true)}*/}
+            <h2 className={"text-[32px] text-[#383838] font-bold"} >
               ჩემი ქულები
             </h2>
           </div>

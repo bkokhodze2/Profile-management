@@ -20,7 +20,7 @@ const Header: React.FC = () => {
 
   const getChosenAvatar = () => {
 
-    switch (parseInt(userInfo?.avatar.path)) {
+    switch (parseInt(userInfo?.avatar?.path)) {
       case 1:
         return IMAGES.avatar1.src
       case 2:
