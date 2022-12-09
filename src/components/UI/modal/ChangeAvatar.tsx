@@ -1,7 +1,7 @@
 import Image from "next/image";
 import ColorsSlider from "../slider/colors";
 import {Modal} from "antd";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
 import axios from "axios";
@@ -11,11 +11,17 @@ import {useDispatch, useSelector} from "react-redux";
 export default function ChangeAvatar({isOpenChooseModal, setIsOpenChooseModal}) {
   const baseApi = process.env.baseApi;
   const userInfo = useSelector((state: any) => state.user.userInfo);
+  const dispatch = useDispatch();
 
   const [chosenAvatarImg, setChosenAvatarImg] = useState<string>(userInfo?.avatar?.path);
-  const [chosenAvatarBg, setChosenAvatarBg] = useState<string>("F44336");
+  const [chosenAvatarBg, setChosenAvatarBg] = useState<string>(userInfo?.avatar?.code);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    setChosenAvatarImg(userInfo?.avatar?.path)
+    setChosenAvatarBg(userInfo?.avatar?.code)
+  }, [userInfo])
+
+
   const handleCancel = () => {
     setIsOpenChooseModal(false)
   }

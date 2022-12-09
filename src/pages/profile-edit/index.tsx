@@ -22,6 +22,7 @@ import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
+import {useRouter} from "next/router";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -53,6 +54,7 @@ export default function Profile() {
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
+  const Router = useRouter()
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
   const {Option} = Select;
@@ -182,6 +184,7 @@ export default function Profile() {
           dispatch(getUserInfo())
           setIsOpenChooseModal(false)
 
+          Router.push("/")
         })
 
     console.log("values", values)
