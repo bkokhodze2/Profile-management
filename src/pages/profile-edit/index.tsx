@@ -12,7 +12,7 @@ import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
-import {DatePicker, Form, Input, Modal, Rate, Select} from "antd";
+import {DatePicker, Form, Input, Modal, notification, Rate, Select} from "antd";
 import Button from "../../components/UI/button";
 import dayjs from 'dayjs';
 import _ from "lodash";
@@ -22,6 +22,7 @@ import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
+import {useRouter} from "next/router";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -53,6 +54,7 @@ export default function Profile() {
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
+  const Router = useRouter()
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
   const {Option} = Select;
@@ -181,7 +183,10 @@ export default function Profile() {
           // @ts-ignore
           dispatch(getUserInfo())
           setIsOpenChooseModal(false)
-
+          notification['success']({
+            message: 'ინფორმაცია წამრატებით დარედაქტირდა',
+          });
+          Router.push("/")
         })
 
     console.log("values", values)
