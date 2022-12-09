@@ -44,7 +44,7 @@ export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {
           {colors.map((item, index) => {
             return <SwiperSlide key={index} virtualIndex={index}>
               <div
-                  onClick={() => setChosenAvatarBg(item)}
+                  onClick={() => setChosenAvatarBg(item.replace("#", ""))}
                   className={"min-w-[50px] h-[50px] rounded-[50%] p-[3px] cursor-pointer"}
                   style={{
                     transition: ".5s",

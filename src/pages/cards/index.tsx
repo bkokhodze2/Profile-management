@@ -10,47 +10,60 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React from "react";
+import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
 import axios from "axios";
 
 export default function CardsPage() {
+  const [cards, setCards] = useState([]);
 
   const addCard = () => {
-    let obj = {
-      "user_id": null,
-      "contract_id": null,
-      "party_id": null,
-      "bog_order_request_dto": {
-        "intent": "AUTHORIZE",
-        "items": [{
-          "amount": 1,
-          "description": "123",
-          "quantity": 1,
-          "product_id": 123
-        }]
-        ,
-        "locale": "ka",
-        "shop_order_id": "123456",
-        "redirect_url": "https://bog-banking.pirveli.ge/api/bog/callback/statusChange",
-        "show_shop_order_id_on_extract": true,
-        "capture_method": "AUTOMATIC",
-        "purchase_units": [
-          {
-            "amount": {
-              "currency_code": "GEL",
-              "value": 1
-            }
-          }
-        ]
-      }
-    }
-
-    axios.post(`https://vouchers.pirveli.ge/api/bog/orders`, obj).then((res) => {
-      let link = res.data.links[1].href;
-      typeof window !== 'undefined' && window.open(link, '_blank');
+    axios.post(`https://bog-banking.pirveli.ge/api/bog/saveCard`).then((res) => {
+      let link = res?.data?.links[1]?.href;
+      typeof window !== 'undefined' && window.open(link, '_self');
 
     })
+  }
+
+
+  const getCards = () => {
+    axios.get(`https://bog-banking.pirveli.ge/api/bog/getSavedCards`).then((res) => {
+      setCards(res.data)
+    })
+  }
+
+  useEffect(() => {
+    getCards()
+  }, [])
+
+
+  const getIcon = (bank: string) => {
+
+    switch (bank) {
+      case "AMEX":
+        return ICONS.ae
+      case "MC":
+        return ICONS.mc
+      case "VISA":
+        return ICONS.visa
+      default :
+        return ICONS.visa
+    }
+
+  }
+
+
+  const deleteCard = (id: number) => {
+
+    axios.post(`https://bog-banking.pirveli.ge/api/bog/deleteSavedCards`, {
+          // @ts-ignore
+          cardIds: [id]
+        }
+    ).then((res) => {
+      console.log("rees", res)
+      getCards()
+    })
+
   }
 
   return (
@@ -67,17 +80,41 @@ export default function CardsPage() {
             გადახდის მეთოდები
           </h2>
 
-          <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
+          <div className={"gap-[30px] grid grid-cols-3 mt-[40px]"}>
             <div
-                className={"w-full bg-[#db006033] rounded-[5px] h-[200px] flex items-center justify-center cursor-pointer"}
+                className={"w-full bg-[#db006033] rounded-xl h-[160px] flex items-center justify-center cursor-pointer"}
                 onClick={() => addCard()}>
               <div>
                 <p className={"text-red text-center"}>+</p>
                 <p className={"text-red text-center"}>დაამატე ბარათი</p>
               </div>
             </div>
-            <p>2</p>
-            <p>3</p>
+
+            {
+              cards.map((e: any, index: number) => {
+                return <div
+                    key={index}
+                    className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}
+                >
+                  <div className={"absolute top-[34px] left-[34px]"}>
+                    <Image src={getIcon(e.cardType)} alt={"icon"}/>
+                  </div>
+
+                  <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
+                       onClick={() => deleteCard(e.id)}
+                  >
+                    <Image src={ICONS.trash} alt={"icon"}/>
+                  </div>
+
+                  <p className={"text-red text-start ml-[30px] font-bold text-base"}
+                     style={{
+                       color: e.cardType === "MC" ? "#383838" : "#FFFFFF"
+                     }}
+                  >{e.pan}</p>
+                </div>
+              })
+            }
+
           </div>
 
         </div>

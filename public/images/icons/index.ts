@@ -16,3 +16,10 @@ export {default as rangUp} from './rang/up.svg';
 export {default as rangDown} from './rang/down.svg';
 export {default as rangEqual} from './rang/equal.svg';
 
+export {default as ae} from './ae.svg';
+export {default as mc} from './mc.svg';
+export {default as visa} from './visa.svg';
+export {default as trash} from './trash.svg';
+
+
+
