@@ -91,8 +91,9 @@ export default function CardsPage() {
             </div>
 
             {
-              cards.map((e: any) => {
+              cards.map((e: any, index: number) => {
                 return <div
+                    key={index}
                     className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}
                 >
                   <div className={"absolute top-[34px] left-[34px]"}>
