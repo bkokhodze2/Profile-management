@@ -32,6 +32,10 @@ const Navigation: React.FC = () => {
   //
   // }, [])
 
+  const logOut = ()=>{
+    typeof window !== 'undefined' && window.open("https://profile.pirveli.ge/", '_self');
+  }
+
   console.log("useDispatch", userInfo)
 
   return (
@@ -154,6 +158,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <div className={"group w-full flex items-center h-[24px] pl-[35px] !mt-[40px] cursor-pointer"}
+               onClick={()=>logOut()}
           >
             <Logout
                 color={"#DB0060"}/>
