@@ -288,7 +288,7 @@ export default function Profile() {
                   onClick={() => setIsOpenChooseModal(true)}
                   style={{
                     transition: "0.5s",
-                    backgroundColor: "#" + userInfo?.avatar?.colorCode
+                    backgroundColor: "#" + userInfo?.avatar?.code
                   }}
               >
                 <Image src={getChosenAvatar()}

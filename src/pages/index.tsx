@@ -125,7 +125,7 @@ export default function Profile() {
 
   }
 
-  console.log("balansi", userInfo?.accountDetail?.amountOfGel?.amountOfGel)
+  console.log("balansi", "#" + userInfo?.avatar?.colorCode)
 
   return (
       <div>
@@ -144,7 +144,7 @@ export default function Profile() {
                 className={"group w-[88px] h-[88px] mr-4 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                 style={{
                   transition: "0.5s",
-                  backgroundColor: "#" + userInfo?.avatar?.colorCode
+                  backgroundColor: "#" + userInfo?.avatar?.code
                 }}>
 
               <div

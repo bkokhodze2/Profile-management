@@ -106,7 +106,7 @@ const Header: React.FC = () => {
                     className={"group w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",
-                      backgroundColor: "#" + userInfo?.avatar?.colorCode
+                      backgroundColor: "#" + userInfo?.avatar?.code
                     }}>
 
                   <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
