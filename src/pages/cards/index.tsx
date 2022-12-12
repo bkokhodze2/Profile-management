@@ -52,6 +52,19 @@ export default function CardsPage() {
 
   }
 
+  const getColorByColor = (bank: string) => {
+    switch (bank) {
+      case "AMEX":
+        return "rgba(245,206,90,0.5)"
+      case "MC":
+        return "rgba(56,56,56,0.5)"
+      case "VISA":
+        return "rgba(109,208,231,0.5)"
+      default :
+        return "rgba(109,208,231,0.5)"
+    }
+  }
+
 
   const deleteCard = (id: number) => {
 
@@ -80,7 +93,7 @@ export default function CardsPage() {
             გადახდის მეთოდები
           </h2>
 
-          <div className={"gap-[30px] grid grid-cols-3 mt-[40px]"}>
+          <div className={"gap-[30px] grid grid-cols-3 my-[40px]"}>
             <div
                 className={"w-full bg-[#db006033] rounded-xl h-[160px] flex items-center justify-center cursor-pointer"}
                 onClick={() => addCard()}>
@@ -90,30 +103,33 @@ export default function CardsPage() {
               </div>
             </div>
 
-            {/*{*/}
-            {/*  cards?.map((e: any, index: number) => {*/}
-            {/*    return <div*/}
-            {/*        key={index}*/}
-            {/*        className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}*/}
-            {/*    >*/}
-            {/*      <div className={"absolute top-[34px] left-[34px]"}>*/}
-            {/*        <Image src={getIcon(e.cardType)} alt={"icon"}/>*/}
-            {/*      </div>*/}
+            {
+              cards?.map((e: any, index: number) => {
+                return <div
+                    key={index}
+                    className={"w-full rounded-xl relative  h-[160px] pb-[30px] flex items-end "}
+                    style={{
+                      backgroundColor: getColorByColor(e.cardType)
+                    }}
+                >
+                  <div className={"absolute top-[34px] left-[34px]"}>
+                    <Image src={getIcon(e.cardType)} alt={"icon"}/>
+                  </div>
 
-            {/*      <div className={"absolute top-[34px] right-[34px] cursor-pointer"}*/}
-            {/*           onClick={() => deleteCard(e.id)}*/}
-            {/*      >*/}
-            {/*        <Image src={ICONS.trash} alt={"icon"}/>*/}
-            {/*      </div>*/}
+                  <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
+                       onClick={() => deleteCard(e.id)}
+                  >
+                    <Image src={ICONS.trash} alt={"icon"}/>
+                  </div>
 
-            {/*      <p className={"text-red text-start ml-[30px] font-bold text-base"}*/}
-            {/*         style={{*/}
-            {/*           color: e.cardType === "MC" ? "#383838" : "#FFFFFF"*/}
-            {/*         }}*/}
-            {/*      >{e.pan}</p>*/}
-            {/*    </div>*/}
-            {/*  })*/}
-            {/*}*/}
+                  <p className={"text-red text-start ml-[30px] font-bold text-base"}
+                     style={{
+                       color: e.cardType === "MC" ? "#383838" : "#FFFFFF"
+                     }}
+                  >{e.pan}</p>
+                </div>
+              })
+            }
 
           </div>
 
