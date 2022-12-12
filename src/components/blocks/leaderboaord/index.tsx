@@ -39,7 +39,7 @@ const columns: ColumnsType<DataType> = [
     render: (text, obj) => obj.rang === 6 ? <div className={"w-[30px] h-[30px] rounded-[50%] bg-[#EDEEEF] m-[auto]"}/> :
         <div className={"flex items-center h-full"}
              style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}>
-          <div className={`${obj.rang <= 5 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
+          <div className={`${obj.rang === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
             <div
                 className={"w-[28px] h-[28px] flex items-center justify-center bg-[#5DB039] rounded-[50%] relative p-[3px]"}>
               <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
@@ -59,14 +59,14 @@ const columns: ColumnsType<DataType> = [
            style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}
         >{text}</p>,
   },
-  {
-    dataIndex: 'price',
-    key: 'price',
-    render: (text, obj) => obj.rang === 6 ? <div className={"w-[70px] h-[8px] rounded-[20px] bg-[#EDEEEF]"}/> :
-        <p className={"flex h-full  items-center text-[#383838]"}
-           style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}>{text} <Lari classes={"ml-2"}
-                                                                                                color={"#383838"}/></p>,
-  },
+  // {
+  //   dataIndex: 'price',
+  //   key: 'price',
+  //   render: (text, obj) => obj.rang === 6 ? <div className={"w-[70px] h-[8px] rounded-[20px] bg-[#EDEEEF]"}/> :
+  //       <p className={"flex h-full  items-center text-[#383838]"}
+  //          style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}>{text} <Lari classes={"ml-2"}
+  //                                                                                               color={"#383838"}/></p>,
+  // },
   {
     // @ts-ignore
     align: "end",
