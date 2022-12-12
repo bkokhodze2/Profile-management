@@ -195,7 +195,7 @@ export default function Profile() {
               </div>
               <div>
                 <p className={"text-base text-dark font-bold"}>ID</p>
-                <p className={"text-dark7 text-base"}>{userInfo?.details?.id}</p>
+                <p className={"text-dark7 text-base leading-[36px]"}>{userInfo?.details?.id}</p>
               </div>
             </div>
 
