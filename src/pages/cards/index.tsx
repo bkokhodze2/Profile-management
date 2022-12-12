@@ -67,8 +67,7 @@ export default function CardsPage() {
 
 
   const deleteCard = (id: number) => {
-
-    axios.post(`https://bog-banking.pirveli.ge/api/bog/deleteSavedCards`, {
+    axios.post(`${baseApi}/bog/deleteSavedCards`, {
           // @ts-ignore
           cardIds: [id]
         }
