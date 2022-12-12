@@ -15,19 +15,19 @@ import TicketItem from "../../components/blocks/ticket-item";
 import axios from "axios";
 
 export default function CardsPage() {
+  const baseApi = process.env.baseApi;
   const [cards, setCards] = useState([]);
 
   const addCard = () => {
-    axios.post(`https://bog-banking.pirveli.ge/api/bog/saveCard`).then((res) => {
+    axios.post(`${baseApi}/bog/saveCard`).then((res) => {
       let link = res?.data?.links[1]?.href;
       typeof window !== 'undefined' && window.open(link, '_self');
 
     })
   }
 
-
   const getCards = () => {
-    axios.get(`https://bog-banking.pirveli.ge/api/bog/getSavedCards`).then((res) => {
+    axios.get(`${baseApi}/bog/getSavedCards`).then((res) => {
       setCards(res.data)
     })
   }
@@ -90,30 +90,30 @@ export default function CardsPage() {
               </div>
             </div>
 
-            {
-              cards.map((e: any, index: number) => {
-                return <div
-                    key={index}
-                    className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}
-                >
-                  <div className={"absolute top-[34px] left-[34px]"}>
-                    <Image src={getIcon(e.cardType)} alt={"icon"}/>
-                  </div>
+            {/*{*/}
+            {/*  cards?.map((e: any, index: number) => {*/}
+            {/*    return <div*/}
+            {/*        key={index}*/}
+            {/*        className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}*/}
+            {/*    >*/}
+            {/*      <div className={"absolute top-[34px] left-[34px]"}>*/}
+            {/*        <Image src={getIcon(e.cardType)} alt={"icon"}/>*/}
+            {/*      </div>*/}
 
-                  <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
-                       onClick={() => deleteCard(e.id)}
-                  >
-                    <Image src={ICONS.trash} alt={"icon"}/>
-                  </div>
+            {/*      <div className={"absolute top-[34px] right-[34px] cursor-pointer"}*/}
+            {/*           onClick={() => deleteCard(e.id)}*/}
+            {/*      >*/}
+            {/*        <Image src={ICONS.trash} alt={"icon"}/>*/}
+            {/*      </div>*/}
 
-                  <p className={"text-red text-start ml-[30px] font-bold text-base"}
-                     style={{
-                       color: e.cardType === "MC" ? "#383838" : "#FFFFFF"
-                     }}
-                  >{e.pan}</p>
-                </div>
-              })
-            }
+            {/*      <p className={"text-red text-start ml-[30px] font-bold text-base"}*/}
+            {/*         style={{*/}
+            {/*           color: e.cardType === "MC" ? "#383838" : "#FFFFFF"*/}
+            {/*         }}*/}
+            {/*      >{e.pan}</p>*/}
+            {/*    </div>*/}
+            {/*  })*/}
+            {/*}*/}
 
           </div>
 

@@ -105,9 +105,8 @@ export default function Profile() {
 
   const getChosenAvatar = () => {
 
-    console.log("parseInt(userInfo?.avatar.path)",parseInt(userInfo?.avatar.path))
 
-    switch (parseInt(userInfo?.avatar.path)) {
+    switch (parseInt(userInfo?.avatar?.path)) {
       case 1:
         return IMAGES.avatar1.src
       case 2:
@@ -127,7 +126,6 @@ export default function Profile() {
 
   }
 
-  console.log("balansi", "#" + userInfo?.avatar?.colorCode)
 
   return (
       <div>
