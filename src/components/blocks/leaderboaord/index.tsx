@@ -173,21 +173,21 @@ const LeaderBoard = () => {
     <div className={"flex md:hidden flex-col"}>
       {data?.map((e, index: number) => {
         return <div key={index} className={"flex justify-between flex-row h-[67px] items-center py-[12px] border-b-[1px] border-[#D9D9D94D]"}
-                    style={{backgroundColor: e.rang === 100 ? "#F8FAFD" : "transparent"}}>
+                    style={{backgroundColor: e?.rang === 100 ? "#F8FAFD" : "transparent"}}>
           <div className={"flex items-center"}>
             {
-              e.rang === 6 ?
+              e?.rang === 6 ?
                   <div className={"w-[30px]"}>
                     <Image src={ICONS.rangEqual} alt={"equal arrow icon"} className={""}/></div> :
-                  <p className={"mr-[7px] w-[30px]"}>{e.rang}.</p>
+                  <p className={"mr-[7px] w-[30px]"}>{e?.rang}.</p>
             }
             {
-              e.rang === 6 ?
+              e?.rang === 6 ?
                   <div className={"w-[30px] h-[30px] rounded-[50%] ml-[18px] bg-[#EDEEEF] "}/> :
                   <div className={"flex items-center h-full"}
-                       style={{backgroundColor: e.rang === 100 ? "#F8FAFD" : "transparent"}}>
+                       style={{backgroundColor: e?.rang === 100 ? "#F8FAFD" : "transparent"}}>
                     <div
-                        className={`${e.rang === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
+                        className={`${e?.rang === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
                       <div
                           className={"w-[28px] h-[28px] flex items-center justify-center bg-[#5DB039] rounded-[50%] relative p-[3px]"}>
                         <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
@@ -203,11 +203,11 @@ const LeaderBoard = () => {
             }
 
             {
-              e.rang === 6 ?
+              e?.rang === 6 ?
                   <div className={"md:w-[133px] w-[80px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
                   <p className={"text-[#383838] h-full flex items-center pl-[18px]"}
-                     style={{backgroundColor: e.rang === 100 ? "#F8FAFD" : "transparent"}}
-                  >{e.name}</p>
+                     style={{backgroundColor: e?.rang === 100 ? "#F8FAFD" : "transparent"}}
+                  >{e?.name}</p>
             }
 
           </div>
