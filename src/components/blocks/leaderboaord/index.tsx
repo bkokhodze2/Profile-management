@@ -172,7 +172,7 @@ const LeaderBoard = () => {
 
     <div className={"flex md:hidden flex-col"}>
       {data?.map((e, index: number) => {
-        return <div className={"flex justify-between flex-row h-[67px] items-center py-[12px] border-b-[1px] border-[#D9D9D94D]"}
+        return <div key={index} className={"flex justify-between flex-row h-[67px] items-center py-[12px] border-b-[1px] border-[#D9D9D94D]"}
                     style={{backgroundColor: e.rang === 100 ? "#F8FAFD" : "transparent"}}>
           <div className={"flex items-center"}>
             {
