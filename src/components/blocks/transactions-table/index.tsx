@@ -57,7 +57,7 @@ const TransactionsTable = () => {
       },
       dataIndex: 'platform',
       key: 'platform',
-      render: (text) => <p className={"text-dark7"}>{text ? text : "no data"}</p>
+      render: (text) => <p className={"text-dark7"}>{text ? text : "pirverli.com"}</p>
     },
     {
       title: () => {

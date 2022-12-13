@@ -19,6 +19,7 @@ import Logout from "../../../public/images/icons/nav/navLogout";
 
 const Navigation: React.FC = () => {
   const baseApi = process.env.baseApi;
+  const basePath = process.env.basePath;
   const Router = useRouter();
   const dispatch = useDispatch();
   const userInfo = useSelector((state: any) => state.user.userInfo);
@@ -32,11 +33,20 @@ const Navigation: React.FC = () => {
   //
   // }, [])
 
+  // const logOut = () => {
+  //   typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+  // }
+
   const logOut = () => {
-    typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+    //  axios.post(`https://profile.pirveli.ge/logout`).then((res) => {
+    //   console.log("rees", res)
+    // })
+    // typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+
+    axios.get(`https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout?redirect_uri=https://pirveli.pirveli.ge`).then((res) => {
+    })
   }
 
-  console.log("useDispatch", userInfo)
 
   return (
       <>
@@ -135,7 +145,7 @@ const Navigation: React.FC = () => {
               </div>
               <div
                   className={"h-full flex justify-center px-2 bg-[#7B92DC] rounded-[20px] min-w-[25px] items-center"}>
-                <p className={"text-[12px] text-[white]"}>2</p>
+                <p className={"text-[12px] text-[white]"}>4</p>
               </div>
             </div>
           </Link>

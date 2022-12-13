@@ -60,7 +60,6 @@ export default function PointsPage() {
 
   const pick = (val) => {
 
-    console.log("val", val)
     if (val[0] && val[1]) {
       setRange({
         from: val[0].format('YYYY-MM-DD'),

@@ -221,15 +221,19 @@ body {
     display: none;
 }
 
-.rang{
+.rang {
     background-image: url(/images/icons/rang.svg);
 }
 
-.removeHeaderBg .ant-table-thead .ant-table-cell{
+.removeHeaderBg .ant-table-thead .ant-table-cell {
     background-color: transparent !important;
 }
 
 tr[data-row-key="4"] {
     /*background-color: yellow;*/
     /*display: none;*/
+}
+
+.confirm .ant-btn-primary {
+    background-color: #1677ff !important;
 }

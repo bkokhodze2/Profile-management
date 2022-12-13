@@ -19,8 +19,6 @@ const Donut = () => {
 		setSpentPoints(userInfo?.accountDetail?.amountOfSpentPoints?.amountOfSpentPoints)
 	},[userInfo])
 
-	console.log("currentPoints",currentPoints)
-	console.log("spentPoints",spentPoints)
 
 	const data = {
 		// labels:['მიმდინარე','დახარჯული'],
@@ -38,7 +36,6 @@ const Donut = () => {
 		],
 	};
 
-	console.log("donut",userInfo)
 
 	return <div className={"relative"}>
 		<span className={"absolute text-base text-[#383838] left-[50%] top-[50%] -translate-x-[50%] translate-y-[-50%]"}>

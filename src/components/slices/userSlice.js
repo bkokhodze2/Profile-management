@@ -32,7 +32,6 @@ const userReducer = createSlice({
 			state.isLoading = false;
 			state.userInfo = action.payload;
 		}).addCase(getUserInfo.rejected,(state,action) => {
-			console.log(action);
 			state.isLoading = false;
 		});
 	},

@@ -13,10 +13,13 @@ import Points from "/public/images/icons/nav/navPoints";
 import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
 import axios from "axios";
+import {Modal} from 'antd';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 
 export default function CardsPage() {
   const baseApi = process.env.baseApi;
-  const [cards, setCards] = useState([]);
+  const [cardsBog, setBardsBog] = useState([]);
+  const [cardsTbc, setCardsTbc] = useState([]);
 
   const addCard = () => {
     axios.post(`${baseApi}/bog/saveCard`).then((res) => {
@@ -28,9 +31,17 @@ export default function CardsPage() {
 
   const getCards = () => {
     axios.get(`${baseApi}/bog/getSavedCards`).then((res) => {
-      setCards(res.data)
+      setBardsBog(res.data)
+    })
+
+    axios.get(`${baseApi}/tbc/getSavedCards`).then((res) => {
+      setCardsTbc(res.data)
     })
   }
+
+  useEffect(() => {
+  }, [])
+
 
   useEffect(() => {
     getCards()
@@ -72,11 +83,25 @@ export default function CardsPage() {
           cardIds: [id]
         }
     ).then((res) => {
-      console.log("rees", res)
       getCards()
     })
 
   }
+
+  const confirm = (id: number) => {
+
+    Modal.confirm({
+      title: 'შეტყობინება',
+      icon: <ExclamationCircleOutlined/>,
+      content: 'ნადმვილად გსურთ ბარათის წაშლა?',
+      okText: 'წაშლა',
+      cancelText: 'გაუქმება',
+      className: "confirm",
+      onOk: () => deleteCard(id)
+    });
+
+  };
+
 
   return (
       <div>
@@ -103,7 +128,7 @@ export default function CardsPage() {
             </div>
 
             {
-              cards?.map((e: any, index: number) => {
+              [...cardsBog, ...cardsTbc]?.map((e: any, index: number) => {
                 return <div
                     key={index}
                     className={"w-full rounded-xl relative  h-[160px] pb-[30px] flex items-end "}
@@ -116,16 +141,16 @@ export default function CardsPage() {
                   </div>
 
                   <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
-                       onClick={() => deleteCard(e.id)}
+                       onClick={() => confirm(e.id)}
                   >
                     <Image src={ICONS.trash} alt={"icon"}/>
                   </div>
 
                   <p className={"text-red text-start ml-[30px] font-bold text-base"}
                      style={{
-                       color: e.cardType === "MC" ? "#383838" : "#FFFFFF"
+                       color: "#FFFFFF"
                      }}
-                  >{e.pan}</p>
+                  >{e?.pan}</p>
                 </div>
               })
             }
