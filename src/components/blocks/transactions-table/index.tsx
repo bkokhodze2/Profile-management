@@ -57,7 +57,7 @@ const TransactionsTable = () => {
       },
       dataIndex: 'platform',
       key: 'platform',
-      render: (text) => <p className={"text-dark7"}>{text ? text : "no data"}</p>
+      render: (text) => <p className={"text-dark7"}>{text ? text : "pirveli.com"}</p>
     },
     {
       title: () => {
@@ -70,13 +70,33 @@ const TransactionsTable = () => {
     }
   ];
 
-  return <Table
-      className={"pointsTable"}
-      columns={columns}
-      dataSource={transactions}
-      pagination={false}
-      rowKey="description"
-  />
+  return <>
+    <div className={"flex flex-col md:hidden"}>
+      {
+        transactions?.map((e: any, index: number) => {
+          return <div key={index}
+                      className={"w-full flex flex-row justify-between py-[12px] border-b-[1px] border-[#D9D9D94D]"}>
+            <div className={"flex flex-col items-start"}>
+              <p className={"text-dark7 mb-1 text-[14px]"}>{dayjs(e?.transactionDate).format(dateFormat).toString()}</p>
+              <p className={"text-[#383838] text-[14px]"}>{e?.description}</p>
+            </div>
+            <div className={"flex flex-col items-end"}>
+              <p className={"text-dark7 mb-1 text-[14px]"}>{e?.platform ? e?.platform : "pirveli.com"}</p>
+              <p className={"text-[14px]"}>{e?.genericTransactionValue}</p>
+            </div>
+          </div>
+        })
+      }
+      <p className={"text-center text-[#7B92DC] text-[14px] mt-3 mb-3"}>იხილეთ მეტი</p>
+    </div>
+    <Table
+        className={"pointsTable md:block hidden"}
+        columns={columns}
+        dataSource={transactions}
+        pagination={false}
+        rowKey="description"
+    />
+  </>
 };
 
 

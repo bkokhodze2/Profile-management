@@ -13,24 +13,35 @@ import Points from "/public/images/icons/nav/navPoints";
 import React, {useEffect, useState} from "react";
 import TicketItem from "../../components/blocks/ticket-item";
 import axios from "axios";
+import {Modal} from 'antd';
+import {ExclamationCircleOutlined} from '@ant-design/icons';
 
 export default function CardsPage() {
-  const [cards, setCards] = useState([]);
+  const baseApi = process.env.baseApi;
+  const [cardsBog, setBardsBog] = useState([]);
+  const [cardsTbc, setCardsTbc] = useState([]);
 
   const addCard = () => {
-    axios.post(`https://bog-banking.pirveli.ge/api/bog/saveCard`).then((res) => {
+    axios.post(`${baseApi}/bog/saveCard`).then((res) => {
       let link = res?.data?.links[1]?.href;
       typeof window !== 'undefined' && window.open(link, '_self');
 
     })
   }
 
-
   const getCards = () => {
-    axios.get(`https://bog-banking.pirveli.ge/api/bog/getSavedCards`).then((res) => {
-      setCards(res.data)
+    axios.get(`${baseApi}/bog/getSavedCards`).then((res) => {
+      setBardsBog(res.data)
+    })
+
+    axios.get(`${baseApi}/tbc/getSavedCards`).then((res) => {
+      setCardsTbc(res.data)
     })
   }
+
+  useEffect(() => {
+  }, [])
+
 
   useEffect(() => {
     getCards()
@@ -52,19 +63,45 @@ export default function CardsPage() {
 
   }
 
+  const getColorByColor = (bank: string) => {
+    switch (bank) {
+      case "AMEX":
+        return "rgba(245,206,90,0.5)"
+      case "MC":
+        return "rgba(56,56,56,0.5)"
+      case "VISA":
+        return "rgba(109,208,231,0.5)"
+      default :
+        return "rgba(109,208,231,0.5)"
+    }
+  }
+
 
   const deleteCard = (id: number) => {
-
-    axios.post(`https://bog-banking.pirveli.ge/api/bog/deleteSavedCards`, {
+    axios.post(`${baseApi}/bog/deleteSavedCards`, {
           // @ts-ignore
           cardIds: [id]
         }
     ).then((res) => {
-      console.log("rees", res)
       getCards()
     })
 
   }
+
+  const confirm = (id: number) => {
+
+    Modal.confirm({
+      title: 'შეტყობინება',
+      icon: <ExclamationCircleOutlined/>,
+      content: 'ნადმვილად გსურთ ბარათის წაშლა?',
+      okText: 'წაშლა',
+      cancelText: 'გაუქმება',
+      className: "confirm",
+      onOk: () => deleteCard(id)
+    });
+
+  };
+
 
   return (
       <div>
@@ -80,7 +117,7 @@ export default function CardsPage() {
             გადახდის მეთოდები
           </h2>
 
-          <div className={"gap-[30px] grid grid-cols-3 mt-[40px]"}>
+          <div className={"gap-[30px] grid grid-cols-3 my-[40px]"}>
             <div
                 className={"w-full bg-[#db006033] rounded-xl h-[160px] flex items-center justify-center cursor-pointer"}
                 onClick={() => addCard()}>
@@ -91,26 +128,29 @@ export default function CardsPage() {
             </div>
 
             {
-              cards.map((e: any, index: number) => {
+              [...cardsBog, ...cardsTbc]?.map((e: any, index: number) => {
                 return <div
                     key={index}
-                    className={"w-full rounded-xl relative bg-[#5db03980] h-[160px] pb-[30px] flex items-end "}
+                    className={"w-full rounded-xl relative  h-[160px] pb-[30px] flex items-end "}
+                    style={{
+                      backgroundColor: getColorByColor(e.cardType)
+                    }}
                 >
                   <div className={"absolute top-[34px] left-[34px]"}>
                     <Image src={getIcon(e.cardType)} alt={"icon"}/>
                   </div>
 
                   <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
-                       onClick={() => deleteCard(e.id)}
+                       onClick={() => confirm(e.id)}
                   >
                     <Image src={ICONS.trash} alt={"icon"}/>
                   </div>
 
                   <p className={"text-red text-start ml-[30px] font-bold text-base"}
                      style={{
-                       color: e.cardType === "MC" ? "#383838" : "#FFFFFF"
+                       color: "#FFFFFF"
                      }}
-                  >{e.pan}</p>
+                  >{e?.pan}</p>
                 </div>
               })
             }

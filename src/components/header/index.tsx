@@ -34,7 +34,7 @@ const Header: React.FC = () => {
       case 6:
         return IMAGES.avatar6.src
       default :
-        return  IMAGES.avatar1.src
+        return IMAGES.avatar1.src
     }
 
   }
@@ -50,16 +50,16 @@ const Header: React.FC = () => {
 
   return (
       <>
-        <div className={"hidden md:flex w-full bg-amber-700 h-[44px] min-h-[44px] bg-[#383838] items-center "}>
-          <div className={"w-full container m-auto flex justify-between"}>
-            <div className={"flex space-x-8"}>
+        <div className={"flex w-full bg-amber-700 h-[44px] min-h-[44px] md:bg-[#383838] bg-[#1E1E1E] items-center "}>
+          <div className={"w-full container m-auto flex md:justify-between justify-end"}>
+            <div className={"flex space-x-8 md:flex hidden"}>
               <Link href={"https://optimoml.geopay.ge/index.php"}>
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular "}>მაღაზია</span>
+                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>
               </Link>
               <Link href={"https://medical.pirveli.ge"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>
               </Link>
-              <Link href={"/"}>
+              <Link href={"https://vouchers.pirveli.ge"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
               </Link>
 
@@ -82,12 +82,11 @@ const Header: React.FC = () => {
                   height={20}
                   alt={"coin icon"}
               />
-              <p className={"text-sm text-[white] mr-8 ml-[5px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
+              <p className={"text-sm text-[white] md:mr-8 ml-[5px] capitalize md:after:content-[''] md:after:h-[20px] md:after:bg-[#ffffffb3] md:after:rounded-[2px] md:after:ml-4 md:after:absolute md:after:w-[1px] after:text-red-500 aveSofRegular"}>
                 {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}
               </p>
-              <div className={"flex cursor-pointer"}>
+              <div className={"cursor-pointer md:flex hidden"}>
                 <img className={"mr-[11px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
-
                 <Image src={ICONS.arrowDown} alt={"arrow down"}/>
               </div>
               {/*<p className={"text-sm text-[#ffffffb3] mr-8 capitalize aveSofRegular"}>English</p>*/}
@@ -95,15 +94,15 @@ const Header: React.FC = () => {
           </div>
         </div>
         <header className={"container w-full m-auto sticky top-[0px] z-20"}>
-          <div className={"flex gap-[30px] justify-between h-[100px] w-full items-center bg-[#EDEEEF]"}>
-            <div className={"min-w-[312px]"}>
+          <div className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px] h-[56px] w-full items-center bg-[#EDEEEF]"}>
+            <div className={"xl:min-w-[312px] min-w-[250px]"}>
               <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
             </div>
             <div className={"borders w-full grid grid-cols-2 gap-[30px] relative"}>
               <div/>
-              <div className={"flex justify-end"}>
+              <div className={"md:flex hidden justify-end"}>
                 <div
-                    className={"group w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                    className={"group min-w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",
                       backgroundColor: "#" + userInfo?.avatar?.code
@@ -112,6 +111,23 @@ const Header: React.FC = () => {
                   <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
                          width={60} height={60}
                          style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+                </div>
+              </div>
+
+              <div className={"flex md:hidden justify-end "}>
+                <div className={"flex justify-center items-center h-[36px] w-[36px]"}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clipPath="url(#clip0_4361_5172)">
+                      <path d="M4 8H20" stroke="#383838" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M4 16H20" stroke="#383838" strokeWidth="2" strokeLinecap="round"
+                            strokeLinejoin="round"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_4361_5172">
+                        <rect width="24" height="24" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
                 </div>
               </div>
             </div>

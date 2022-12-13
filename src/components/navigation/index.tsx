@@ -19,6 +19,7 @@ import Logout from "../../../public/images/icons/nav/navLogout";
 
 const Navigation: React.FC = () => {
   const baseApi = process.env.baseApi;
+  const basePath = process.env.basePath;
   const Router = useRouter();
   const dispatch = useDispatch();
   const userInfo = useSelector((state: any) => state.user.userInfo);
@@ -32,19 +33,28 @@ const Navigation: React.FC = () => {
   //
   // }, [])
 
+  // const logOut = () => {
+  //   typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+  // }
+
   const logOut = () => {
-    typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+    //  axios.post(`https://profile.pirveli.ge/logout`).then((res) => {
+    //   console.log("rees", res)
+    // })
+    // typeof window !== 'undefined' && window.open("https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout", '_self');
+
+    axios.get(`https://auth.pirveli.ge/realms/xracoon-demo/protocol/openid-connect/logout?redirect_uri=https://pirveli.pirveli.ge`).then((res) => {
+    })
   }
 
-  console.log("useDispatch", userInfo)
 
   return (
       <>
         <div
-            className={"flex sticky top-[100px] flex-col bg-[white] h-min rounded-xl min-w-[312px] pt-[44px] pb-[32px] pr-[32px] space-y-5"}>
+            className={"md:flex hidden sticky top-[100px] flex-col bg-[white] h-min rounded-xl xl:min-w-[312px] min-w-[250px] pt-[44px] pb-[32px] xl:pr-[32px] pr-2 space-y-5"}>
 
           <Link href={"/"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -61,7 +71,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/points"}>
-            <div className={"group w-full flex justify-between items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex justify-between items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -84,7 +94,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/profile-edit"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/profile-edit" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -101,7 +111,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/orders"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/orders" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -118,7 +128,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/tickets"}>
-            <div className={"group w-full flex items-center justify-between h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center justify-between h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/tickets" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -135,13 +145,13 @@ const Navigation: React.FC = () => {
               </div>
               <div
                   className={"h-full flex justify-center px-2 bg-[#7B92DC] rounded-[20px] min-w-[25px] items-center"}>
-                <p className={"text-[12px] text-[white]"}>2</p>
+                <p className={"text-[12px] text-[white]"}>4</p>
               </div>
             </div>
           </Link>
 
           <Link href={"/cards"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/cards" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -157,7 +167,7 @@ const Navigation: React.FC = () => {
             </div>
           </Link>
 
-          <div className={"group w-full flex items-center h-[24px] pl-[35px] !mt-[40px] cursor-pointer"}
+          <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4 !mt-[40px] cursor-pointer"}
                onClick={() => logOut()}
           >
             <Logout

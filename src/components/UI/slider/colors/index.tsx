@@ -18,7 +18,6 @@ import colors from "../../colors";
 
 export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {
 
-  console.log("indexm", colors.indexOf(chosenAvatarBg));
 
   useEffect(() => {
 
