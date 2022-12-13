@@ -50,7 +50,6 @@ export default function ChangeAvatar({isOpenChooseModal, setIsOpenChooseModal}) 
   const saveAvatar = () => {
     axios.post(`${baseApi}/user/user/upload-avatar?path=${chosenAvatarImg}&colorCode=${chosenAvatarBg}&userId=${userInfo?.details?.id}`
     ).then((res) => {
-      console.log("resss", res)
       // @ts-ignore
       dispatch(getUserInfo())
       setIsOpenChooseModal(false)
