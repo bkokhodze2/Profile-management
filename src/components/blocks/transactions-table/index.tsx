@@ -66,7 +66,7 @@ const TransactionsTable = () => {
       dataIndex: 'genericTransactionValue',
       key: 'genericTransactionValue',
       render: (text) => <p
-          style={{color: text.toString().includes("-") ? "#DB0060" : "#5DB039"}}>{text ? text : "no data"}</p>
+          style={{color: text?.toString().includes("-") ? "#DB0060" : "#5DB039"}}>{text ? text : "no data"}</p>
     }
   ];
 
