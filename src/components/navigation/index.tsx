@@ -51,10 +51,10 @@ const Navigation: React.FC = () => {
   return (
       <>
         <div
-            className={"flex sticky top-[100px] flex-col bg-[white] h-min rounded-xl min-w-[312px] pt-[44px] pb-[32px] pr-[32px] space-y-5"}>
+            className={"md:flex hidden sticky top-[100px] flex-col bg-[white] h-min rounded-xl xl:min-w-[312px] min-w-[250px] pt-[44px] pb-[32px] xl:pr-[32px] pr-2 space-y-5"}>
 
           <Link href={"/"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -71,7 +71,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/points"}>
-            <div className={"group w-full flex justify-between items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex justify-between items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/points" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -94,7 +94,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/profile-edit"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/profile-edit" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -111,7 +111,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/orders"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/orders" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -128,7 +128,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/tickets"}>
-            <div className={"group w-full flex items-center justify-between h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center justify-between h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/tickets" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -151,7 +151,7 @@ const Navigation: React.FC = () => {
           </Link>
 
           <Link href={"/cards"}>
-            <div className={"group w-full flex items-center h-[24px] pl-[35px]"}
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
                  style={{
                    borderLeft: Router.pathname === "/cards" ? "2px solid #DB0060" : "2px solid transparent"
                  }}
@@ -167,7 +167,7 @@ const Navigation: React.FC = () => {
             </div>
           </Link>
 
-          <div className={"group w-full flex items-center h-[24px] pl-[35px] !mt-[40px] cursor-pointer"}
+          <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4 !mt-[40px] cursor-pointer"}
                onClick={() => logOut()}
           >
             <Logout

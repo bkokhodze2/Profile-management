@@ -28,10 +28,10 @@ export default function Slider() {
       <>
         {
           <>
-            <div className={"ticketsArrowPrev"} ref={prevRef} onClick={() => swiper.current.swiper.slidePrev()}>
+            <div className={"ticketsArrowPrev !hidden ph:flex"} ref={prevRef} onClick={() => swiper.current.swiper.slidePrev()}>
               <Image
                   src={ICONS.prev} alt={"prev icon"}/></div>
-            <div className={"ticketsArrowNext"} ref={nextRef} onClick={() => swiper.current.swiper.slideNext()}><Image
+            <div className={"ticketsArrowNext !hidden ph:flex"} ref={nextRef} onClick={() => swiper.current.swiper.slideNext()}><Image
                 src={ICONS.next} alt={"next icon"}/></div>
           </>
         }
@@ -60,7 +60,7 @@ export default function Slider() {
             return <SwiperSlide key={index}>
               <div className={"w-full h-full "}>
                 <div className={"flex h-full w-full justify-center pb-[15px]"}>
-                  <div className={"flex flex-col justify-between items-start mr-[71px]"}>
+                  <div className={"flex flex-col justify-between items-start ph:mr-[71px] mr-[20px]"}>
                     <div>
                       <p className={"text-[14px] mb-1 text-dark7"}>ტირაჟი</p>
                       <p className={"text-[14px] text-dark font-[600]"}>1256741</p>

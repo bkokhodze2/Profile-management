@@ -86,7 +86,7 @@ export default function PointsPage() {
 
   useEffect(() => {
 
-    if(userInfo?.details?.id){
+    if (userInfo?.details?.id) {
       axios.get(`${baseApi}/user/user/point-transactions/${userInfo?.details?.id}`).then((res) => {
         setTransactions(res.data)
       })
@@ -152,39 +152,51 @@ export default function PointsPage() {
 
           <div className={"flex justify-between"}>
             {/*onClick={() => setIsModalOpen(true)}*/}
-            <h2 className={"text-[32px] text-[#383838] font-bold"} >
+            <h2 className={"text-[32px] text-[#383838] font-bold"}>
               ჩემი ქულები
             </h2>
           </div>
 
-          <div className={"h-[1000px] mt-[30px] px-6 pt-[36px] pb-[46px] bg-[white] rounded-xl"}>
+          <div className={"mt-[30px] md:px-6 px-5 pt-[36px] pb-[46px] bg-[white] rounded-xl"}>
 
             {/*/statistic*/}
-            <div className={"mt-4 flex space-x-[25px] mb-[44px]"}>
+            <div className={"mt-4 flex ph:space-x-[25px] space-x-4 mb-[44px]"}>
               <div className={"w-[117px] h-[117px] "}>
                 <Donut/>
               </div>
               <div className={"flex flex-col justify-around"}>
-                <div className={"flex items-center"}>
-                  <div className={"w-[10px] h-[10px] bg-red rounded-[50%]"}/>
-                  <p className={"text-dark7 text-[12px] ml-[6px]"}>გამომუშავებული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints + spentPoints}
-                                                                       separator=","
-                                                                       start={(currentPoints + spentPoints) * 0.75}/>
+                <div className={"flex ph:items-center items-start flex-col ph:flex-row mt-2 ph:mt-0"}>
+                  <div className={"flex items-center"}>
+                    <div className={"ph:w-[10px] ph:h-[10px] h-[5px] w-[5px] bg-red rounded-[50%]"}/>
+                    <p className={"text-dark7 ph:text-[12px] text-[14px] ml-[6px]"}>გამომუშავებული</p>
+                  </div>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1}
+                             end={currentPoints + spentPoints}
+                             separator=","
+                             start={(currentPoints + spentPoints) * 0.75}/>
                   </p>
                 </div>
-                <div className={"flex items-center"}>
-                  <div className={"w-[10px] h-[10px] bg-[#9766F0] rounded-[50%]"}/>
-                  <p className={"text-dark7 text-[12px] ml-[6px]"}>მიმდინარე</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={currentPoints} separator=","
-                                                                       start={currentPoints * 0.75}/>
+                <div className={"flex ph:items-center items-start flex-col ph:flex-row mt-2 ph:mt-0"}>
+                  <div className={"flex items-center"}>
+                    <div className={"ph:w-[10px] ph:h-[10px] h-[5px] w-[5px] bg-[#9766F0] rounded-[50%]"}/>
+                    <p className={"text-dark7 text-[12px] ml-[6px]"}>მიმდინარე</p>
+                  </div>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1} end={currentPoints}
+                             separator=","
+                             start={currentPoints * 0.75}/>
                   </p>
                 </div>
-                <div className={"flex items-center"}>
-                  <div className={"w-[10px] h-[10px] bg-[#EDC520] rounded-[50%]"}/>
-                  <p className={"text-dark7 text-[12px] ml-[6px]"}>დახარჯული</p>
-                  <p className={"text-dark ml-3 text-[18px]"}><CountUp duration={1} end={spentPoints} separator=","
-                                                                       start={spentPoints * 0.75}/></p>
+                <div className={"flex ph:items-center items-start flex-col ph:flex-row mt-2 ph:mt-0"}>
+                  <div className={"flex items-center"}>
+                    <div className={"ph:w-[10px] ph:h-[10px] h-[5px] w-[5px] bg-[#EDC520] rounded-[50%]"}/>
+                    <p className={"text-dark7 text-[12px] ml-[6px]"}>დახარჯული</p>
+                  </div>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1} end={spentPoints}
+                             separator=","
+                             start={spentPoints * 0.75}/></p>
                 </div>
               </div>
             </div>

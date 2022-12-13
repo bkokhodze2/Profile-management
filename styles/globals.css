@@ -237,3 +237,9 @@ tr[data-row-key="4"] {
 .confirm .ant-btn-primary {
     background-color: #1677ff !important;
 }
+
+@media (max-width: 768px) {
+    .borders {
+        display: none;
+    }
+}
