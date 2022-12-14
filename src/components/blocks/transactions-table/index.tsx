@@ -66,7 +66,7 @@ const TransactionsTable = () => {
       dataIndex: 'genericTransactionValue',
       key: 'genericTransactionValue',
       render: (text) => <p
-          style={{color: text?.toString().includes("-") ? "#DB0060" : "#5DB039"}}>{text ? text : "no data"}</p>
+          style={{color: text?.toString()?.includes("-") ? "#DB0060" : "#5DB039"}}>{text ? text : "no data"}</p>
     }
   ];
 
@@ -77,7 +77,7 @@ const TransactionsTable = () => {
           return <div key={index}
                       className={"w-full flex flex-row justify-between py-[12px] border-b-[1px] border-[#D9D9D94D]"}>
             <div className={"flex flex-col items-start"}>
-              <p className={"text-dark7 mb-1 text-[14px]"}>{dayjs(e?.transactionDate).format(dateFormat).toString()}</p>
+              <p className={"text-dark7 mb-1 text-[14px]"}>{dayjs(e?.transactionDate)?.format(dateFormat)?.toString()}</p>
               <p className={"text-[#383838] text-[14px]"}>{e?.description}</p>
             </div>
             <div className={"flex flex-col items-end"}>

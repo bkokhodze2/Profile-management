@@ -26,16 +26,19 @@ export default function Layout({children}){
 	// 		'Access-Control-Allow-Origin':'*',
 	// 		'Content-Type':'application/json',
 	//
-	// 		Authorization:`Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzA5NTQwOTAsImlhdCI6MTY3MDkxODEwOSwiYXV0aF90aW1lIjoxNjcwOTE4MDkwLCJqdGkiOiJmMTlkMzliNi04NjQ2LTQ1ODItYmJjMS00ZGFkZmUyMGE5YjQiLCJpc3MiOiJodHRwczovL2F1dGgucGlydmVsaS5nZS9yZWFsbXMveHJhY29vbi1kZW1vIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6ImQ0ZGFiZTg2LTE1OWEtNDg1NC1hMzc1LTcxZjFiYzViMjlhMSIsInR5cCI6IkJlYXJlciIsImF6cCI6ImNzLWNhcnQiLCJzZXNzaW9uX3N0YXRlIjoiMDVjYjAzMTYtMjZiMC00NDljLWFiZmQtNzM3MTA3OTU5NmI3IiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLXhyYWNvb24tZGVtbyIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiIwNWNiMDMxNi0yNmIwLTQ0OWMtYWJmZC03MzcxMDc5NTk2YjciLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInVzZXJfaWQiOiJkNGRhYmU4Ni0xNTlhLTQ4NTQtYTM3NS03MWYxYmM1YjI5YTEiLCJuYW1lIjoia29tZXRhIGtvbWV0YSIsInByZWZlcnJlZF91c2VybmFtZSI6ImtvbWV0YUBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoia29tZXRhIiwiZmFtaWx5X25hbWUiOiJrb21ldGEiLCJlbWFpbCI6ImtvbWV0YUBnbWFpbC5jb20ifQ.etXAw-LEDY9OdodK8VPa4A5WD7tb7gQclXCZeoWtqafiX_keWZyMQpj3J95mFf4Wa8Ruise6nUe8oIFYmi-dOUoq_-rWxM0NxPHjM8-Wdn37PpLrr3Dy4yEIHf46H6xettg9zRDMDG_CqE4eq1Qevbo01RBItq3jtgTDYNTVo6OtyKmJ3c-b9HWlKLVwdDebqYcrQGU0GgimIMWIm2ukFatB6IPi7ZWvFm15VYqX7dxle47L39t9gtND2dPluyYgPo4JczcCuS6u4_O7RnehXleBQVl0EUQaRvlHgyrM2Rg4DvpXqZiax2T7EWuaH7Px4q2dB-gD_OT0JhSwDCuwFQ`
-	// 	};
-	//
-	// 	return config;
-	// });
+	// 		// Authorization:`Bearer
+	// eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzEwNTI0MDAsImlhdCI6MTY3MTAxNjQzMCwiYXV0aF90aW1lIjoxNjcxMDE2NDAwLCJqdGkiOiI4YjFkYjVhNy0yNTI4LTQ2YWQtODhmYS0zZmI4MDc1NTBmNzQiLCJpc3MiOiJodHRwczovL2F1dGgucGlydmVsaS5nZS9yZWFsbXMveHJhY29vbi1kZW1vIiwiYXVkIjoiYWNjb3VudCIsInN1YiI6IjhmMzIyYTU0LWRhODYtNDNkOS05NmRhLTdiZTA4ZDRjYTA1YiIsInR5cCI6IkJlYXJlciIsImF6cCI6ImNzLWNhcnQiLCJzZXNzaW9uX3N0YXRlIjoiYTViMTRjMjgtMjQwNi00YmQ0LWFmNWQtMzA3MDcwMmFjNDhlIiwiYWNyIjoiMSIsInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLXhyYWNvb24tZGVtbyIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiJhNWIxNGMyOC0yNDA2LTRiZDQtYWY1ZC0zMDcwNzAyYWM0OGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInVzZXJfaWQiOiI4ZjMyMmE1NC1kYTg2LTQzZDktOTZkYS03YmUwOGQ0Y2EwNWIiLCJuYW1lIjoibmF0aWEgbmF0aWEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJuYXRpYTFAZ21haWwuY29tIiwiZ2l2ZW5fbmFtZSI6Im5hdGlhIiwiZmFtaWx5X25hbWUiOiJuYXRpYSIsImVtYWlsIjoibmF0aWExQGdtYWlsLmNvbSJ9.A2nNvJFF1RKgLSQewfQjJMrCENglTCtCprT1uXbeeYrMvtYtLvOH4Hpz--lg_5KwTmNJx4KveUok9pEa6AyBPJpbsmHLm5BMdJ41Lq4Sk563IQgd5K1zlgijnGdV9tI_7rdgNV5wfc3ZLb2LooBSrPP2LWR4hNo-wthy7kIRtZtlTUNpyvf8Fk8nz21Om7XmIqACCYWnyfQLECLpGWBTbDU2JeHBkJFkQOLNN0aYlBeKOSkItCB_FhUDW9C6KUw4RMv5PbcSK55hOQSbB7o0QvT3dLGzog78HD_qaDm9Hs9im_HgsSf7Tcz4GxpzO4KwpoMTHXqUpJ4bet2GLcB5Gg`
+	// }; return config; });
 
 	useEffect(() => {
 		axios.get(`${baseApi}/user/user/detail-info`).then((res) => {
 		})
 	},[])
+
+
+	const navTo = (path) => {
+		Router.push(path);
+	}
 
 	return (
 			<Provider store={store}>
@@ -60,62 +63,68 @@ export default function Layout({children}){
 				     }}
 				>
 					<div className={"grid grid-cols-5 pt-3"}>
-						<div >
+						<div>
 							<div className={"flex flex-col items-center justify-between"}
-
+							     onClick={() => navTo("/")}
 							>
 								<Dashboard
 										color={Router.pathname === "/" ? "#DB0060" : "#383838"}/>
 								<p className={"mt-[7px] text-[10px] aveSofMedium"}
 								   style={{
-									   color:"#DB0060"
+									   color:Router.pathname === "/" ? "#DB0060" : "#383838"
 								   }}
 								>კაბინეტი</p>
 							</div>
 						</div>
 
 						<div className={"flex flex-col items-center justify-between pt-0.5"}
-
+						     onClick={() => navTo("/points")}
 						>
 							<Points
 									color={Router.pathname === "/points" ? "#DB0060" : "#383838"}/>
 							<p className={"mt-[7px] text-[10px] text-[#383838] aveSofMedium"}
 							   style={{
-								   color:"#383838"
+								   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
 							   }}
 							>ქულები</p>
 						</div>
-						<div >
-							<div className={"flex flex-col items-center justify-between"}>
+						<div>
+							<div className={"flex flex-col items-center justify-between"}
+							     onClick={() => navTo("/orders")}
+							>
 								<History
-									color={Router.pathname === "/orders" ? "#DB0060" : "#383838"}/>
+										color={Router.pathname === "/orders" ? "#DB0060" : "#383838"}/>
 								<p
 										style={{
-											color:"#383838"
+											color:Router.pathname === "/orders" ? "#DB0060" : "#383838"
 										}}
 										className={"mt-[7px] text-[10px] text-[#383838] aveSofMedium"}
 								>შეკვეთები</p>
 							</div>
 						</div>
 						<div>
-							<div className={"flex flex-col items-center justify-between"}>
+							<div className={"flex flex-col items-center justify-between"}
+							     onClick={() => navTo("/tickets")}
+							>
 								<Tickets
 										color={Router.pathname === "/tickets" ? "#DB0060" : "#383838"}/>
 								<p
 										style={{
-											color:"#383838"
+											color:Router.pathname === "/tickets" ? "#DB0060" : "#383838"
 										}}
 										className={"mt-[7px] text-[10px] text-[#383838] aveSofMedium"}
 								>ბილეთები</p>
 							</div>
 						</div>
 						<div
-								className={"flex flex-col items-center justify-between"}>
+								className={"flex flex-col items-center justify-between"}
+								onClick={() => navTo("/cards")}
+						>
 							<Cards
 									color={Router.pathname === "/cards" ? "#DB0060" : "#383838"}/>
 							<p className={"mt-[7px] text-[10px] aveSofMedium"}
 							   style={{
-								   color:"#383838"
+								   color:Router.pathname === "/cards" ? "#DB0060" : "#383838"
 							   }}
 							>ბარათები</p>
 						</div>

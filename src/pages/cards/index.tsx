@@ -117,9 +117,9 @@ export default function CardsPage() {
             გადახდის მეთოდები
           </h2>
 
-          <div className={"gap-[30px] grid grid-cols-3 my-[40px]"}>
+          <div className={"md:gap-[30px] gap-[8px] grid lg:grid-cols-3 grid-cols-2 my-[40px] pb-0 mb-[120px] md:mb-0"}>
             <div
-                className={"w-full bg-[#db006033] rounded-xl h-[160px] flex items-center justify-center cursor-pointer"}
+                className={"w-full bg-[#db006033] rounded-xl sm:h-[160px] h-[109px] flex items-center justify-center cursor-pointer"}
                 onClick={() => addCard()}>
               <div>
                 <p className={"text-red text-center"}>+</p>
@@ -128,31 +128,31 @@ export default function CardsPage() {
             </div>
 
             {
-              [...cardsBog, ...cardsTbc]?.map((e: any, index: number) => {
-                return <div
-                    key={index}
-                    className={"w-full rounded-xl relative  h-[160px] pb-[30px] flex items-end "}
-                    style={{
-                      backgroundColor: getColorByColor(e.cardType)
-                    }}
-                >
-                  <div className={"absolute top-[34px] left-[34px]"}>
-                    <Image src={getIcon(e.cardType)} alt={"icon"}/>
-                  </div>
-
-                  <div className={"absolute top-[34px] right-[34px] cursor-pointer"}
-                       onClick={() => confirm(e.id)}
+                Array.isArray(cardsBog) && Array.isArray(cardsTbc) && [...cardsBog, ...cardsTbc].map((e: any, index: number) => {
+                  return <div
+                      key={index}
+                      className={"w-full rounded-xl relative sm:h-[160px] h-[109px] md:pb-[30px] pb-4 flex items-end "}
+                      style={{
+                        backgroundColor: getColorByColor(e.cardType)
+                      }}
                   >
-                    <Image src={ICONS.trash} alt={"icon"}/>
-                  </div>
+                    <div className={"absolute md:top-[34px] md:left-[34px] top-4 left-4"}>
+                      <Image src={getIcon(e.cardType)} alt={"icon"}/>
+                    </div>
 
-                  <p className={"text-red text-start ml-[30px] font-bold text-base"}
-                     style={{
-                       color: "#FFFFFF"
-                     }}
-                  >{e?.pan}</p>
-                </div>
-              })
+                    <div className={"absolute md:top-[34px] md:right-[34px] top-4 right-4 cursor-pointer"}
+                         onClick={() => confirm(e.id)}
+                    >
+                      <Image src={ICONS.trash} alt={"icon"}/>
+                    </div>
+
+                    <p className={"text-red text-start md:ml-[30px] ml-4 font-bold text-base"}
+                       style={{
+                         color: "#FFFFFF"
+                       }}
+                    >{e?.pan}</p>
+                  </div>
+                })
             }
 
           </div>
