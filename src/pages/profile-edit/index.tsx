@@ -411,7 +411,7 @@ export default function Profile() {
 
                   >
                     <Select placeholder="ქალაქი">
-                      {cities?.map((item, index) => {
+                      {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
                         return <Option key={index} value={item?.id}>{item?.title}</Option>
                       })}
 

@@ -94,10 +94,14 @@ const Header: React.FC = () => {
           </div>
         </div>
         <header className={"container w-full m-auto sticky top-[0px] z-20"}>
-          <div className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px] h-[56px] w-full items-center bg-[#EDEEEF]"}>
-            <div className={"xl:min-w-[312px] min-w-[250px]"}>
-              <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
-            </div>
+          <div
+              className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px]  w-full items-center bg-[#EDEEEF] py-3"}>
+            <Link href={"/"}>
+              <div className={"xl:min-w-[312px] min-w-[250px]"}>
+                <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
+              </div>
+            </Link>
+
             <div className={"borders w-full grid grid-cols-2 gap-[30px] relative"}>
               <div/>
               <div className={"md:flex hidden justify-end"}>

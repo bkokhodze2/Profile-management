@@ -48,8 +48,8 @@ export default function PointsPage() {
 
   for (let i = 10; i < 36; i++) {
     options.push({
-      value: i.toString(36) + i,
-      label: i.toString(36) + i,
+      value: i?.toString(36) + i,
+      label: i?.toString(36) + i,
     });
   }
 
