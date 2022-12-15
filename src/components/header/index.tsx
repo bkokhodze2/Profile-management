@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         <div className={"h-[40px] w-full flex items-center justify-center bg-[white]"}>
           <p>საიტი მუშაობს სატესტო რეჟიმში</p>
         </div>
-        <div className={"flex w-full bg-amber-700 h-[44px] min-h-[44px] md:bg-[#383838] bg-[#1E1E1E] items-center "}>
+        <div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>
           <div className={"w-full container m-auto flex md:justify-between justify-end"}>
             <div className={"flex space-x-8 md:flex hidden"}>
               <Link href={"https://optimoml.geopay.com/index.php"}>
