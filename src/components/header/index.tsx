@@ -50,24 +50,27 @@ const Header: React.FC = () => {
 
   return (
       <>
+        <div className={"h-[40px] w-full flex items-center justify-center bg-[white]"}>
+          <p>საიტი მუშაობს სატესტო რეჟიმში</p>
+        </div>
         <div className={"flex w-full bg-amber-700 h-[44px] min-h-[44px] md:bg-[#383838] bg-[#1E1E1E] items-center "}>
           <div className={"w-full container m-auto flex md:justify-between justify-end"}>
             <div className={"flex space-x-8 md:flex hidden"}>
-              <Link href={"https://optimoml.geopay.ge/index.php"}>
+              <Link href={"https://optimoml.geopay.com/index.php"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>
               </Link>
-              <Link href={"https://medical.pirveli.ge"}>
+              <Link href={"https://medical.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>
               </Link>
-              <Link href={"https://vouchers.pirveli.ge"}>
+              <Link href={"https://vouchers.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
               </Link>
 
-              <Link href={"https://lot51.pirveli.ge"}>
+              <Link href={"https://lot51.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>
               </Link>
 
-              <Link href={"https://lot51.pirveli.ge"}>
+              <Link href={"https://lot51.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>
               </Link>
             </div>
