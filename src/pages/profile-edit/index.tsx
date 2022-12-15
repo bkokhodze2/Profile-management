@@ -280,14 +280,14 @@ export default function Profile() {
 
         <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
-        <div className={"w-full"}>
+        <div className={"w-full md:pb-[0px] pb-[100px]"}>
 
-          <h2 className={"text-[32px] text-[#383838] font-bold"}>
+          <h2 className={"text-[16px] md:text-[32px] text-[#383838] font-bold"}>
             პერსონალური ინფორმაცია
           </h2>
 
-          <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
-            <div className={""}>
+          <div className={"gap-x-[0px] lg:gap-x-[30px] grid lg:grid-cols-3 grid-cols-2 mt-[40px]"}>
+            <div className={"w-full hidden md:block lg:col-span-1 md:col-span-2 col-span-2"}>
               <div
                   className={"bg-red py-[10px] rounded-xl relative w-auto cursor-pointer h-[312px] justify-center items-center"}
                   onClick={() => setIsOpenChooseModal(true)}
@@ -326,177 +326,181 @@ export default function Profile() {
                 }}
                 onFinish={onFinish}
             >
-              <div className={"grid grid-cols-2 gap-x-[30px] "}>
-                <div className={"space-y-[30px]"}>
-                  <Form.Item label="სახელი" name={"firstName"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}
-                  >
-                    <Input
-                        placeholder="სახელი"/>
-                  </Form.Item>
+              <div className={"grid grid-cols-2 md:gap-x-[30px] gap-x-2"}>
+                {/*<div className={"space-y-[30px]"}>*/}
+                <Form.Item label="სახელი" name={"firstName"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}
+                >
+                  <Input
+                      placeholder="სახელი"/>
+                </Form.Item>
+                <Form.Item label="გვარი" name={"lastName"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}>
+                  <Input placeholder="გვარი"/>
+                </Form.Item>
 
-                  {/*{*/}
-                  {/*  isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>*/}
-                  {/*    <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>*/}
-                  {/*    <div*/}
-                  {/*        className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>*/}
-                  {/*      d*/}
-                  {/*    </div>*/}
-                  {/*  </div> : <Form.Item*/}
-                  {/*      label="ელ.ფოსტა"*/}
-                  {/*      name={"email"}*/}
-                  {/*      rules={[*/}
-                  {/*        {*/}
-                  {/*          type: 'email',*/}
-                  {/*          message: 'ემაილი არ არის ვალიდური'*/}
-                  {/*        },*/}
-                  {/*        {*/}
-                  {/*          required: true,*/}
-                  {/*          message: "ველი სავალდებულოა"*/}
-                  {/*        }*/}
-                  {/*      ]}*/}
-                  {/*  >*/}
-                  {/*    <Input*/}
-                  {/*        placeholder="ელ.ფოსტა"/>*/}
-                  {/*  </Form.Item>*/}
-                  {/*}*/}
+                {/*{*/}
+                {/*  isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>*/}
+                {/*    <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>*/}
+                {/*    <div*/}
+                {/*        className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>*/}
+                {/*      d*/}
+                {/*    </div>*/}
+                {/*  </div> : <Form.Item*/}
+                {/*      label="ელ.ფოსტა"*/}
+                {/*      name={"email"}*/}
+                {/*      rules={[*/}
+                {/*        {*/}
+                {/*          type: 'email',*/}
+                {/*          message: 'ემაილი არ არის ვალიდური'*/}
+                {/*        },*/}
+                {/*        {*/}
+                {/*          required: true,*/}
+                {/*          message: "ველი სავალდებულოა"*/}
+                {/*        }*/}
+                {/*      ]}*/}
+                {/*  >*/}
+                {/*    <Input*/}
+                {/*        placeholder="ელ.ფოსტა"/>*/}
+                {/*  </Form.Item>*/}
+                {/*}*/}
 
-                  <Form.Item
-                      label="ელ.ფოსტა"
-                      name={"email"}
-                      rules={[
-                        {
-                          type: 'email',
-                          message: 'ემაილი არ არის ვალიდური'
-                        },
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
-                  >
-                    <Input
-                        placeholder="ელ.ფოსტა"/>
-                  </Form.Item>
+                <Form.Item
+                    className={"ph5:col-span-1 col-span-2"}
+                    label="ელ.ფოსტა"
+                    name={"email"}
+                    rules={[
+                      {
+                        type: 'email',
+                        message: 'ემაილი არ არის ვალიდური'
+                      },
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
+                >
+                  <Input
+                      placeholder="ელ.ფოსტა"/>
+                </Form.Item>
+
+                <Form.Item label="ტელეფონის ნომერი" name={"phone"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}>
+                  <Input
+                      placeholder="ტელეფონის ნომერი"/>
+                </Form.Item>
 
 
-                  <Form.Item label="დაბადების თარიღი" name={"personDob"} rules={[
-                    {
-                      required: true,
-                      message: "ველი სავალდებულოა"
-                    }
-                  ]}>
+                <Form.Item label="დაბადების თარიღი" name={"personDob"} rules={[
+                  {
+                    required: true,
+                    message: "ველი სავალდებულოა"
+                  }
+                ]}>
 
-                    <DatePicker
-                        // defaultValue={dayjs('2015-01-01', dateFormat)}
-                        format={dateFormat}
-                        placeholder={"დაბადების თარიღი"}/>
+                  <DatePicker
+                      // defaultValue={dayjs('2015-01-01', dateFormat)}
+                      format={dateFormat}
+                      placeholder={"დაბადების თარიღი"}/>
 
-                  </Form.Item>
+                </Form.Item>
 
-                  <Form.Item
-                      name="city"
-                      label="ქალაქი"
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
+                <Form.Item
+                    name="gender"
+                    label="სქესი"
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
+                >
+                  <Select placeholder="სქესი">
+                    <Option value="m">მამრობითი</Option>
+                    <Option value="f">მდედრობითი</Option>
+                  </Select>
+                </Form.Item>
 
-                  >
-                    <Select placeholder="ქალაქი">
-                      {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
-                        return <Option key={index} value={item?.id}>{item?.title}</Option>
-                      })}
+                <Form.Item
+                    name="city"
+                    label="ქალაქი"
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
 
-                    </Select>
-                  </Form.Item>
+                >
+                  <Select placeholder="ქალაქი">
+                    {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
+                      return <Option key={index} value={item?.id}>{item?.title}</Option>
+                    })}
 
-                  <Form.Item
-                      label="პირადი ნომერი"
-                      name={"personalId"}
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        },
-                        {
-                          min: 11,
-                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
-                        },
-                        {
-                          max: 11,
-                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
-                        },
-                        {
-                          pattern: new RegExp("^[0-9]*$"),
-                          message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
-                        }
-                      ]}
-                  >
-                    <Input
-                        // disabled={userInfo?.details?.personalId}
-                        disabled={null}
-                        type={'number'}
-                        placeholder="პირადი ნომერი"/>
-                  </Form.Item>
+                  </Select>
+                </Form.Item>
 
-                </div>
-                <div className={"space-y-[30px]"}>
-                  <Form.Item label="გვარი" name={"lastName"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input placeholder="გვარი"/>
-                  </Form.Item>
-                  <Form.Item label="ტელეფონის ნომერი" name={"phone"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input
-                        placeholder="ტელეფონის ნომერი"/>
-                  </Form.Item>
+                <Form.Item label="მისამართი"
+                           className={"ph5:col-span-1 col-span-2"}
+                           name={"address"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}>
+                  <Input
+                      placeholder="მისამართი"/>
+                </Form.Item>
 
-                  <Form.Item
-                      name="gender"
-                      label="სქესი"
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
-                  >
-                    <Select placeholder="სქესი">
-                      <Option value="m">მამრობითი</Option>
-                      <Option value="f">მდედრობითი</Option>
-                    </Select>
-                  </Form.Item>
+                <Form.Item
+                    label="პირადი ნომერი"
+                    name={"personalId"}
+                    className={"ph5:col-span-1 col-span-2"}
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      },
+                      {
+                        min: 11,
+                        message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                      },
+                      {
+                        max: 11,
+                        message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                      },
+                      {
+                        pattern: new RegExp("^[0-9]*$"),
+                        message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
+                      }
+                    ]}
+                >
+                  <Input
+                      // disabled={userInfo?.details?.personalId}
+                      disabled={null}
+                      type={'number'}
+                      placeholder="პირადი ნომერი"/>
+                </Form.Item>
 
-                  <Form.Item label="მისამართი" name={"address"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input
-                        placeholder="მისამართი"/>
-                  </Form.Item>
-
-                </div>
+                {/*</div>*/}
+                {/*<div className={"space-y-[30px]"}>*/}
+                {/*</div>*/}
               </div>
 
               <div className={"flex justify-between items-center mt-[30px]"}>
