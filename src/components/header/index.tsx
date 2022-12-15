@@ -70,7 +70,7 @@ const Header: React.FC = () => {
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>
               </Link>
 
-              <Link href={"https://www.pame.pirveli.com"}>
+              <Link href={"https://www.game.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>
               </Link>
             </div>
