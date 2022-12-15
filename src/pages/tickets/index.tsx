@@ -29,10 +29,10 @@ export default function Tickets() {
           </h2>
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
-            <TicketItem/>
-            <TicketItem/>
-            <TicketItem/>
-            <TicketItem/>
+            {/*<TicketItem/>*/}
+            {/*<TicketItem/>*/}
+            {/*<TicketItem/>*/}
+            {/*<TicketItem/>*/}
           </div>
 
         </div>
