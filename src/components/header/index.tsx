@@ -56,7 +56,7 @@ const Header: React.FC = () => {
         <div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>
           <div className={"w-full container m-auto flex md:justify-between justify-end"}>
             <div className={"flex space-x-8 md:flex hidden"}>
-              <Link href={"https://optimoml.geopay.ge/index.php"}>
+              <Link href={"https://shop.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>
               </Link>
               <Link href={"https://medical.pirveli.com"}>
