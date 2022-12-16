@@ -168,20 +168,20 @@ const Navigation: React.FC = () => {
           </Link>
 
           <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4 !mt-[40px] cursor-pointer"}
-               // onClick={() => logOut()}
+              // onClick={() => logOut()}
           >
             <Logout
                 color={"#DB0060"}/>
-            <p className={"ml-[14px] text-sm group-hover:!text-red"}
-               style={{
-                 transition: "0.2s",
-                 color: "#DB0060"
-               }}
+            <div className={"ml-[14px] text-sm group-hover:!text-red"}
+                 style={{
+                   transition: "0.2s",
+                   color: "#DB0060"
+                 }}
             >
               <form action="https://vouchers.pirveli.com/logout" method="post">
                 <button type={"submit"}>გასვლა</button>
               </form>
-            </p>
+            </div>
           </div>
 
         </div>

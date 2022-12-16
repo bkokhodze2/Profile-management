@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
 import Layout from "../../components/layouts/profile-layout";
@@ -11,22 +10,15 @@ import Cards from "/public/images/icons/nav/navCards";
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React, {useEffect, useRef, useState} from "react";
-import {DatePicker, Form, Modal, Rate, Space, Table, Tag} from 'antd';
-import type {ColumnsType} from 'antd/es/table';
+import {DatePicker, Form, Modal} from 'antd';
 import CountUp from "react-countup";
 import Donut from '../../components/charts/donut';
-import dayjs from 'dayjs';
-import {Select} from 'antd';
 import type {SelectProps} from 'antd';
-// import 'dayjs/locale/fr.js';
-// import locale from 'antd/lib/locale/fr_FR';
 
 import 'dayjs/locale/ka';
-
 import locale from 'antd/lib/locale/ka_GE';
 
 import {ConfigProvider} from 'antd';
-import Button from 'antd/lib/button/button';
 import axios from "axios";
 import {useSelector} from "react-redux";
 import TransactionsTable from "../../components/blocks/transactions-table";

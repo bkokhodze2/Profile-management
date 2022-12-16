@@ -18,6 +18,7 @@ module.exports = {
 			padding:{
 				DEFAULT:'1rem',
 				ph:'1rem',
+				ph5:'1rem',
 				sm:'1rem',
 				md:'1rem',
 				lg:'1rem',
@@ -28,19 +29,16 @@ module.exports = {
 		screens:{
 			'ph':'400px',
 			// => @media (min-width: 400px) { ... }
-
+			'ph5':'500px',
+			// => @media (min-width: 500px) { ... }
 			'sm':'600px',
 			// => @media (min-width: 640px) { ... }
-
 			'md':'768px',
 			// => @media (min-width: 768px) { ... }
-
 			'lg':'1024px',
 			// => @media (min-width: 1024px) { ... }
-
 			'xl':'1280px',
 			// => @media (min-width: 1280px) { ... }
-
 			'2xl':'1562px',
 			// => @media (min-width: 1562px) { ... }
 		},
