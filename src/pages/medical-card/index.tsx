@@ -17,7 +17,7 @@ import {Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import Link from "next/link";
 
-export default function medicalCardsPage() {
+export default function MedicalCardsPage() {
   const baseApi = process.env.baseApi;
   const [medicalCards, setMedicalCards] = useState([]);
   const [cardsTbc, setCardsTbc] = useState([]);
@@ -171,7 +171,7 @@ export default function medicalCardsPage() {
   )
 }
 
-medicalCardsPage.getLayout = function getLayout(page: any) {
+MedicalCardsPage.getLayout = function getLayout(page: any) {
   return (
       <Layout>
         {page}
