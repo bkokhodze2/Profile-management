@@ -83,9 +83,10 @@ export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal})
 
           </div>
           <div className={"w-full flex flex-col overflow-hidden"}>
-            <p className={"mt-[18px] text-[#383838] text-[17px] font-bold"}>Choose Avatar</p>
+            <p className={"mt-[18px] text-[#383838] text-[17px] font-bold"}>აირჩიე ავატარი</p>
             <div className={"w-full "}>
-              <Avatars chosenAvatarImg={chosenAvatarImg} setChosenAvatarImg={setChosenAvatarImg}  chosenAvatarBg={chosenAvatarBg}/>
+              <Avatars chosenAvatarImg={chosenAvatarImg} setChosenAvatarImg={setChosenAvatarImg}
+                       chosenAvatarBg={chosenAvatarBg}/>
             </div>
             {/*<div className={"mt-[26px] grid gap-5 grid-cols-3 w-max"}>*/}
             {/*  <div*/}
@@ -159,7 +160,7 @@ export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal})
             {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
             {/*  </div>*/}
             {/*</div>*/}
-            <p className={"mt-[18px] text-[#383838] text-[17px] font-bold mt-[65px]"}>Choose Background</p>
+            <p className={"mt-[18px] text-[#383838] text-[17px] font-bold mt-[65px]"}>აირჩიე ფერი</p>
 
             <div className={"mt-[26px] flex flex-row gap-[9px] overflow-scroll w-full"}>
               <ColorsSlider chosenAvatarBg={"#" + chosenAvatarBg} setChosenAvatarBg={setChosenAvatarBg}/>
