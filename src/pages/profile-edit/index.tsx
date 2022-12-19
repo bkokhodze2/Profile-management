@@ -18,7 +18,7 @@ import dayjs from 'dayjs';
 import _ from "lodash";
 import weekday from "dayjs/plugin/weekday"
 import localeData from "dayjs/plugin/localeData"
-import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
+import ChangeAvatar2 from "../../components/UI/modal/ChangeAvatar";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
@@ -47,6 +47,10 @@ export default function Profile() {
     {
       "id": 2,
       "title": "Adigeni"
+    },
+    {
+      "id": 3,
+      "title": 'ქუთაისი'
     }
 
   ]);
@@ -278,9 +282,9 @@ export default function Profile() {
 
         </Modal>
 
-        <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+        <ChangeAvatar2 setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
-        <div className={"w-full md:pb-[0px] pb-[100px]"}>
+        <div className={"w-full  pb-[100px]"}>
 
           <h2 className={"text-[16px] md:text-[32px] text-[#383838] font-bold"}>
             პერსონალური ინფორმაცია
@@ -399,6 +403,18 @@ export default function Profile() {
                              {
                                required: true,
                                message: "ველი სავალდებულოა"
+                             },
+                             {
+                               min: 9,
+                               message: "ტელ. ნომერი უნდა იყოს 9 სიმბოლო"
+                             },
+                             {
+                               max: 9,
+                               message: "ტელ. ნომერი უნდა იყოს 9 სიმბოლო"
+                             },
+                             {
+                               pattern: new RegExp("^[0-9]*$"),
+                               message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
                              }
                            ]}>
                   <Input
@@ -447,7 +463,18 @@ export default function Profile() {
                     ]}
 
                 >
-                  <Select placeholder="ქალაქი">
+                  <Select
+                      showSearch
+                      // optionFilterProp={"title"}
+
+                      optionFilterProp="title"
+                      // @ts-ignore
+                      filterOption={(input, option) => (option?.children ?? '').toLowerCase().includes(input)}
+                      // @ts-ignore
+                      // filterSort={(optionA, optionB) => (optionA?.children ?? '').toLowerCase().localeCompare((optionB?.children ?? '').toLowerCase())
+                      // }
+                      placeholder="ქალაქი"
+                  >
                     {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
                       return <Option key={index} value={item?.id}>{item?.title}</Option>
                     })}
@@ -493,7 +520,7 @@ export default function Profile() {
                 >
                   <Input
                       // disabled={userInfo?.details?.personalId}
-                      disabled={null}
+                      disabled={userInfo?.details?.personalId}
                       type={'number'}
                       placeholder="პირადი ნომერი"/>
                 </Form.Item>

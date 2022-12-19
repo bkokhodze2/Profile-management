@@ -61,24 +61,19 @@ const OrderItem = ({evaluated, setIsModalOpen}: any) => {
         <div className={"flex flex-col"}>
           <h2 className={"text-[#383838] font-bold md:text-[22px] text-base mt-4 md:mt-0"}>ASSA RESTAURANT</h2>
           <p className={"text-base mt-2 text-[#38383899] max-w[464px] hidden md:flex"}>From 80 lari, hotel apartments
-            in
-            the Orbi
-            hotel network
-            in Batumi</p>
+            in the Orbi hotel network in Batumi</p>
         </div>
-
         <div className={"ml-0 md:ml-[30px] md:mt-0 mt-2"}>
-
           {
             isEvaluated ? <Rate disabled defaultValue={4} className={"text-[16px] min-w-[120px] h-[20px] mb-1.5"}/> :
                 <div onClick={() => {
                   setIsModalOpen(true)
                 }}>
-                  <Button classes={"hidden md:flex"} bgColor={"#DB0060"} text={"Add Review"} textColor={"white"}/>
-                  <p className={"text-[#8338EC] text-base underline flex md:hidden"}>Add review</p>
+                  <Button classes={"hidden md:flex"} bgColor={"#DB0060"} text={"კომენტარის დამატება"}
+                          textColor={"white"}/>
+                  <p className={"text-[#8338EC] text-base underline flex md:hidden"}>კომენტარის დამატება</p>
                 </div>
           }
-
         </div>
 
       </div>

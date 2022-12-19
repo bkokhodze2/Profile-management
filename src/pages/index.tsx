@@ -17,7 +17,7 @@ import {Form, Input, Modal, Table} from "antd";
 import React, {useEffect, useState} from "react";
 import {ColumnsType} from "antd/es/table";
 import Transaction from "../../public/images/icons/nav/transaction";
-import ChangeAvatar from "../components/UI/modal/ChangeAvatar"
+import ChangeAvatar2 from "../components/UI/modal/ChangeAvatar"
 import LeaderBoard from "../components/blocks/leaderboaord";
 import {useSelector} from "react-redux";
 import TransactionsTable from "../components/blocks/transactions-table";
@@ -136,7 +136,7 @@ export default function Profile() {
           <link rel="icon" href="/public/favicon.ico"/>
         </Head>
 
-        <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+        <ChangeAvatar2 setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
         <div className={"grid grid-cols-2 xl:gap-[30px] gap-4 md:pb-[30px] pb-[100px]"}>
           <div

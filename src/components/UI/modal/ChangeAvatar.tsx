@@ -7,8 +7,9 @@ import {ICONS, IMAGES} from "public/images";
 import axios from "axios";
 import {getUserInfo} from "../../slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
+import Avatars from "../slider/avatars";
 
-export default function ChangeAvatar({isOpenChooseModal, setIsOpenChooseModal}) {
+export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal}) {
   const baseApi = process.env.baseApi;
   const userInfo = useSelector((state: any) => state.user.userInfo);
   const dispatch = useDispatch();
@@ -83,78 +84,81 @@ export default function ChangeAvatar({isOpenChooseModal, setIsOpenChooseModal}) 
           </div>
           <div className={"w-full flex flex-col overflow-hidden"}>
             <p className={"mt-[18px] text-[#383838] text-[17px] font-bold"}>Choose Avatar</p>
-            <div className={"mt-[26px] grid gap-5 grid-cols-3 w-max"}>
-              <div
-                  onClick={() => setChosenAvatarImg("1")}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "1" ? "#D9D9D9" : "transparent"
-                  }}>
-                <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
-              <div
-                  onClick={() => setChosenAvatarImg("2")}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "2" ? "#D9D9D9" : "transparent"
-                  }}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}>
-                <Image src={IMAGES.avatar2.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
-              <div
-                  onClick={() => setChosenAvatarImg("3")}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "3" ? "#D9D9D9" : "transparent"
-                  }}
-              >
-                <Image src={IMAGES.avatar3.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
-              <div
-                  onClick={() => setChosenAvatarImg("4")}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "4" ? "#D9D9D9" : "transparent"
-                  }}
-              >
-                <Image src={IMAGES.avatar4.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
-              <div
-                  onClick={() => setChosenAvatarImg("5")}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "5" ? "#D9D9D9" : "transparent"
-                  }}
-              >
-                <Image src={IMAGES.avatar5.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
-              <div
-                  onClick={() => setChosenAvatarImg("6")}
-                  className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
-                  style={{
-                    transition: "0.5s",
-                    backgroundColor: chosenAvatarImg === "6" ? "#D9D9D9" : "transparent"
-                  }}
-              >
-                <Image src={IMAGES.avatar6.src} quality={100} alt={"avatar"}
-                       width={77} height={77}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
-              </div>
+            <div className={"w-full "}>
+              <Avatars chosenAvatarImg={chosenAvatarImg} setChosenAvatarImg={setChosenAvatarImg}  chosenAvatarBg={chosenAvatarBg}/>
             </div>
+            {/*<div className={"mt-[26px] grid gap-5 grid-cols-3 w-max"}>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("1")}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "1" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}>*/}
+            {/*    <Image src={IMAGES.avatar1.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("2")}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "2" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}>*/}
+            {/*    <Image src={IMAGES.avatar2.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("3")}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "3" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}*/}
+            {/*  >*/}
+            {/*    <Image src={IMAGES.avatar3.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("4")}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "4" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}*/}
+            {/*  >*/}
+            {/*    <Image src={IMAGES.avatar4.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("5")}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "5" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}*/}
+            {/*  >*/}
+            {/*    <Image src={IMAGES.avatar5.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*  <div*/}
+            {/*      onClick={() => setChosenAvatarImg("6")}*/}
+            {/*      className={"w-[77px] h-[77px] relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}*/}
+            {/*      style={{*/}
+            {/*        transition: "0.5s",*/}
+            {/*        backgroundColor: chosenAvatarImg === "6" ? "#D9D9D9" : "transparent"*/}
+            {/*      }}*/}
+            {/*  >*/}
+            {/*    <Image src={IMAGES.avatar6.src} quality={100} alt={"avatar"}*/}
+            {/*           width={77} height={77}*/}
+            {/*           style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+            {/*  </div>*/}
+            {/*</div>*/}
             <p className={"mt-[18px] text-[#383838] text-[17px] font-bold mt-[65px]"}>Choose Background</p>
 
             <div className={"mt-[26px] flex flex-row gap-[9px] overflow-scroll w-full"}>

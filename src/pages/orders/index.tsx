@@ -79,15 +79,18 @@ export default function Profile() {
             </Form.Item>
 
             <Form.Item name={"comment"}>
-              <TextArea rows={4} placeholder={"Add Comment"}
-                        className={"bg-[#d9d9d91a] rounded-[16px] border-none p-5"}/>
+              <TextArea rows={4}
+                        style={{height: 120, resize: 'none'}}
+                        placeholder={"კომენტარის"}
+                        className={"bg-[#d9d9d91a] rounded-[16px] border-none p-5"}
+              />
             </Form.Item>
 
             <div className={"flex justify-end mt-6 items-center"}>
-              <p className={"mr-10 text-[#383838] cursor-pointer"} onClick={handleCancel}>Cancel</p>
+              <p className={"mr-10 text-[#383838] cursor-pointer"} onClick={handleCancel}>გაუქმება</p>
               <button type={"submit"}
                       className={"flex justify-center items-center rounded-xl bg-red py-4 px-10 cursor-pointer"}>
-                <p className={"text-[white]"}>Add Review</p>
+                <p className={"text-[white]"}>კომენტარის დამატება</p>
               </button>
             </div>
 
@@ -102,13 +105,11 @@ export default function Profile() {
           </h2>
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
-
             {
               [1, 2, 3, 4, 5, 6].map((e, index) => {
                 return <OrderItem setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
               })
             }
-
           </div>
 
         </div>

@@ -243,3 +243,23 @@ tr[data-row-key="4"] {
         display: none;
     }
 }
+
+.avatarSwipper {
+    height: 200px;
+    padding-top: 30px !important;
+}
+
+.avatarSwipper .swiper-slide-active {
+    transform: scale(1.8) !important;
+}
+
+.avatarSwipper .swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+}
+
+.reviewModal .ant-modal-content {
+    padding-top: 35px;
+}
