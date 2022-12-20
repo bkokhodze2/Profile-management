@@ -95,7 +95,6 @@ export default function MedicalCardsPage() {
 
   };
 
-
   return (
       <div>
         <Head>
@@ -105,7 +104,7 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          (Array.isArray(medicalCards) && medicalCards) ? <div className={"w-full"}>
+          (Array.isArray(medicalCards) && medicalCards.length > 0) ? <div className={"w-full"}>
 
             <h2 className={"text-[32px] text-[#383838] font-bold"}>
               ჯანდაცვის ბარათები
