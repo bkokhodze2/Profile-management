@@ -156,7 +156,7 @@ export default function MedicalCardsPage() {
               <img src={IMAGES.medicalCard.src} width={170} height={170}/>
             </div>
             <p className={"mt-6 text-[18px] text-[#383838]"}>თქვენ ეს ბარათი ჯერ არ გაქვთ შეძენილი</p>
-            <Link href={"/"}>
+            <Link href={"https://medical.pirveli.com/buyCardPage/"}>
               <button type={"submit"}
                       className={"bg-red px-6 h-[48px] w-min self-end mt-6 rounded-xl cursor-pointer m-auto"}>
                 <p className={"text-[white]"}>შეიძინე</p>
