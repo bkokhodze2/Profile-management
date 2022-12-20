@@ -16,7 +16,7 @@ import {inspect} from "util";
 import colors from "../../colors";
 
 
-export default function Avatars({chosenAvatarImg = "0", setChosenAvatarImg, chosenAvatarBg}) {
+export default function Avatars({chosenAvatarImg, setChosenAvatarImg, chosenAvatarBg}) {
 
   const [change, setChange] = useState<boolean>(false);
 
@@ -63,7 +63,7 @@ export default function Avatars({chosenAvatarImg = "0", setChosenAvatarImg, chos
             lazy={true}
             modules={[Lazy, FreeMode, Mousewheel, Virtual]}
             className="avatarSwipper"
-            initialSlide={parseInt(chosenAvatarImg)}
+            initialSlide={parseInt(chosenAvatarImg) - 1}
             navigation={{
               prevEl: prevRef.current ? prevRef.current : undefined,
               nextEl: nextRef.current ? nextRef.current : undefined,
