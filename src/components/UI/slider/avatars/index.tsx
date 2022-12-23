@@ -16,7 +16,7 @@ import {inspect} from "util";
 import colors from "../../colors";
 
 
-export default function Avatars({chosenAvatarImg="1", setChosenAvatarImg, chosenAvatarBg}) {
+export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chosenAvatarBg}) {
 
   const [change, setChange] = useState<boolean>(false);
 

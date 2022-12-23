@@ -14,6 +14,7 @@ import {getUserInfo} from "../slices/userSlice";
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
   const dispatch = useDispatch();
+  const Router = useRouter();
   const [IsLoading, setIsLoading] = useState<boolean>(false);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
@@ -109,6 +110,7 @@ const Header: React.FC = () => {
               <div/>
               <div className={"md:flex hidden justify-end"}>
                 <div
+                    onClick={()=>Router.push('/')}
                     className={"group min-w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",

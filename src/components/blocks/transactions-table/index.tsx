@@ -14,6 +14,7 @@ interface DataType {
   description: string;
   transactionDate: number | string;
   platform: string;
+  typeId: number;
   genericTransactionValue: number;
 }
 
@@ -28,7 +29,11 @@ const TransactionsTable = () => {
 
     if (userInfo?.details?.id) {
       axios.get(`${baseApi}/user/user/point-transactions/${userInfo?.details?.id}`).then((res) => {
-        setTransactions(res.data)
+        setTransactions(res.data.sort(function (a: any, b: any) {
+          //@ts-ignore
+          return new Date(b?.transactionDate) - new Date(a?.transactionDate);
+        }))
+
       })
     }
 
@@ -41,7 +46,7 @@ const TransactionsTable = () => {
       },
       dataIndex: 'description',
       key: 'description',
-      render: (text) => <p className={"text-dark7"}>{text}</p>,
+      render: (text, obj) => <p className={"text-dark7"}>{text ? text : obj?.typeId}</p>,
     },
     {
       title: () => {
@@ -82,7 +87,11 @@ const TransactionsTable = () => {
             </div>
             <div className={"flex flex-col items-end"}>
               <p className={"text-dark7 mb-1 text-[14px]"}>{e?.platform ? e?.platform : "pirveli.com"}</p>
-              <p className={"text-[14px]"}>{e?.genericTransactionValue}</p>
+              <p className={"text-[14px]"}
+                 style={{
+                   color: e?.genericTransactionValue?.toString()?.includes("-") ? "#DB0060" : "#5DB039",
+                 }}
+              >{e?.genericTransactionValue}</p>
             </div>
           </div>
         })
@@ -94,7 +103,7 @@ const TransactionsTable = () => {
         columns={columns}
         dataSource={transactions}
         pagination={false}
-        rowKey="description"
+        rowKey="id"
     />
   </>
 };

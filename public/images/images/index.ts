@@ -6,6 +6,7 @@ export {default as borderLeft} from './borderLeft.png';
 export {default as offerItem} from './offerItem.png';
 export {default as bigAvatar} from './bigAvatar.png';
 export {default as medicalCard} from './medical-card.webp';
+export {default as medCard} from './medCard.webp';
 export {default as avatar1} from './avatars/avatar1.webp';
 export {default as avatar2} from './avatars/avatar2.webp';
 export {default as avatar3} from './avatars/avatar3.webp';

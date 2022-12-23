@@ -16,10 +16,12 @@ import axios from "axios";
 import {Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import Link from "next/link";
+import {medCard} from "../../../public/images/images";
 
 export default function MedicalCardsPage() {
   const baseApi = process.env.baseApi;
-  const [medicalCards, setMedicalCards] = useState([]);
+  const basePath = process.env.basePath;
+  const [medicalCards, setMedicalCards] = useState<any>({});
   const [cardsTbc, setCardsTbc] = useState([]);
 
   const addCard = () => {
@@ -31,7 +33,7 @@ export default function MedicalCardsPage() {
   }
 
   const getMedicalCard = () => {
-    axios.get(`${baseApi}/bog/medicalcard`).then((res) => {
+    axios.get(`${basePath}/medical/products/get-bought-products`).then((res) => {
       setMedicalCards(res.data)
     })
   }
@@ -104,52 +106,60 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          (Array.isArray(medicalCards) && medicalCards.length > 0) ? <div className={"w-full"}>
+          medicalCards?.owner ? <div className={"w-full"}>
 
-            <h2 className={"text-[32px] text-[#383838] font-bold"}>
-              ჯანდაცვის ბარათები
-            </h2>
-
-            <div
-                className={"md:gap-[30px] gap-[8px] grid lg:grid-cols-3 grid-cols-2 my-[40px] pb-0 mb-[120px] md:mb-0"}>
-              <div
-                  className={"w-full bg-[#db006033] rounded-xl sm:h-[160px] h-[109px] flex items-center justify-center cursor-pointer"}
-                  onClick={() => addCard()}>
-                <div>
-                  <p className={"text-red text-center"}>+</p>
-                  <p className={"text-red text-center"}>დაამატე ბარათი</p>
-                </div>
+            <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex "}>
+              <div className={"w-[280px]"}>
+                <img src={IMAGES.medCard.src} alt={"medical card"}/>
               </div>
-
-              {
-                  Array.isArray(medicalCards) && medicalCards.map((e: any, index: number) => {
-                    return <div
-                        key={index}
-                        className={"w-full rounded-xl relative sm:h-[160px] h-[109px] md:pb-[30px] pb-4 flex items-end "}
-                        style={{
-                          backgroundColor: getColorByColor(e.cardType)
-                        }}
-                    >
-                      <div className={"absolute md:top-[34px] md:left-[34px] top-4 left-4"}>
-                        <Image src={getIcon(e.cardType)} alt={"icon"}/>
-                      </div>
-
-                      <div className={"absolute md:top-[34px] md:right-[34px] top-4 right-4 cursor-pointer"}
-                           onClick={() => confirm(e.id)}
-                      >
-                        <Image src={ICONS.trash} alt={"icon"}/>
-                      </div>
-
-                      <p className={"text-red text-start md:ml-[30px] ml-4 font-bold text-base"}
-                         style={{
-                           color: "#FFFFFF"
-                         }}
-                      >{e?.pan}</p>
-                    </div>
-                  })
-              }
-
+              <div className={"flex flex-col items-start justify-center"}>
+                <p className={"text-gray max-w-[430px]"}>თქვენ სარგებლობთ ჯანდაცვის ბარათით. სრული სერვისების სანახავად
+                  გადადით
+                  მითთებულ ბმულზე.</p>
+                <p className={"text-[#DB0060] font-bold mt-4"}>სრული სერვისები</p>
+              </div>
             </div>
+
+            {/*<div*/}
+            {/*    className={"md:gap-[30px] gap-[8px] grid lg:grid-cols-3 grid-cols-2 my-[40px] pb-0 mb-[120px] md:mb-0"}>*/}
+            {/*  <div*/}
+            {/*      className={"w-full bg-[#db006033] rounded-xl sm:h-[160px] h-[109px] flex items-center justify-center cursor-pointer"}*/}
+            {/*      onClick={() => addCard()}>*/}
+            {/*    <div>*/}
+            {/*      <p className={"text-red text-center"}>+</p>*/}
+            {/*      <p className={"text-red text-center"}>დაამატე ბარათი</p>*/}
+            {/*    </div>*/}
+            {/*  </div>*/}
+
+            {/*  {*/}
+            {/*      Array.isArray(medicalCards) && medicalCards.map((e: any, index: number) => {*/}
+            {/*        return <div*/}
+            {/*            key={index}*/}
+            {/*            className={"w-full rounded-xl relative sm:h-[160px] h-[109px] md:pb-[30px] pb-4 flex items-end "}*/}
+            {/*            style={{*/}
+            {/*              backgroundColor: getColorByColor(e.cardType)*/}
+            {/*            }}*/}
+            {/*        >*/}
+            {/*          <div className={"absolute md:top-[34px] md:left-[34px] top-4 left-4"}>*/}
+            {/*            <Image src={getIcon(e.cardType)} alt={"icon"}/>*/}
+            {/*          </div>*/}
+
+            {/*          <div className={"absolute md:top-[34px] md:right-[34px] top-4 right-4 cursor-pointer"}*/}
+            {/*               onClick={() => confirm(e.id)}*/}
+            {/*          >*/}
+            {/*            <Image src={ICONS.trash} alt={"icon"}/>*/}
+            {/*          </div>*/}
+
+            {/*          <p className={"text-red text-start md:ml-[30px] ml-4 font-bold text-base"}*/}
+            {/*             style={{*/}
+            {/*               color: "#FFFFFF"*/}
+            {/*             }}*/}
+            {/*          >{e?.pan}</p>*/}
+            {/*        </div>*/}
+            {/*      })*/}
+            {/*  }*/}
+
+            {/*</div>*/}
 
           </div> : <div className={"w-full bg-[white] h-[560px] rounded-xl flex flex-col items-center py-[92px]"}>
             <div className={"w-[170px] h-[170px] flex"}>
