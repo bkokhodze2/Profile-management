@@ -10,14 +10,18 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TicketsItem from "../../components/blocks/ticket-item";
 import OrderItem from "../../components/blocks/order-item";
 import {Form, Input, Modal, Rate} from "antd";
+import axios from "axios";
 
 
 export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const baseApi = process.env.baseApi;
+
+  const [orders, setOrders] = useState<any>([]);
 
   const [commentForm] = Form.useForm();
   const {TextArea} = Input;
@@ -26,8 +30,18 @@ export default function Profile() {
     commentForm.resetFields();
     setIsModalOpen(false);
   };
+  useEffect(() => {
+    axios.get(`${baseApi}/user/user/get-user-vouchers`).then((res) => {
+      setOrders(res.data)
+    }).catch(() => {
+      console.log("catch")
+    })
+  }, [])
+
   const onFinishComment = (values: object) => {
+
   }
+
   return (
       <div>
         <Head>
@@ -41,7 +55,6 @@ export default function Profile() {
             onCancel={handleCancel}
             footer={""}
             title={""}
-
             width={620}>
 
           <div className={"flex p-6 bg-[#d9d9d933] rounded-[16px]"}>
@@ -81,7 +94,7 @@ export default function Profile() {
             <Form.Item name={"comment"}>
               <TextArea rows={4}
                         style={{height: 120, resize: 'none'}}
-                        placeholder={"კომენტარის"}
+                        placeholder={"კომენტარი"}
                         className={"bg-[#d9d9d91a] rounded-[16px] border-none p-5"}
               />
             </Form.Item>
@@ -101,13 +114,13 @@ export default function Profile() {
         <div className={"w-full"}>
 
           <h2 className={"text-[32px] text-[#383838] font-bold"}>
-            ჩემი ბილეთები
+            ჩემი შეკვეთები
           </h2>
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
             {
-              [1, 2, 3, 4, 5, 6].map((e, index) => {
-                return <OrderItem setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
+              orders.map((e: any, index) => {
+                return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
               })
             }
           </div>

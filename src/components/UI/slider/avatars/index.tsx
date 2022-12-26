@@ -24,8 +24,6 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
   const nextRef = useRef<HTMLDivElement>(null);
   const swiper = useRef() as any;
 
-  console.log("chosenAvatarBg", chosenAvatarBg)
-
   // useEffect(() => {
   //   console.log("ragaca")
   //
@@ -38,6 +36,10 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
   //   }
   //
   // }, [chosenAvatarImg])
+
+  useEffect(() => {
+    Change()
+  }, [swiper?.current?.swiper?.activeIndex])
 
 
   const Change = () => {
