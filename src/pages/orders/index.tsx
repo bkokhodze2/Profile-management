@@ -119,9 +119,9 @@ export default function Profile() {
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
             {
-              orders.map((e: any, index) => {
-                return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
-              })
+                Array.isArray(orders) && orders?.map((e: any, index) => {
+                  return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
+                })
             }
           </div>
 
