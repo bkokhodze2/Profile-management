@@ -17,13 +17,14 @@ import {Modal} from 'antd';
 import {ExclamationCircleOutlined} from '@ant-design/icons';
 import Link from "next/link";
 import {medCard} from "../../../public/images/images";
+import {useRouter} from "next/router";
 
 export default function MedicalCardsPage() {
   const baseApi = process.env.baseApi;
   const basePath = process.env.basePath;
   const [medicalCards, setMedicalCards] = useState<any>({});
   const [cardsTbc, setCardsTbc] = useState([]);
-
+  const Router = useRouter();
   const addCard = () => {
     // axios.post(`${baseApi}/bog/saveCard`).then((res) => {
     //   let link = res?.data?.links[1]?.href;
@@ -109,14 +110,15 @@ export default function MedicalCardsPage() {
           medicalCards?.owner ? <div className={"w-full"}>
 
             <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex "}>
-              <div className={"w-[280px]"}>
+              <div className={"w-[280px] relative h-min"}>
                 <img src={IMAGES.medCard.src} alt={"medical card"}/>
+                <p className={"absolute left-[30px] bottom-[12px] text-[14px] text-[white] uppercase"}>{medicalCards?.owner?.firstName} {medicalCards?.owner?.lastName}</p>
               </div>
               <div className={"flex flex-col items-start justify-center"}>
                 <p className={"text-gray max-w-[430px]"}>თქვენ სარგებლობთ ჯანდაცვის ბარათით. სრული სერვისების სანახავად
-                  გადადით
-                  მითთებულ ბმულზე.</p>
-                <p className={"text-[#DB0060] font-bold mt-4"}>სრული სერვისები</p>
+                  გადადით მითთებულ ბმულზე.</p>
+                <p className={"text-[#DB0060] font-bold mt-4 cursor-pointer"}
+                   onClick={() => Router.push('https://medical.pirveli.com')}>ჯანდაცვის პლატფორმაზე გადასვლა</p>
               </div>
             </div>
 
