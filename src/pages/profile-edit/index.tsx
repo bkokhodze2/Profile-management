@@ -11,9 +11,7 @@ import Cards from "/public/images/icons/nav/navCards";
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React, {useEffect, useState} from "react";
-import TicketItem from "../../components/blocks/ticket-item";
-import {DatePicker, Form, Input, Modal, notification, Rate, Select} from "antd";
-import Button from "../../components/UI/button";
+import {DatePicker, Form, Input, Modal, notification, Select} from "antd";
 import dayjs from 'dayjs';
 import _ from "lodash";
 import weekday from "dayjs/plugin/weekday"
@@ -23,6 +21,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
 import {useRouter} from "next/router";
+import getChosenAvatar from "../../components/getChosenAvatar";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -31,12 +30,10 @@ const dateFormat = 'YYYY-MM-DD';
 interface ICity {
   id: number,
   title: string,
-
 }
 
 export default function Profile() {
   const baseApi = process.env.baseApi;
-
 
   const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
   const [cities, setCities] = useState<ICity[]>([
@@ -99,23 +96,6 @@ export default function Profile() {
 
   }
 
-
-  // {
-  //   "legalAddress":{
-  //   "municipality":{
-  //     "id": 80
-  //   },
-  //   "address": "AAAAA qucha 7"
-  // },
-  //   "physicalAddress":{
-  //   "municipality":{
-  //     "id": 80
-  //   },
-  //   "address": "BBBB 5"
-  // }
-  // }
-
-
   const onFinish = (fieldsValue: any) => {
 
     const values = {
@@ -137,20 +117,6 @@ export default function Profile() {
               address: fieldsValue['address']
             }
           }
-
-      // {
-      //   "legalAddress": null,
-      //   "physicalAddress": {
-      //     "id": null, //cvladi
-      //     "municipalityId": fieldsValue['city'],
-      //     "municipality": {
-      //       "id": null,
-      //       "title": null
-      //     },
-      //     "address": fieldsValue['address']
-      //   }
-      // }
-
       ,
       contactInfos: [
         {
@@ -174,7 +140,6 @@ export default function Profile() {
       ]
     };
 
-    // !userInfo?.details?.legalAddress?.municipality?.id && delete values.userAddress.legalAddress
 
     delete values.email;
     delete values.phone;
@@ -193,12 +158,10 @@ export default function Profile() {
           Router.push("/")
         })
 
-    console.log("values", values)
 
   };
 
   const onFinishCode = (values) => {
-    console.log("codeval", values)
   }
 
   const openCodeModal = () => {
@@ -208,26 +171,26 @@ export default function Profile() {
     setIsModalOpen(false)
   }
 
-  const getChosenAvatar = () => {
-
-    switch (parseInt(userInfo?.avatar?.path)) {
-      case 1:
-        return IMAGES.avatar1.src
-      case 2:
-        return IMAGES.avatar2.src
-      case 3:
-        return IMAGES.avatar3.src
-      case 4:
-        return IMAGES.avatar4.src
-      case 5:
-        return IMAGES.avatar5.src
-      case 6:
-        return IMAGES.avatar6.src
-      default :
-        return IMAGES.avatar1.src
-    }
-
-  }
+  // const getChosenAvatar = () => {
+  //
+  //   switch (parseInt(userInfo?.avatar?.path)) {
+  //     case 1:
+  //       return IMAGES.avatar1.src
+  //     case 2:
+  //       return IMAGES.avatar2.src
+  //     case 3:
+  //       return IMAGES.avatar3.src
+  //     case 4:
+  //       return IMAGES.avatar4.src
+  //     case 5:
+  //       return IMAGES.avatar5.src
+  //     case 6:
+  //       return IMAGES.avatar6.src
+  //     default :
+  //       return IMAGES.avatar1.src
+  //   }
+  //
+  // }
 
 
   return (
@@ -300,7 +263,7 @@ export default function Profile() {
                     backgroundColor: "#" + userInfo?.avatar?.code
                   }}
               >
-                <Image src={getChosenAvatar()}
+                <Image src={getChosenAvatar(userInfo?.avatar?.path)}
                        alt={"profile avatar"}
                        layout={"contain"}
                        width={312}

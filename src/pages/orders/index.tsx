@@ -117,7 +117,7 @@ export default function Profile() {
             ჩემი შეკვეთები
           </h2>
 
-          <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
+          <div className={"space-y-[30px] mt-[40px]"}>
             {
                 Array.isArray(orders) && orders?.map((e: any, index) => {
                   return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>

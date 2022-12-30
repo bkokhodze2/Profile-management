@@ -1,18 +1,12 @@
 import React, {useState} from 'react';
-// @ts-ignore// @ts-ignore
-import Tickets from "/public/images/icons/nav/navTickets";
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
-import {Rate} from "antd";
-import Button from "../../UI/button";
 import dayjs from "dayjs";
 
+const dateFormat = 'DD.MM.YYYY';
+
 const OrderItem = ({data, evaluated, setIsModalOpen}: any) => {
-
   const [isEvaluated, setIsEvaluated] = useState<boolean>(evaluated);
-  const dateFormat = 'DD.MM.YYYY';
-  console.log("data", data)
-
   return <div
       className={"md:p-6 p-4 md:pr-[30px] flex flex-col ph:flex-row md:flex-col md:gap-0 gap-[18px] bg-[#F7F7F7] rounded-0 md:rounded-2xl"}>
     <div
@@ -43,7 +37,7 @@ const OrderItem = ({data, evaluated, setIsModalOpen}: any) => {
 
       <div
           className={"w-full flex max-w-full min-w-full min-h-full ph:max-w-[150px] ph:max-h-[200px] ph:min-h-[114px] md:max-w-[240px] md:min-w-[240px] md:max-h-[150px] md:mr-[30px]"}>
-        <img src={IMAGES.offerItem.src}
+        <img src={data?.imageUrl? data?.imageUrl : IMAGES.offerItem.src}
              placeholder="blur"
              alt={"product image"}
              className={"rounded-xl"}

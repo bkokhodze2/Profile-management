@@ -10,6 +10,7 @@ import _ from "lodash";
 import Lari from "/public/images/icons/lari";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo} from "../slices/userSlice";
+import getChosenAvatar from "../getChosenAvatar";
 
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
@@ -19,26 +20,26 @@ const Header: React.FC = () => {
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
 
-  const getChosenAvatar = () => {
-
-    switch (parseInt(userInfo?.avatar?.path)) {
-      case 1:
-        return IMAGES.avatar1.src
-      case 2:
-        return IMAGES.avatar2.src
-      case 3:
-        return IMAGES.avatar3.src
-      case 4:
-        return IMAGES.avatar4.src
-      case 5:
-        return IMAGES.avatar5.src
-      case 6:
-        return IMAGES.avatar6.src
-      default :
-        return IMAGES.avatar1.src
-    }
-
-  }
+  // const getChosenAvatar = () => {
+  //
+  //   switch (parseInt(userInfo?.avatar?.path)) {
+  //     case 1:
+  //       return IMAGES.avatar1.src
+  //     case 2:
+  //       return IMAGES.avatar2.src
+  //     case 3:
+  //       return IMAGES.avatar3.src
+  //     case 4:
+  //       return IMAGES.avatar4.src
+  //     case 5:
+  //       return IMAGES.avatar5.src
+  //     case 6:
+  //       return IMAGES.avatar6.src
+  //     default :
+  //       return IMAGES.avatar1.src
+  //   }
+  //
+  // }
 
   useEffect(() => {
     if (!userInfo) {
@@ -117,7 +118,7 @@ const Header: React.FC = () => {
                       backgroundColor: "#" + userInfo?.avatar?.code
                     }}>
 
-                  <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
+                  <Image src={getChosenAvatar(userInfo?.avatar?.path)} quality={100} alt={"avatar"}
                          width={60} height={60}
                          style={{objectFit: "cover", height: "100%", width: "auto"}}/>
                 </div>

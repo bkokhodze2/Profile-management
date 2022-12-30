@@ -8,7 +8,7 @@ import axios from "axios";
 import {getUserInfo} from "../../slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import Avatars from "../slider/avatars";
-
+import getChosenAvatar  from "../../../components/getChosenAvatar";
 export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal}) {
   const baseApi = process.env.baseApi;
   const userInfo = useSelector((state: any) => state.user.userInfo);
@@ -27,26 +27,26 @@ export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal})
     setIsOpenChooseModal(false)
   }
 
-  const getChosenAvatar = () => {
-
-    switch (parseInt(chosenAvatarImg)) {
-      case 1:
-        return IMAGES.avatar1.src
-      case 2:
-        return IMAGES.avatar2.src
-      case 3:
-        return IMAGES.avatar3.src
-      case 4:
-        return IMAGES.avatar4.src
-      case 5:
-        return IMAGES.avatar5.src
-      case 6:
-        return IMAGES.avatar6.src
-      default:
-        return IMAGES.avatar1.src
-    }
-
-  }
+  // const getChosenAvatar = () => {
+  //
+  //   switch (parseInt(chosenAvatarImg)) {
+  //     case 1:
+  //       return IMAGES.avatar1.src
+  //     case 2:
+  //       return IMAGES.avatar2.src
+  //     case 3:
+  //       return IMAGES.avatar3.src
+  //     case 4:
+  //       return IMAGES.avatar4.src
+  //     case 5:
+  //       return IMAGES.avatar5.src
+  //     case 6:
+  //       return IMAGES.avatar6.src
+  //     default:
+  //       return IMAGES.avatar1.src
+  //   }
+  //
+  // }
 
   const saveAvatar = () => {
     axios.post(`${baseApi}/user/user/upload-avatar?path=${chosenAvatarImg}&colorCode=${chosenAvatarBg}&userId=${userInfo?.details?.id}`
@@ -78,7 +78,7 @@ export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal})
                 backgroundColor: "#" + chosenAvatarBg
               }}
           >
-            <Image src={getChosenAvatar()} alt={"avatar"} width={300} height={300}
+            <Image src={getChosenAvatar(chosenAvatarImg)} alt={"avatar"} width={300} height={300}
                    style={{objectFit: "cover", height: "100%", width: "auto"}}/>
 
           </div>

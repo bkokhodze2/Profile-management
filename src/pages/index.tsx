@@ -13,7 +13,6 @@ import CountUp from 'react-countup';
 // @ts-ignore
 import Tickets from "/public/images/icons/nav/navTickets";
 import Slider from "../components/UI/slider/tickets";
-import {Form, Input, Modal, Table} from "antd";
 import React, {useEffect, useState} from "react";
 import {ColumnsType} from "antd/es/table";
 import Transaction from "../../public/images/icons/nav/transaction";
@@ -24,74 +23,6 @@ import TransactionsTable from "../components/blocks/transactions-table";
 import Link from "next/link";
 import Lari from "../../public/images/icons/lari";
 import Logout from "../../public/images/icons/nav/navLogout";
-
-interface DataType {
-  key: string;
-  name: string;
-  platform: string;
-  date: string;
-  points: string;
-}
-
-// @ts-ignore
-const columns: ColumnsType<DataType> = [
-  {
-    title: () => {
-      return <p className={"text-dark text-[14px] font-[400]"}>ტრანზაქციის სახელი</p>
-    },
-    width: 200,
-    dataIndex: 'name',
-    key: 'name',
-    render: (text) => <a>{text}</a>,
-  },
-  {
-    title: () => {
-      return <p className={"text-dark text-[14px] font-[400]"}>თარიღი</p>
-    },
-    dataIndex: 'date',
-    key: 'date',
-  },
-  {
-    title: () => {
-      return <p className={"text-dark text-[14px] font-[400]"}>პლატფორმა</p>
-    },
-    dataIndex: 'platform',
-    key: 'platform',
-  },
-  {
-    title: () => {
-      return <p className={"text-dark text-[14px] font-[500]"}>ქულები</p>
-    },
-    // @ts-ignore
-    align: "end",
-    dataIndex: 'points',
-    key: 'points',
-  }
-];
-
-const data: DataType[] = [
-  {
-    key: '1',
-    name: 'John Brown',
-    platform: 'platform1',
-    date: "01.02.2022 ",
-    points: '123',
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    platform: 'platform2',
-    date: "01.02.2022 ",
-    points: '-5678',
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    platform: 'platform3',
-    date: "01.02.2022 ",
-    points: '923',
-  },
-];
 
 export default function Profile() {
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
@@ -105,7 +36,6 @@ export default function Profile() {
   }, [userInfo])
 
   const getChosenAvatar = () => {
-
 
     switch (parseInt(userInfo?.avatar?.path)) {
       case 1:
@@ -124,9 +54,7 @@ export default function Profile() {
         return IMAGES.avatar1.src
 
     }
-
   }
-
 
   return (
       <div>
@@ -233,10 +161,11 @@ export default function Profile() {
                     <p className={"text-dark7 ph:text-[12px] text-[14px] ml-[6px]"}>გამომუშავებული</p>
                   </div>
 
-                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}><CountUp duration={1}
-                                                                                        end={currentPoints + spentPoints}
-                                                                                        separator=","
-                                                                                        start={(currentPoints + spentPoints) * 0.75}/>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1}
+                             end={currentPoints + spentPoints}
+                             separator=","
+                             start={(currentPoints + spentPoints) * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex ph:items-center items-start flex-col ph:flex-row mt-2 ph:mt-0"}>
@@ -245,9 +174,10 @@ export default function Profile() {
                     <p className={"text-dark7 text-[12px] ml-[6px]"}>მიმდინარე</p>
                   </div>
 
-                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}><CountUp duration={1} end={currentPoints}
-                                                                                        separator=","
-                                                                                        start={currentPoints * 0.75}/>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1} end={currentPoints}
+                             separator=","
+                             start={currentPoints * 0.75}/>
                   </p>
                 </div>
                 <div className={"flex ph:items-center items-start flex-col ph:flex-row mt-2 ph:mt-0"}>
@@ -256,9 +186,10 @@ export default function Profile() {
                     <p className={"text-dark7 text-[12px] ml-[6px]"}>დახარჯული</p>
                   </div>
 
-                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}><CountUp duration={1} end={spentPoints}
-                                                                                        separator=","
-                                                                                        start={spentPoints * 0.75}/></p>
+                  <p className={"text-dark ml-2.5 ph:text-[18px] text-[14px]"}>
+                    <CountUp duration={1} end={spentPoints}
+                             separator=","
+                             start={spentPoints * 0.75}/></p>
                 </div>
               </div>
             </div>
