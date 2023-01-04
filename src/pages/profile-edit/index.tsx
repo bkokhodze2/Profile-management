@@ -34,8 +34,8 @@ interface ICity {
 
 export default function Profile() {
   const baseApi = process.env.baseApi;
-
   const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
+
   const [cities, setCities] = useState<ICity[]>([
     {
       "id": 1,
@@ -49,8 +49,8 @@ export default function Profile() {
       "id": 3,
       "title": 'ქუთაისი'
     }
-
   ]);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -140,13 +140,9 @@ export default function Profile() {
       ]
     };
 
+    let ans = _.omit(values, ['email', 'phone', 'address', 'city']);
 
-    delete values.email;
-    delete values.phone;
-    delete values.address;
-    delete values.city;
-
-    axios.put(`${baseApi}/user/user/${userInfo?.details?.id}`, values)
+    axios.put(`${baseApi}/user/user/${userInfo?.details?.id}`, ans)
         .then((res) => {
           console.log("resss", res)
           // @ts-ignore
@@ -157,7 +153,6 @@ export default function Profile() {
           });
           Router.push("/")
         })
-
 
   };
 
@@ -170,28 +165,6 @@ export default function Profile() {
   const handleCancel = () => {
     setIsModalOpen(false)
   }
-
-  // const getChosenAvatar = () => {
-  //
-  //   switch (parseInt(userInfo?.avatar?.path)) {
-  //     case 1:
-  //       return IMAGES.avatar1.src
-  //     case 2:
-  //       return IMAGES.avatar2.src
-  //     case 3:
-  //       return IMAGES.avatar3.src
-  //     case 4:
-  //       return IMAGES.avatar4.src
-  //     case 5:
-  //       return IMAGES.avatar5.src
-  //     case 6:
-  //       return IMAGES.avatar6.src
-  //     default :
-  //       return IMAGES.avatar1.src
-  //   }
-  //
-  // }
-
 
   return (
       <>

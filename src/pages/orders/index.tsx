@@ -18,9 +18,8 @@ import axios from "axios";
 
 
 export default function Profile() {
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const baseApi = process.env.baseApi;
-
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [orders, setOrders] = useState<any>([]);
 
   const [commentForm] = Form.useForm();

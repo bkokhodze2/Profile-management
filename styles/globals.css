@@ -244,6 +244,21 @@ tr[data-row-key="4"] {
     }
 }
 
+@media (max-width: 768px) {
+    .codeModel .ant-modal-content {
+        padding: 12px;
+    }
+}
+
+.colorsSwipper {
+    width: 100%;
+}
+
+.colorsSwipper .swiper-wrapper {
+    width: 100%;
+}
+
+
 .avatarSwipper {
     height: 200px;
     padding-top: 30px !important;
