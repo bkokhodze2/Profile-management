@@ -10,34 +10,36 @@ import _ from "lodash";
 import Lari from "/public/images/icons/lari";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo} from "../slices/userSlice";
+import getChosenAvatar from "../getChosenAvatar";
 
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
   const dispatch = useDispatch();
+  const Router = useRouter();
   const [IsLoading, setIsLoading] = useState<boolean>(false);
   const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
 
-  const getChosenAvatar = () => {
-
-    switch (parseInt(userInfo?.avatar?.path)) {
-      case 1:
-        return IMAGES.avatar1.src
-      case 2:
-        return IMAGES.avatar2.src
-      case 3:
-        return IMAGES.avatar3.src
-      case 4:
-        return IMAGES.avatar4.src
-      case 5:
-        return IMAGES.avatar5.src
-      case 6:
-        return IMAGES.avatar6.src
-      default :
-        return IMAGES.avatar1.src
-    }
-
-  }
+  // const getChosenAvatar = () => {
+  //
+  //   switch (parseInt(userInfo?.avatar?.path)) {
+  //     case 1:
+  //       return IMAGES.avatar1.src
+  //     case 2:
+  //       return IMAGES.avatar2.src
+  //     case 3:
+  //       return IMAGES.avatar3.src
+  //     case 4:
+  //       return IMAGES.avatar4.src
+  //     case 5:
+  //       return IMAGES.avatar5.src
+  //     case 6:
+  //       return IMAGES.avatar6.src
+  //     default :
+  //       return IMAGES.avatar1.src
+  //   }
+  //
+  // }
 
   useEffect(() => {
     if (!userInfo) {
@@ -53,10 +55,10 @@ const Header: React.FC = () => {
         <div className={"h-[40px] w-full flex items-center justify-center bg-[white]"}>
           <p>საიტი მუშაობს სატესტო რეჟიმში</p>
         </div>
-        <div className={"flex w-full bg-amber-700 h-[44px] min-h-[44px] md:bg-[#383838] bg-[#1E1E1E] items-center "}>
+        <div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>
           <div className={"w-full container m-auto flex md:justify-between justify-end"}>
             <div className={"flex space-x-8 md:flex hidden"}>
-              <Link href={"https://optimoml.geopay.com/index.php"}>
+              <Link href={"https://shop.pirveli.com"}>
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>
               </Link>
               <Link href={"https://medical.pirveli.com"}>
@@ -66,13 +68,13 @@ const Header: React.FC = () => {
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
               </Link>
 
-              <Link href={"https://lot51.pirveli.com"}>
+              <a href={"http://s3.pirveli.com/v1/api/getFile?id=6555"} target={"_blank"} rel="noopener noreferrer">
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>
-              </Link>
+              </a>
 
-              <Link href={"https://lot51.pirveli.com"}>
+              <a href={"http://s3.pirveli.com/v1/api/getFile?id=6556"} target={"_blank"} rel="noopener noreferrer">
                 <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>
-              </Link>
+              </a>
             </div>
 
             <div className={"flex"}>
@@ -109,13 +111,14 @@ const Header: React.FC = () => {
               <div/>
               <div className={"md:flex hidden justify-end"}>
                 <div
+                    onClick={()=>Router.push('/')}
                     className={"group min-w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",
                       backgroundColor: "#" + userInfo?.avatar?.code
                     }}>
 
-                  <Image src={getChosenAvatar()} quality={100} alt={"avatar"}
+                  <Image src={getChosenAvatar(userInfo?.avatar?.path)} quality={100} alt={"avatar"}
                          width={60} height={60}
                          style={{objectFit: "cover", height: "100%", width: "auto"}}/>
                 </div>

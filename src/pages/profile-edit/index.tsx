@@ -11,18 +11,17 @@ import Cards from "/public/images/icons/nav/navCards";
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React, {useEffect, useState} from "react";
-import TicketItem from "../../components/blocks/ticket-item";
-import {DatePicker, Form, Input, Modal, notification, Rate, Select} from "antd";
-import Button from "../../components/UI/button";
+import {DatePicker, Form, Input, Modal, notification, Select} from "antd";
 import dayjs from 'dayjs';
 import _ from "lodash";
 import weekday from "dayjs/plugin/weekday"
 import localeData from "dayjs/plugin/localeData"
-import ChangeAvatar from "../../components/UI/modal/ChangeAvatar";
+import ChangeAvatar2 from "../../components/UI/modal/ChangeAvatar";
 import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
 import {useRouter} from "next/router";
+import getChosenAvatar from "../../components/getChosenAvatar";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -31,14 +30,12 @@ const dateFormat = 'YYYY-MM-DD';
 interface ICity {
   id: number,
   title: string,
-
 }
 
 export default function Profile() {
   const baseApi = process.env.baseApi;
-
-
   const [isDisabledEmail, setIsDisabledEmail] = useState<boolean>(true);
+
   const [cities, setCities] = useState<ICity[]>([
     {
       "id": 1,
@@ -47,9 +44,13 @@ export default function Profile() {
     {
       "id": 2,
       "title": "Adigeni"
+    },
+    {
+      "id": 3,
+      "title": 'ქუთაისი'
     }
-
   ]);
+
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
@@ -95,23 +96,6 @@ export default function Profile() {
 
   }
 
-
-  // {
-  //   "legalAddress":{
-  //   "municipality":{
-  //     "id": 80
-  //   },
-  //   "address": "AAAAA qucha 7"
-  // },
-  //   "physicalAddress":{
-  //   "municipality":{
-  //     "id": 80
-  //   },
-  //   "address": "BBBB 5"
-  // }
-  // }
-
-
   const onFinish = (fieldsValue: any) => {
 
     const values = {
@@ -133,20 +117,6 @@ export default function Profile() {
               address: fieldsValue['address']
             }
           }
-
-      // {
-      //   "legalAddress": null,
-      //   "physicalAddress": {
-      //     "id": null, //cvladi
-      //     "municipalityId": fieldsValue['city'],
-      //     "municipality": {
-      //       "id": null,
-      //       "title": null
-      //     },
-      //     "address": fieldsValue['address']
-      //   }
-      // }
-
       ,
       contactInfos: [
         {
@@ -170,14 +140,9 @@ export default function Profile() {
       ]
     };
 
-    // !userInfo?.details?.legalAddress?.municipality?.id && delete values.userAddress.legalAddress
+    let ans = _.omit(values, ['email', 'phone', 'address', 'city']);
 
-    delete values.email;
-    delete values.phone;
-    delete values.address;
-    delete values.city;
-
-    axios.put(`${baseApi}/user/user/${userInfo?.details?.id}`, values)
+    axios.put(`${baseApi}/user/user/${userInfo?.details?.id}`, ans)
         .then((res) => {
           console.log("resss", res)
           // @ts-ignore
@@ -189,12 +154,9 @@ export default function Profile() {
           Router.push("/")
         })
 
-    console.log("values", values)
-
   };
 
   const onFinishCode = (values) => {
-    console.log("codeval", values)
   }
 
   const openCodeModal = () => {
@@ -203,28 +165,6 @@ export default function Profile() {
   const handleCancel = () => {
     setIsModalOpen(false)
   }
-
-  const getChosenAvatar = () => {
-
-    switch (parseInt(userInfo?.avatar?.path)) {
-      case 1:
-        return IMAGES.avatar1.src
-      case 2:
-        return IMAGES.avatar2.src
-      case 3:
-        return IMAGES.avatar3.src
-      case 4:
-        return IMAGES.avatar4.src
-      case 5:
-        return IMAGES.avatar5.src
-      case 6:
-        return IMAGES.avatar6.src
-      default :
-        return IMAGES.avatar1.src
-    }
-
-  }
-
 
   return (
       <>
@@ -278,16 +218,16 @@ export default function Profile() {
 
         </Modal>
 
-        <ChangeAvatar setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+        <ChangeAvatar2 setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
-        <div className={"w-full"}>
+        <div className={"w-full  pb-[100px]"}>
 
-          <h2 className={"text-[32px] text-[#383838] font-bold"}>
+          <h2 className={"text-[16px] md:text-[32px] text-[#383838] font-bold"}>
             პერსონალური ინფორმაცია
           </h2>
 
-          <div className={"gap-x-[30px] grid grid-cols-3 h-[2000px] mt-[40px]"}>
-            <div className={""}>
+          <div className={"gap-x-[0px] lg:gap-x-[30px] grid lg:grid-cols-3 grid-cols-2 mt-[40px]"}>
+            <div className={"w-full hidden md:block lg:col-span-1 md:col-span-2 col-span-2"}>
               <div
                   className={"bg-red py-[10px] rounded-xl relative w-auto cursor-pointer h-[312px] justify-center items-center"}
                   onClick={() => setIsOpenChooseModal(true)}
@@ -296,7 +236,7 @@ export default function Profile() {
                     backgroundColor: "#" + userInfo?.avatar?.code
                   }}
               >
-                <Image src={getChosenAvatar()}
+                <Image src={getChosenAvatar(userInfo?.avatar?.path)}
                        alt={"profile avatar"}
                        layout={"contain"}
                        width={312}
@@ -326,177 +266,204 @@ export default function Profile() {
                 }}
                 onFinish={onFinish}
             >
-              <div className={"grid grid-cols-2 gap-x-[30px] "}>
-                <div className={"space-y-[30px]"}>
-                  <Form.Item label="სახელი" name={"firstName"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}
+              <div className={"grid grid-cols-2 md:gap-x-[30px] gap-x-2"}>
+                {/*<div className={"space-y-[30px]"}>*/}
+                <Form.Item label="სახელი" name={"firstName"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}
+                >
+                  <Input
+                      placeholder="სახელი"/>
+                </Form.Item>
+                <Form.Item label="გვარი" name={"lastName"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}>
+                  <Input placeholder="გვარი"/>
+                </Form.Item>
+
+                {/*{*/}
+                {/*  isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>*/}
+                {/*    <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>*/}
+                {/*    <div*/}
+                {/*        className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>*/}
+                {/*      d*/}
+                {/*    </div>*/}
+                {/*  </div> : <Form.Item*/}
+                {/*      label="ელ.ფოსტა"*/}
+                {/*      name={"email"}*/}
+                {/*      rules={[*/}
+                {/*        {*/}
+                {/*          type: 'email',*/}
+                {/*          message: 'ემაილი არ არის ვალიდური'*/}
+                {/*        },*/}
+                {/*        {*/}
+                {/*          required: true,*/}
+                {/*          message: "ველი სავალდებულოა"*/}
+                {/*        }*/}
+                {/*      ]}*/}
+                {/*  >*/}
+                {/*    <Input*/}
+                {/*        placeholder="ელ.ფოსტა"/>*/}
+                {/*  </Form.Item>*/}
+                {/*}*/}
+
+                <Form.Item
+                    className={"ph5:col-span-1 col-span-2"}
+                    label="ელ.ფოსტა"
+                    name={"email"}
+                    rules={[
+                      {
+                        type: 'email',
+                        message: 'ემაილი არ არის ვალიდური'
+                      },
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
+                >
+                  <Input
+                      placeholder="ელ.ფოსტა"/>
+                </Form.Item>
+
+                <Form.Item label="ტელეფონის ნომერი" name={"phone"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             },
+                             {
+                               min: 9,
+                               message: "ტელ. ნომერი უნდა იყოს 9 სიმბოლო"
+                             },
+                             {
+                               max: 9,
+                               message: "ტელ. ნომერი უნდა იყოს 9 სიმბოლო"
+                             },
+                             {
+                               pattern: new RegExp("^[0-9]*$"),
+                               message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
+                             }
+                           ]}>
+                  <Input
+                      placeholder="ტელეფონის ნომერი"/>
+                </Form.Item>
+
+
+                <Form.Item label="დაბადების თარიღი" name={"personDob"} rules={[
+                  {
+                    required: true,
+                    message: "ველი სავალდებულოა"
+                  }
+                ]}>
+
+                  <DatePicker
+                      // defaultValue={dayjs('2015-01-01', dateFormat)}
+                      format={dateFormat}
+                      placeholder={"დაბადების თარიღი"}/>
+
+                </Form.Item>
+
+                <Form.Item
+                    name="gender"
+                    label="სქესი"
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
+                >
+                  <Select placeholder="სქესი">
+                    <Option value="m">მამრობითი</Option>
+                    <Option value="f">მდედრობითი</Option>
+                  </Select>
+                </Form.Item>
+
+                <Form.Item
+                    name="city"
+                    label="ქალაქი"
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      }
+                    ]}
+
+                >
+                  <Select
+                      showSearch
+                      // optionFilterProp={"title"}
+
+                      optionFilterProp="title"
+                      // @ts-ignore
+                      filterOption={(input, option) => (option?.children ?? '').toLowerCase().includes(input)}
+                      // @ts-ignore
+                      // filterSort={(optionA, optionB) => (optionA?.children ?? '').toLowerCase().localeCompare((optionB?.children ?? '').toLowerCase())
+                      // }
+                      placeholder="ქალაქი"
                   >
-                    <Input
-                        placeholder="სახელი"/>
-                  </Form.Item>
+                    {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
+                      return <Option key={index} value={item?.id}>{item?.title}</Option>
+                    })}
 
-                  {/*{*/}
-                  {/*  isDisabledEmail ? <div className={"w-full"} onClick={() => openCodeModal()}>*/}
-                  {/*    <p className={"text-[#38383899] text-[14px] mb-1"}>ელ.ფოსტა</p>*/}
-                  {/*    <div*/}
-                  {/*        className={"bg-[white] w-full rounded-xl flex items-center pl-6 h-[48px]"}>*/}
-                  {/*      d*/}
-                  {/*    </div>*/}
-                  {/*  </div> : <Form.Item*/}
-                  {/*      label="ელ.ფოსტა"*/}
-                  {/*      name={"email"}*/}
-                  {/*      rules={[*/}
-                  {/*        {*/}
-                  {/*          type: 'email',*/}
-                  {/*          message: 'ემაილი არ არის ვალიდური'*/}
-                  {/*        },*/}
-                  {/*        {*/}
-                  {/*          required: true,*/}
-                  {/*          message: "ველი სავალდებულოა"*/}
-                  {/*        }*/}
-                  {/*      ]}*/}
-                  {/*  >*/}
-                  {/*    <Input*/}
-                  {/*        placeholder="ელ.ფოსტა"/>*/}
-                  {/*  </Form.Item>*/}
-                  {/*}*/}
+                  </Select>
+                </Form.Item>
 
-                  <Form.Item
-                      label="ელ.ფოსტა"
-                      name={"email"}
-                      rules={[
-                        {
-                          type: 'email',
-                          message: 'ემაილი არ არის ვალიდური'
-                        },
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
-                  >
-                    <Input
-                        placeholder="ელ.ფოსტა"/>
-                  </Form.Item>
+                <Form.Item label="მისამართი"
+                           className={"ph5:col-span-1 col-span-2"}
+                           name={"address"}
+                           rules={[
+                             {
+                               required: true,
+                               message: "ველი სავალდებულოა"
+                             }
+                           ]}>
+                  <Input
+                      placeholder="მისამართი"/>
+                </Form.Item>
 
+                <Form.Item
+                    label="პირადი ნომერი"
+                    name={"personalId"}
+                    className={"ph5:col-span-1 col-span-2"}
+                    rules={[
+                      {
+                        required: true,
+                        message: "ველი სავალდებულოა"
+                      },
+                      {
+                        min: 11,
+                        message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                      },
+                      {
+                        max: 11,
+                        message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
+                      },
+                      {
+                        pattern: new RegExp("^[0-9]*$"),
+                        message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
+                      }
+                    ]}
+                >
+                  <Input
+                      // disabled={userInfo?.details?.personalId}
+                      disabled={userInfo?.details?.personalId}
+                      type={'number'}
+                      placeholder="პირადი ნომერი"/>
+                </Form.Item>
 
-                  <Form.Item label="დაბადების თარიღი" name={"personDob"} rules={[
-                    {
-                      required: true,
-                      message: "ველი სავალდებულოა"
-                    }
-                  ]}>
-
-                    <DatePicker
-                        // defaultValue={dayjs('2015-01-01', dateFormat)}
-                        format={dateFormat}
-                        placeholder={"დაბადების თარიღი"}/>
-
-                  </Form.Item>
-
-                  <Form.Item
-                      name="city"
-                      label="ქალაქი"
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
-
-                  >
-                    <Select placeholder="ქალაქი">
-                      {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
-                        return <Option key={index} value={item?.id}>{item?.title}</Option>
-                      })}
-
-                    </Select>
-                  </Form.Item>
-
-                  <Form.Item
-                      label="პირადი ნომერი"
-                      name={"personalId"}
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        },
-                        {
-                          min: 11,
-                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
-                        },
-                        {
-                          max: 11,
-                          message: "პირადი ნომერი უნდა იყოს 11 სიმბოლო"
-                        },
-                        {
-                          pattern: new RegExp("^[0-9]*$"),
-                          message: "ველი უნდა შეიცავდეს მხოლოდ ციფრებს"
-                        }
-                      ]}
-                  >
-                    <Input
-                        // disabled={userInfo?.details?.personalId}
-                        disabled={null}
-                        type={'number'}
-                        placeholder="პირადი ნომერი"/>
-                  </Form.Item>
-
-                </div>
-                <div className={"space-y-[30px]"}>
-                  <Form.Item label="გვარი" name={"lastName"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input placeholder="გვარი"/>
-                  </Form.Item>
-                  <Form.Item label="ტელეფონის ნომერი" name={"phone"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input
-                        placeholder="ტელეფონის ნომერი"/>
-                  </Form.Item>
-
-                  <Form.Item
-                      name="gender"
-                      label="სქესი"
-                      rules={[
-                        {
-                          required: true,
-                          message: "ველი სავალდებულოა"
-                        }
-                      ]}
-                  >
-                    <Select placeholder="სქესი">
-                      <Option value="m">მამრობითი</Option>
-                      <Option value="f">მდედრობითი</Option>
-                    </Select>
-                  </Form.Item>
-
-                  <Form.Item label="მისამართი" name={"address"}
-                             rules={[
-                               {
-                                 required: true,
-                                 message: "ველი სავალდებულოა"
-                               }
-                             ]}>
-                    <Input
-                        placeholder="მისამართი"/>
-                  </Form.Item>
-
-                </div>
+                {/*</div>*/}
+                {/*<div className={"space-y-[30px]"}>*/}
+                {/*</div>*/}
               </div>
 
               <div className={"flex justify-between items-center mt-[30px]"}>

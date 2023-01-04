@@ -167,21 +167,38 @@ const Navigation: React.FC = () => {
             </div>
           </Link>
 
+          <Link href={"/medical-card"}>
+            <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}
+                 style={{
+                   borderLeft: Router.pathname === "/medical-card" ? "2px solid #DB0060" : "2px solid transparent"
+                 }}
+            >
+              <Cards
+                  color={Router.pathname === "/medical-card" ? "#DB0060" : "#383838"}/>
+              <p className={"ml-[14px] text-sm group-hover:!text-red"}
+                 style={{
+                   transition: "0.2s",
+                   color: Router.pathname === "/medical-card" ? "#DB0060" : "#383838"
+                 }}
+              >ჯანდაცვის ბარათები</p>
+            </div>
+          </Link>
+
           <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4 !mt-[40px] cursor-pointer"}
-               // onClick={() => logOut()}
+              // onClick={() => logOut()}
           >
             <Logout
                 color={"#DB0060"}/>
-            <p className={"ml-[14px] text-sm group-hover:!text-red"}
-               style={{
-                 transition: "0.2s",
-                 color: "#DB0060"
-               }}
+            <div className={"ml-[14px] text-sm group-hover:!text-red"}
+                 style={{
+                   transition: "0.2s",
+                   color: "#DB0060"
+                 }}
             >
-              <form action="https://vouchers.pirveli.com/logout" method="post">
+              <form action="https://profile.pirveli.com/logout" method="post">
                 <button type={"submit"}>გასვლა</button>
               </form>
-            </p>
+            </div>
           </div>
 
         </div>

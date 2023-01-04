@@ -18,7 +18,6 @@ import colors from "../../colors";
 
 export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {
 
-
   useEffect(() => {
 
   }, [])
@@ -26,22 +25,22 @@ export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {
   return (
       <>
         <Swiper
-            spaceBetween={9}
-            slidesPerView={6.5}
+            spaceBetween={12}
+            slidesPerView={"auto"}
             initialSlide={colors.indexOf(chosenAvatarBg)}
             scrollbar={true}
             freeMode={true}
             navigation={false}
             draggable={true}
             lazy={true}
-            virtual={true}
+            // virtual={true}
             mousewheel={true}
             modules={[Lazy, FreeMode, Mousewheel, Virtual]}
-            className="ticketsSwiper"
+            className="colorsSwipper"
         >
 
-          {colors.map((item, index) => {
-            return <SwiperSlide key={index} virtualIndex={index}>
+          {colors?.map((item, index) => {
+            return <SwiperSlide className={"max-w-[50px]"} key={index} virtualIndex={index}>
               <div
                   onClick={() => setChosenAvatarBg(item.replace("#", ""))}
                   className={"min-w-[50px] h-[50px] rounded-[50%] p-[3px] cursor-pointer"}

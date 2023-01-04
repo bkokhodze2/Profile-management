@@ -1,11 +1,9 @@
 import Head from 'next/head'
 import Header from "../../header";
-import React,{useEffect} from "react";
-import {Provider,useDispatch,useSelector} from "react-redux";
+import React from "react";
+import {Provider} from "react-redux";
 import store from "/src/components/store"
-import Image from "next/image";
 import {useRouter} from "next/router";
-import Link from "next/link";
 import axios from 'axios';
 import Navigation from "../../navigation";
 import Dashboard from "../../../../public/images/icons/nav/navDashboard";
@@ -24,15 +22,15 @@ export default function Layout({children}){
 	// 		...config.headers,
 	// 		'Access-Control-Allow-Origin':'*',
 	// 		'Content-Type':'application/json',
-	// 		Authorization:`Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzExMzc1NDUsImlhdCI6MTY3MTEwMTU4OSwiYXV0aF90aW1lIjoxNjcxMTAxNTQ1LCJqdGkiOiI1ODI5Zjg3NC03NTRmLTRmZDMtOGI3YS1iMmFkYjc1MWUxYTgiLCJpc3MiOiJodHRwczovL2F1dGgucGlydmVsaS5jb20vcmVhbG1zL3hyYWNvb24tZGVtbyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI0MGI2MTY4Yy1lMDBhLTQ5M2EtYjE1NC1lMDgwNDZjMzFhZDUiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjcy1jYXJ0Iiwic2Vzc2lvbl9zdGF0ZSI6IjkzZjFhYThlLTdhNWYtNDZkNC05NmU1LTJlZmYyNzBlY2UyZiIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy14cmFjb29uLWRlbW8iLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiOTNmMWFhOGUtN2E1Zi00NmQ0LTk2ZTUtMmVmZjI3MGVjZTJmIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJ1c2VyX2lkIjoiNDBiNjE2OGMtZTAwYS00OTNhLWIxNTQtZTA4MDQ2YzMxYWQ1IiwibmFtZSI6ImlyYTMzNyBiZTMzNyIsInByZWZlcnJlZF91c2VybmFtZSI6ImlyYTMzN0BnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiaXJhMzM3IiwiZmFtaWx5X25hbWUiOiJiZTMzNyIsImVtYWlsIjoiaXJhMzM3QGdtYWlsLmNvbSJ9.VhkRExbXqWZ-5uNhSl0uuG4ECZUYKoOyOhRbKjWK2vBeD-pu5S05O2VMVhZe3GxffJrc2xT1LE0hfrPvt3HLjivSCn7E_xD2Ic8-ia1_w_Tuu4Hm2TIel4X2kHfDGybucjuRY4xmxuS683wOkL2oBcGjMrS-6g_0HOZaVO4PkVJXXhsf3p0w4ASOS-DuLBRdnmEAhyg8KYskuTk7s4yxAZQd_ieQ1pAPXZ7QB5k9WpalJACF0q1izLip3y_DXAQE8H4g7TZsLt9uvNZdsIWA6unbDtSCVD2niQzp25D6cryJZoLwIOYHDH3MOHxa8QqZyv8WITsJUuN87SkV3wEoTA`
+	// 		Authorization:`Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzIzMzUyODgsImlhdCI6MTY3MjI5OTMxMSwiYXV0aF90aW1lIjoxNjcyMjk5Mjg4LCJqdGkiOiIzNzM4ZjJjZi05MmQ1LTQyYjYtYjhjNC05NjkyYmI0NWY0NGQiLCJpc3MiOiJodHRwczovL2F1dGgucGlydmVsaS5jb20vcmVhbG1zL3hyYWNvb24tZGVtbyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiY2I1NjcyOC1mM2YxLTRmZjgtYTQ3ZC1kNGExOGFjMDgxOGMiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjcy1jYXJ0Iiwic2Vzc2lvbl9zdGF0ZSI6ImIxYjJlZWRiLTU1NjYtNDY5NC1iZjlkLWYzN2E4MjZmMTQzMSIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy14cmFjb29uLWRlbW8iLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJwcm9maWxlIGVtYWlsIiwic2lkIjoiYjFiMmVlZGItNTU2Ni00Njk0LWJmOWQtZjM3YTgyNmYxNDMxIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJ1c2VyX2lkIjoiYmNiNTY3MjgtZjNmMS00ZmY4LWE0N2QtZDRhMThhYzA4MThjIiwibmFtZSI6ImlyYWtsaSBvY2RhbWVydmUiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJpcmFrbGkyOEBnbWFpbC5jb20iLCJnaXZlbl9uYW1lIjoiaXJha2xpIiwiZmFtaWx5X25hbWUiOiJvY2RhbWVydmUiLCJlbWFpbCI6ImlyYWtsaTI4QGdtYWlsLmNvbSJ9.C0219ZRSZa-AFWn5pGXUasixkpcezSAJ1ePt72CAUBbZmzLjQ43RAWr8uuw3wyvWuVDrZGZo6CsptdCQsJe7173Y1iOEKLocAqc2DhrWlROkKE6ODHW_sKL3DudeICSXJ_4Zw2Jy1gaG_a0w6Xnu3XOAfhSPE3zY3g48oJm2kXeL7GNo5I8USGNBqIRt7WyGXscCZ1QHTwmjH-FkRzTuj7Bcjw5y9o0hkL9Txa_NHpF-izpvRv1svQjjY8whZckw2dP3pXncp7C6YJA9_NiTUazi8Btjq-pF1NKjg3OJWJ5nmqPC_OFtAGLYZQ0zl3D696scViCqNxBA59SuXy00_g`
 	// 	};
 	// 	return config;
 	// });
 
-	useEffect(() => {
-		axios.get(`${baseApi}/user/user/detail-info`).then((res) => {
-		})
-	},[])
+	// useEffect(() => {
+	// 	axios.get(`${baseApi}/user/user/detail-info`).then((res) => {
+	// 	})
+	// },[])
 
 
 	const navTo = (path) => {
