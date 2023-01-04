@@ -6,11 +6,8 @@ import {useSelector} from "react-redux";
 
 ChartJS.register(ArcElement,Tooltip);
 
-
 const Donut = () => {
 	const userInfo = useSelector((state) => state.user.userInfo);
-	// let currentPoints;
-	// let spentPoints;
 	const [currentPoints,setCurrentPoints] = useState(0);
 	const [spentPoints,setSpentPoints] = useState(0);
 

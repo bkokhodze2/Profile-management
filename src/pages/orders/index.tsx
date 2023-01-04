@@ -10,14 +10,17 @@ import Cards from "/public/images/icons/nav/navCards";
 // @ts-ignore
 import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TicketsItem from "../../components/blocks/ticket-item";
 import OrderItem from "../../components/blocks/order-item";
 import {Form, Input, Modal, Rate} from "antd";
+import axios from "axios";
 
 
 export default function Profile() {
+  const baseApi = process.env.baseApi;
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [orders, setOrders] = useState<any>([]);
 
   const [commentForm] = Form.useForm();
   const {TextArea} = Input;
@@ -26,8 +29,18 @@ export default function Profile() {
     commentForm.resetFields();
     setIsModalOpen(false);
   };
+  useEffect(() => {
+    axios.get(`${baseApi}/user/user/get-user-vouchers`).then((res) => {
+      setOrders(res.data)
+    }).catch(() => {
+      console.log("catch")
+    })
+  }, [])
+
   const onFinishComment = (values: object) => {
+
   }
+
   return (
       <div>
         <Head>
@@ -41,7 +54,6 @@ export default function Profile() {
             onCancel={handleCancel}
             footer={""}
             title={""}
-
             width={620}>
 
           <div className={"flex p-6 bg-[#d9d9d933] rounded-[16px]"}>
@@ -79,15 +91,18 @@ export default function Profile() {
             </Form.Item>
 
             <Form.Item name={"comment"}>
-              <TextArea rows={4} placeholder={"Add Comment"}
-                        className={"bg-[#d9d9d91a] rounded-[16px] border-none p-5"}/>
+              <TextArea rows={4}
+                        style={{height: 120, resize: 'none'}}
+                        placeholder={"კომენტარი"}
+                        className={"bg-[#d9d9d91a] rounded-[16px] border-none p-5"}
+              />
             </Form.Item>
 
             <div className={"flex justify-end mt-6 items-center"}>
-              <p className={"mr-10 text-[#383838] cursor-pointer"} onClick={handleCancel}>Cancel</p>
+              <p className={"mr-10 text-[#383838] cursor-pointer"} onClick={handleCancel}>გაუქმება</p>
               <button type={"submit"}
                       className={"flex justify-center items-center rounded-xl bg-red py-4 px-10 cursor-pointer"}>
-                <p className={"text-[white]"}>Add Review</p>
+                <p className={"text-[white]"}>კომენტარის დამატება</p>
               </button>
             </div>
 
@@ -98,17 +113,15 @@ export default function Profile() {
         <div className={"w-full"}>
 
           <h2 className={"text-[32px] text-[#383838] font-bold"}>
-            ჩემი ბილეთები
+            ჩემი შეკვეთები
           </h2>
 
-          <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
-
+          <div className={"space-y-[30px] mt-[40px]"}>
             {
-              [1, 2, 3, 4, 5, 6].map((e, index) => {
-                return <OrderItem setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
-              })
+                Array.isArray(orders) && orders?.map((e: any, index) => {
+                  return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
+                })
             }
-
           </div>
 
         </div>
