@@ -178,7 +178,7 @@ const Navigation: React.FC = () => {
                  color: "#DB0060"
                }}
             >
-              <form action="https://vouchers.pirveli.ge/logout" method="post">
+              <form action="https://vouchers.pirveli.com/logout" method="post">
                 <button type={"submit"}>გასვლა</button>
               </form>
             </p>
