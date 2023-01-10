@@ -55,49 +55,120 @@ const Header: React.FC = () => {
         <div className={"h-[40px] w-full flex items-center justify-center bg-[white]"}>
           <p>საიტი მუშაობს სატესტო რეჟიმში</p>
         </div>
-        <div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>
-          <div className={"w-full container m-auto flex md:justify-between justify-end"}>
-            <div className={"flex space-x-8 md:flex hidden"}>
+        <div
+            className={"hidden md:flex w-full sticky top-[0px] h-[44px] min-h-[44px] bg-[#1d1d1e] items-center z-20"}>
+          <div className={"w-full h-full container m-auto flex justify-between"}>
+            <div className={"flex space-x-8 items-center links"}>
+              <Link href={"https://pirveli.com"}>
+                <div className={"relative h-full flex items-center group"}>
+                <span
+                    className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular "}>მთავარი</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#db0060]"}/>
+                </div>
+              </Link>
               <Link href={"https://shop.pirveli.com"}>
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>
+                <div className={"relative h-full flex items-center group"}>
+                  <span
+                      className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular "}>მაღაზია</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#5db039]"}/>
+                </div>
               </Link>
               <Link href={"https://medical.pirveli.com"}>
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>
+                <div className={"relative h-full flex items-center group"}>
+                  <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ჯანდაცვა</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#ffbbb6]"}/>
+                </div>
               </Link>
-              <Link href={"https://vouchers.pirveli.com"}>
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
+              <Link href={"/"}>
+                <div className={"relative h-full flex items-center group"}>
+                  <span className={"text-sm text-[#8338EC] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] bg-[#8338EC]"}/>
+                </div>
               </Link>
 
-              <a href={"http://s3.pirveli.com/v1/api/getFile?id=6555"} target={"_blank"} rel="noopener noreferrer">
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>
+              <a className={"h-full"} href={"http://s3.pirveli.com/v1/api/getFile?id=6555"} target={"_blank"}
+                 rel="noopener noreferrer">
+                <div className={"relative h-full flex items-center group"}>
+                  <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#db0060]"}/>
+                </div>
               </a>
 
-              <a href={"http://s3.pirveli.com/v1/api/getFile?id=6556"} target={"_blank"} rel="noopener noreferrer">
-                <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>
+              <a className={"h-full"} href={"http://s3.pirveli.com/v1/api/getFile?id=6556"} target={"_blank"}
+                 rel="noopener noreferrer">
+                <div className={"relative h-full flex items-center group"}>
+                  <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გართობა</span>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#edc520]"}/>
+                </div>
               </a>
             </div>
 
-            <div className={"flex"}>
-              <Image
-                  src={IMAGES.coin}
-                  quality={100}
-                  blurDataURL={IMAGES.placeholder.src}
-                  loading={"lazy"}
-                  width={20}
-                  height={20}
-                  alt={"coin icon"}
-              />
-              <p className={"text-sm text-[white] md:mr-8 ml-[5px] capitalize md:after:content-[''] md:after:h-[20px] md:after:bg-[#ffffffb3] md:after:rounded-[2px] md:after:ml-4 md:after:absolute md:after:w-[1px] after:text-red-500 aveSofRegular"}>
-                {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}
-              </p>
-              <div className={"cursor-pointer md:flex hidden"}>
-                <img className={"mr-[11px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
+            <div className={"flex py-[12px]"}>
+             <Image
+						      src={IMAGES.coin}
+						      quality={100}
+						      blurDataURL={IMAGES.placeholder.src}
+						      loading={"lazy"}
+						      width={20}
+						      height={20}
+						      alt={"coin icon"}
+				      />
+						      <p className={"text-sm text-[white] mr-[33px] ml-[7px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
+                    {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
+              <div className={"flex cursor-pointer items-center"}>
+                <img className={"mr-[12px] w-[24px] h-[18px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
                 <Image src={ICONS.arrowDown} alt={"arrow down"}/>
               </div>
               {/*<p className={"text-sm text-[#ffffffb3] mr-8 capitalize aveSofRegular"}>English</p>*/}
             </div>
           </div>
         </div>
+
+        {/*<div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>*/}
+        {/*  <div className={"w-full container m-auto flex md:justify-between justify-end"}>*/}
+        {/*    <div className={"flex space-x-8 md:flex hidden"}>*/}
+        {/*      <Link href={"https://shop.pirveli.com"}>*/}
+        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>*/}
+        {/*      </Link>*/}
+        {/*      <Link href={"https://medical.pirveli.com"}>*/}
+        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>*/}
+        {/*      </Link>*/}
+        {/*      <Link href={"https://vouchers.pirveli.com"}>*/}
+        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>*/}
+        {/*      </Link>*/}
+
+        {/*      <a href={"http://s3.pirveli.com/v1/api/getFile?id=6555"} target={"_blank"} rel="noopener noreferrer">*/}
+        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>*/}
+        {/*      </a>*/}
+
+        {/*      <a href={"http://s3.pirveli.com/v1/api/getFile?id=6556"} target={"_blank"} rel="noopener noreferrer">*/}
+        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>*/}
+        {/*      </a>*/}
+        {/*    </div>*/}
+
+        {/*    <div className={"flex"}>*/}
+        {/*      <Image*/}
+        {/*          src={IMAGES.coin}*/}
+        {/*          quality={100}*/}
+        {/*          blurDataURL={IMAGES.placeholder.src}*/}
+        {/*          loading={"lazy"}*/}
+        {/*          width={20}*/}
+        {/*          height={20}*/}
+        {/*          alt={"coin icon"}*/}
+        {/*      />*/}
+        {/*      <p className={"text-sm text-[white] md:mr-8 ml-[5px] capitalize md:after:content-[''] md:after:h-[20px] md:after:bg-[#ffffffb3] md:after:rounded-[2px] md:after:ml-4 md:after:absolute md:after:w-[1px] after:text-red-500 aveSofRegular"}>*/}
+        {/*        {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}*/}
+        {/*      </p>*/}
+        {/*      <div className={"cursor-pointer md:flex hidden"}>*/}
+        {/*        <img className={"mr-[11px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>*/}
+        {/*        <Image src={ICONS.arrowDown} alt={"arrow down"}/>*/}
+        {/*      </div>*/}
+        {/*      /!*<p className={"text-sm text-[#ffffffb3] mr-8 capitalize aveSofRegular"}>English</p>*!/*/}
+        {/*    </div>*/}
+        {/*  </div>*/}
+        {/*</div>*/}
+
+
         <header className={"container w-full m-auto sticky top-[0px] z-20"}>
           <div
               className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px]  w-full items-center bg-[#EDEEEF] py-3"}>
