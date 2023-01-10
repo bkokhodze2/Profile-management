@@ -56,7 +56,7 @@ const Header: React.FC = () => {
           <p>საიტი მუშაობს სატესტო რეჟიმში</p>
         </div>
         <div
-            className={"hidden md:flex w-full sticky top-[0px] h-[44px] min-h-[44px] bg-[#1d1d1e] items-center z-20"}>
+            className={"hidden md:flex w-full sticky top-[0px] h-[44px] min-h-[44px] bg-[#1d1d1e] items-center z-[100]"}>
           <div className={"w-full h-full container m-auto flex justify-between"}>
             <div className={"flex space-x-8 items-center links"}>
               <Link href={"https://pirveli.com"}>
@@ -169,7 +169,7 @@ const Header: React.FC = () => {
         {/*</div>*/}
 
 
-        <header className={"container w-full m-auto sticky top-[0px] z-20"}>
+        <header className={"container w-full m-auto z-20"}>
           <div
               className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px]  w-full items-center bg-[#EDEEEF] py-3"}>
             <Link href={"/"}>
