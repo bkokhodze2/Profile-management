@@ -278,3 +278,7 @@ tr[data-row-key="4"] {
 .reviewModal .ant-modal-content {
     padding-top: 50px;
 }
+
+.links a{
+    height: 100%;
+}
