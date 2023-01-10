@@ -29,7 +29,7 @@ const TransactionsTable = () => {
 
     if (userInfo?.details?.id) {
       axios.get(`${baseApi}/user/user/point-transactions/${userInfo?.details?.id}`).then((res) => {
-        setTransactions(res.data.sort(function (a: any, b: any) {
+        setTransactions(res.data.filter((e) => e?.description !== "regTest").sort(function (a: any, b: any) {
           //@ts-ignore
           return new Date(b?.transactionDate) - new Date(a?.transactionDate);
         }))
