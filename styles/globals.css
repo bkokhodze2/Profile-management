@@ -13,6 +13,9 @@ body {
     background-color: #EDEEEF;
 }
 
+* {
+    font-family: avenirMedium, serif;
+}
 .textDots1 {
     display: -webkit-box;
     -webkit-line-clamp: 1;
@@ -42,7 +45,7 @@ body {
 }
 
 .container, .con {
-    max-width: 1372px !important;
+    max-width: 1562px!important;
 }
 
 #hover-red {

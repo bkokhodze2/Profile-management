@@ -79,10 +79,10 @@ const Header: React.FC = () => {
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#ffbbb6]"}/>
                 </div>
               </Link>
-              <Link href={"/"}>
+              <Link href={"https://vouchers.pirveli.com"}>
                 <div className={"relative h-full flex items-center group"}>
                   <span className={"text-sm text-[#8338EC] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
-                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] bg-[#8338EC]"}/>
+                  <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#8338EC]"}/>
                 </div>
               </Link>
 
@@ -171,7 +171,7 @@ const Header: React.FC = () => {
 
         <header className={"container w-full m-auto z-20"}>
           <div
-              className={"flex xl:gap-[30px] gap-4 justify-between md:h-[100px]  w-full items-center bg-[#EDEEEF] py-3"}>
+              className={"flex xl:gap-[30px] gap-4 justify-between md:h-[80px]  w-full items-center bg-[#EDEEEF] py-4"}>
             <Link href={"/"}>
               <div className={"xl:min-w-[312px] min-w-[250px]"}>
                 <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
@@ -183,15 +183,18 @@ const Header: React.FC = () => {
               <div className={"md:flex hidden justify-end"}>
                 <div
                     onClick={()=>Router.push('/')}
-                    className={"group min-w-[60px] h-[60px] mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                    className={" group min-w-[46px] h-[46px] relative flex  items-center justify-center rounded-[50%] pb-[5px] cursor-pointer mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",
                       backgroundColor: "#" + userInfo?.avatar?.code
                     }}>
+                  <img src={getChosenAvatar(userInfo?.avatar?.path)}
+                       alt={"avatar"}
+                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
 
-                  <Image src={getChosenAvatar(userInfo?.avatar?.path)} quality={100} alt={"avatar"}
-                         width={60} height={60}
-                         style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+                  {/*<Image src={getChosenAvatar(userInfo?.avatar?.path)} quality={100} alt={"avatar"}*/}
+                  {/*       width={60} height={60}*/}
+                  {/*       style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
                 </div>
               </div>
 
