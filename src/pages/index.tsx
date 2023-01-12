@@ -199,7 +199,7 @@ export default function Profile() {
           </div>
           <div className={"w-full lg:col-span-1 col-span-2 flex flex-col bg-[white] pt-[24px] rounded-xl relative"}>
             <div className={"flex justify-between items-center pr-[24px] pl-[30px]"}>
-              <p className={"ph:text-base text-[14px] text-dark font-bold ph:mb-0 mb-[7px]"}>ლოტოს ბილეთები</p>
+              <p className={"ph:text-base text-[14px] text-dark font-bold ph:mb-0 mb-[7px]"}>გათამაშების ბილეთები</p>
               <div
                   className={"hidden ph:flex rounded-[50%] flex justify-center items-center bg-[#9766F0] w-[44px] h-[44px]"}>
                 <Tickets color={"#FFFFFF"}/>
