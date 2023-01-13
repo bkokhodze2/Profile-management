@@ -52,12 +52,14 @@ export default function Profile() {
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isModalOpenPass, setIsModalOpenPass] = useState<boolean>(false);
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
   const Router = useRouter()
   const [profileForm] = Form.useForm();
   const [codeForm] = Form.useForm();
+  const [passForm] = Form.useForm();
   const {Option} = Select;
   const dispatch = useDispatch();
 
@@ -159,11 +161,17 @@ export default function Profile() {
   const onFinishCode = (values) => {
   }
 
+  const onFinishPass = (values) => {
+  }
+
   const openCodeModal = () => {
     setIsModalOpen(true)
   }
   const handleCancel = () => {
     setIsModalOpen(false)
+  }
+  const handleCancelPass = () => {
+    setIsModalOpenPass(false)
   }
 
   return (
@@ -205,6 +213,87 @@ export default function Profile() {
                       placeholder="შეიყვანე ერთჯერადი კოდი"/>
                 </Form.Item>
                 {error && <p className={"text-red"}>კოდი არასწორია,სცადეთ თავიდან</p>}
+
+                <button type={"submit"}
+                        className={"bg-red px-[32px] h-[48px] w-min self-end mt-[6px] rounded-xl cursor-pointer"}>
+                  <p className={"text-[white]"}>შეინახე</p>
+                </button>
+
+              </div>
+            </Form>
+
+          </div>
+
+        </Modal>
+
+        <Modal
+            className={"codeModel passModal"}
+            open={isModalOpenPass}
+            onCancel={handleCancelPass}
+            footer={""}
+            title={""}
+            width={487}>
+          <p className={"text-[24px] text-dark font-bold"}>პაროლის შეცვლა</p>
+          <div className={"p-[25px] mt-[42px] pt-0 pb-0"}>
+            <p className={"text-dark6 text-[14px]"}>
+              ერთჯერადი კოდი გამოგზავნილია
+              მითითებულ ნომერზე , გთხოვთ გადაამოწმოთ.</p>
+            <Form
+                className={"w-full col-span-2 point-filter"}
+                form={passForm}
+                layout="vertical"
+                onFinish={onFinishPass}
+            >
+              <div className={"flex flex-col w-full point-filter mt-[21px]"}>
+                <Form.Item
+                    name="oldPassword"
+                    label="ძველი პაროლი"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'ძველი პაროლი აუცილებელია',
+                      },
+                    ]}
+                >
+                  <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                    name="password"
+                    label="ახალი პაროლი"
+                    rules={[
+                      {
+                        required: true,
+                        message: 'პაროლი აუცილებელია',
+                      },
+                    ]}
+                    hasFeedback
+                >
+                  <Input.Password />
+                </Form.Item>
+
+                <Form.Item
+                    name="confirm"
+                    label="გაიმეორეთ პაროლი"
+                    dependencies={['password']}
+                    hasFeedback
+                    rules={[
+                      {
+                        required: true,
+                        message: 'პაროლი აუცილებელია',
+                      },
+                      ({ getFieldValue }) => ({
+                        validator(_, value) {
+                          if (!value || getFieldValue('password') === value) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject(new Error('პაროლები ერთმანეთს არ ემთხვევა'));
+                        },
+                      }),
+                    ]}
+                >
+                  <Input.Password />
+                </Form.Item>
 
                 <button type={"submit"}
                         className={"bg-red px-[32px] h-[48px] w-min self-end mt-[6px] rounded-xl cursor-pointer"}>
@@ -467,7 +556,7 @@ export default function Profile() {
               </div>
 
               <div className={"flex justify-between items-center mt-[30px]"}>
-                <p className={"text-[14px] text-red cursor-pointer"}>პაროლის შეცვლა</p>
+                <p onClick={()=>setIsModalOpenPass(true)} className={"text-[14px] text-red cursor-pointer"}>პაროლის შეცვლა</p>
 
                 <button type={"submit"} className={"bg-red px-[32px] h-[48px] rounded-xl cursor-pointer"}>
                   <p className={"text-[white]"}>შეინახე</p>

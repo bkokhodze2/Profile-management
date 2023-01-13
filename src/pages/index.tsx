@@ -117,19 +117,19 @@ export default function Profile() {
             <div className={"flex h-full"}>
               <div className={"h-full"}>
                 <p className={"ph:text-base text-[12px] text-dark font-bold"}>ბალანსი</p>
-                <p className={"ph:text-[24px]  mt-2 text-base text-dark mb-[17px] flex items-center"}>
+                <div className={"ph:text-[24px] mt-2 text-base text-dark mb-[17px] flex items-center"}>
                   <CountUp duration={1}
                            end={userInfo?.accountDetail?.amountOfGel?.amountOfGel}
                            separator=","
                       // decimals={4}
                            decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
-                  <Lari classes={"ml-[2px]"} color={"#383838"} width={18} height={20}/>
-                </p>
+                  <Lari classes={"ml-[2px] mt-[3px]"} color={"#383838"} width={18} height={20}/>
+                </div>
                 <span className={"ph:text-[14px] text-[12px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
               </div>
               <div>
                 <p className={"ph:text-base text-[12px] text-dark font-bold"}>ID</p>
-                <p className={"text-dark7 text-base mt-2"}>{userInfo?.details?.id}</p>
+                <p className={"text-dark7 text-base mt-2"}>{userInfo?.accountDetail?.accountId}</p>
               </div>
             </div>
 
@@ -199,7 +199,7 @@ export default function Profile() {
           </div>
           <div className={"w-full lg:col-span-1 col-span-2 flex flex-col bg-[white] pt-[24px] rounded-xl relative"}>
             <div className={"flex justify-between items-center pr-[24px] pl-[30px]"}>
-              <p className={"ph:text-base text-[14px] text-dark font-bold ph:mb-0 mb-[7px]"}>ლოტოს ბილეთები</p>
+              <p className={"ph:text-base text-[14px] text-dark font-bold ph:mb-0 mb-[7px]"}>გათამაშების ბილეთები</p>
               <div
                   className={"hidden ph:flex rounded-[50%] flex justify-center items-center bg-[#9766F0] w-[44px] h-[44px]"}>
                 <Tickets color={"#FFFFFF"}/>

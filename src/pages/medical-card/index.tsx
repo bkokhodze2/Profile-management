@@ -22,7 +22,9 @@ import {useRouter} from "next/router";
 export default function MedicalCardsPage() {
   const baseApi = process.env.baseApi;
   const basePath = process.env.basePath;
-  const [medicalCards, setMedicalCards] = useState<any>({});
+  const [medicalCards, setMedicalCards] = useState<any>(null);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
+
   const [cardsTbc, setCardsTbc] = useState([]);
   const Router = useRouter();
   const addCard = () => {
@@ -36,6 +38,7 @@ export default function MedicalCardsPage() {
   const getMedicalCard = () => {
     axios.get(`${basePath}/medical/products/get-bought-products`).then((res) => {
       setMedicalCards(res.data)
+      setIsLoaded(true)
     })
   }
 
@@ -107,9 +110,9 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          medicalCards?.owner ? <div className={"w-full"}>
+          medicalCards?.product ? isLoaded &&<div className={"w-full"}>
 
-            <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex "}>
+            <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex"}>
               <div className={"w-[280px] relative h-min"}>
                 <img src={IMAGES.medCard.src} alt={"medical card"}/>
                 <p className={"absolute left-[30px] bottom-[12px] text-[14px] text-[white] uppercase"}>{medicalCards?.owner?.firstName} {medicalCards?.owner?.lastName}</p>
@@ -163,7 +166,7 @@ export default function MedicalCardsPage() {
 
             {/*</div>*/}
 
-          </div> : <div className={"w-full bg-[white] h-[560px] rounded-xl flex flex-col items-center py-[92px]"}>
+          </div> : isLoaded &&<div className={"w-full bg-[white] h-[560px] rounded-xl flex flex-col items-center py-[92px]"}>
             <div className={"w-[170px] h-[170px] flex"}>
               <img src={IMAGES.medicalCard.src} width={170} height={170}/>
             </div>
@@ -174,7 +177,6 @@ export default function MedicalCardsPage() {
                 <p className={"text-[white]"}>შეიძინე</p>
               </button>
             </Link>
-
           </div>
         }
 
