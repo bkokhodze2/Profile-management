@@ -183,7 +183,7 @@ const Header: React.FC = () => {
               <div className={"md:flex hidden justify-end"}>
                 <div
                     onClick={()=>Router.push('/')}
-                    className={" group min-w-[46px] h-[46px] relative flex  items-center justify-center rounded-[50%] pb-[5px] cursor-pointer mr-5 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                    className={" group min-w-[46px] h-[46px] relative flex items-center justify-center rounded-[50%] pb-[5px] cursor-pointer mr-5 relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                     style={{
                       transition: "0.5s",
                       backgroundColor: "#" + userInfo?.avatar?.code
