@@ -110,7 +110,7 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          medicalCards?.owner ? isLoaded &&<div className={"w-full"}>
+          medicalCards?.product ? isLoaded &&<div className={"w-full"}>
 
             <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex"}>
               <div className={"w-[280px] relative h-min"}>
