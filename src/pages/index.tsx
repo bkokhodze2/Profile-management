@@ -117,14 +117,14 @@ export default function Profile() {
             <div className={"flex h-full"}>
               <div className={"h-full"}>
                 <p className={"ph:text-base text-[12px] text-dark font-bold"}>ბალანსი</p>
-                <p className={"ph:text-[24px]  mt-2 text-base text-dark mb-[17px] flex items-center"}>
+                <div className={"ph:text-[24px] mt-2 text-base text-dark mb-[17px] flex items-center"}>
                   <CountUp duration={1}
                            end={userInfo?.accountDetail?.amountOfGel?.amountOfGel}
                            separator=","
                       // decimals={4}
                            decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
-                  <Lari classes={"ml-[2px]"} color={"#383838"} width={18} height={20}/>
-                </p>
+                  <Lari classes={"ml-[2px] mt-[3px]"} color={"#383838"} width={18} height={20}/>
+                </div>
                 <span className={"ph:text-[14px] text-[12px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
               </div>
               <div>
