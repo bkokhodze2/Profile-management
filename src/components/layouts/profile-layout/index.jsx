@@ -46,7 +46,7 @@ export default function Layout({children}){
 
 				<main style={{}}>
 					<div
-							className={"flex xl:gap-[30px] gap-4 md:pt-[32px] pt-3 container m-auto h-full min-h-[calc(100vh-144px)]"}>
+							className={"flex xl:gap-[30px] gap-4 md:pt-[0px] pt-3 container m-auto h-full min-h-[calc(100vh-144px)]"}>
 						<Navigation/>
 						<div className={"w-full"}>
 							{children}

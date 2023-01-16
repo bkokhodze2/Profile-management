@@ -45,7 +45,7 @@ body {
 }
 
 .container, .con {
-    max-width: 1562px!important;
+    max-width: 1594px!important;
 }
 
 #hover-red {
@@ -90,7 +90,7 @@ body {
 .borders::after, .borders::before {
     content: "";
     position: absolute;
-    bottom: -37px;
+    bottom: -32px;
 }
 
 .borders::after {

@@ -74,7 +74,7 @@ export default function Profile() {
                 className={"group md:w-[88px] md:h-[88px] h-[40px] w-[40px] mr-4 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
                 style={{
                   transition: "0.5s",
-                  backgroundColor: "#" + userInfo?.avatar?.code
+                  backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"
                 }}>
 
               <div
