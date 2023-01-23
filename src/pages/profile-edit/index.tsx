@@ -22,6 +22,8 @@ import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
 import {useRouter} from "next/router";
 import getChosenAvatar from "../../components/getChosenAvatar";
+import {ConfigProvider} from 'antd';
+import locale from "antd/lib/locale/ka_GE";
 
 dayjs.extend(weekday)
 dayjs.extend(localeData)
@@ -255,7 +257,7 @@ export default function Profile() {
                       },
                     ]}
                 >
-                  <Input.Password />
+                  <Input.Password/>
                 </Form.Item>
 
                 <Form.Item
@@ -269,7 +271,7 @@ export default function Profile() {
                     ]}
                     hasFeedback
                 >
-                  <Input.Password />
+                  <Input.Password/>
                 </Form.Item>
 
                 <Form.Item
@@ -282,7 +284,7 @@ export default function Profile() {
                         required: true,
                         message: 'პაროლი აუცილებელია',
                       },
-                      ({ getFieldValue }) => ({
+                      ({getFieldValue}) => ({
                         validator(_, value) {
                           if (!value || getFieldValue('password') === value) {
                             return Promise.resolve();
@@ -292,7 +294,7 @@ export default function Profile() {
                       }),
                     ]}
                 >
-                  <Input.Password />
+                  <Input.Password/>
                 </Form.Item>
 
                 <button type={"submit"}
@@ -309,7 +311,7 @@ export default function Profile() {
 
         <ChangeAvatar2 setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
 
-        <div className={"w-full  pb-[100px]"}>
+        <div className={"w-full pb-[100px]"}>
 
           <h2 className={"text-[16px] md:text-[32px] text-[#383838] font-bold"}>
             პერსონალური ინფორმაცია
@@ -325,9 +327,8 @@ export default function Profile() {
                     backgroundColor: "#" + userInfo?.avatar?.code
                   }}
               >
-                <Image src={getChosenAvatar(userInfo?.avatar?.path)}
+                <img src={getChosenAvatar(userInfo?.avatar?.path)}
                        alt={"profile avatar"}
-                       layout={"contain"}
                        width={312}
                        height={312}
                        style={{height: "100%", width: "auto", objectFit: "cover", margin: "auto"}}
@@ -443,6 +444,7 @@ export default function Profile() {
                              }
                            ]}>
                   <Input
+                      type={"number"}
                       placeholder="ტელეფონის ნომერი"/>
                 </Form.Item>
 
@@ -453,12 +455,14 @@ export default function Profile() {
                     message: "ველი სავალდებულოა"
                   }
                 ]}>
+                  <ConfigProvider locale={locale}>
 
-                  <DatePicker
-                      // defaultValue={dayjs('2015-01-01', dateFormat)}
-                      format={dateFormat}
-                      placeholder={"დაბადების თარიღი"}/>
+                    <DatePicker
+                        // defaultValue={dayjs('2015-01-01', dateFormat)}
+                        format={dateFormat}
+                        placeholder={"დაბადების თარიღი"}/>
 
+                  </ConfigProvider>
                 </Form.Item>
 
                 <Form.Item
@@ -556,7 +560,8 @@ export default function Profile() {
               </div>
 
               <div className={"flex justify-between items-center mt-[30px]"}>
-                <p onClick={()=>setIsModalOpenPass(true)} className={"text-[14px] text-red cursor-pointer"}>პაროლის შეცვლა</p>
+                <p onClick={() => setIsModalOpenPass(true)} className={"text-[14px] text-red cursor-pointer"}>პაროლის
+                  შეცვლა</p>
 
                 <button type={"submit"} className={"bg-red px-[32px] h-[48px] rounded-xl cursor-pointer"}>
                   <p className={"text-[white]"}>შეინახე</p>
