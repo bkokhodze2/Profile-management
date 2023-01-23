@@ -12,7 +12,6 @@ import Image from "next/image"
 
 // import required modules
 import {FreeMode, Lazy, Mousewheel, Virtual} from "swiper";
-import {inspect} from "util";
 import colors from "../../colors";
 
 
@@ -39,7 +38,7 @@ export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {
             className="colorsSwipper"
         >
 
-          {colors?.map((item, index) => {
+          {Array.isArray(colors) && colors?.map((item, index) => {
             return <SwiperSlide className={"max-w-[50px]"} key={index} virtualIndex={index}>
               <div
                   onClick={() => setChosenAvatarBg(item.replace("#", ""))}

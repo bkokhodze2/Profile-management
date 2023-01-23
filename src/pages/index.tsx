@@ -71,14 +71,14 @@ export default function Profile() {
               className={"w-full lg:col-span-1 col-span-2 bg-[white] flex items-center rounded-xl xl:p-[30px] xl:pl-[30px] p-[18px] pl-[22px] relative"}>
             <div
                 onClick={() => setIsOpenChooseModal(true)}
-                className={"group md:w-[88px] md:h-[88px] h-[40px] w-[40px] mr-4 relative flex  items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                className={"group md:w-[88px] md:h-[88px] h-[40px] w-[40px] mr-4 relative flex items-center justify-center rounded-xl py-[5px] cursor-pointer"}
                 style={{
                   transition: "0.5s",
-                  backgroundColor: "#" + userInfo?.avatar?.code
+                  backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"
                 }}>
 
               <div
-                  className={"absolute bottom-0 top-0 left-0 right-0 rounded-[50%] bg-transparent group-hover:bg-[#3838387F] flex items-center justify-center"}
+                  className={"absolute rounded-xl bottom-0 top-0 left-0 right-0 bg-transparent group-hover:bg-[#3838387F] flex items-center justify-center"}
                   style={{
                     transition: "0.5s"
                   }}

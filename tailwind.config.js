@@ -18,12 +18,11 @@ module.exports = {
 			padding:{
 				DEFAULT:'1rem',
 				ph:'1rem',
-				ph5:'1rem',
 				sm:'1rem',
 				md:'1rem',
 				lg:'1rem',
 				xl:'2rem',
-				'2xl':'1rem',
+				'2xl':'2rem',
 			},
 		},
 		screens:{
@@ -39,7 +38,7 @@ module.exports = {
 			// => @media (min-width: 1024px) { ... }
 			'xl':'1280px',
 			// => @media (min-width: 1280px) { ... }
-			'2xl':'1562px',
+			'2xl':'1594',
 			// => @media (min-width: 1562px) { ... }
 		},
 		extend:{},

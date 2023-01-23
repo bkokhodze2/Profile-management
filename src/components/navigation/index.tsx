@@ -51,7 +51,7 @@ const Navigation: React.FC = () => {
   return (
       <>
         <div
-            className={"md:flex hidden sticky top-[100px] flex-col bg-[white] h-min rounded-xl xl:min-w-[312px] min-w-[250px] pt-[44px] pb-[32px] xl:pr-[32px] pr-2 space-y-5"}>
+            className={"md:flex hidden sticky top-[126px] flex-col bg-[white] h-min rounded-xl xl:min-w-[312px] min-w-[250px] pt-[44px] pb-[32px] xl:pr-[32px] pr-2 space-y-5"}>
 
           <Link href={"/"}>
             <div className={"group w-full flex items-center h-[24px] xl:pl-[35px] pl-4"}

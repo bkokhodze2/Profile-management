@@ -81,7 +81,7 @@ const Header: React.FC = () => {
               </Link>
               <Link href={"https://vouchers.pirveli.com"}>
                 <div className={"relative h-full flex items-center group"}>
-                  <span className={"text-sm text-[#8338EC] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
+                  <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#8338EC]"}/>
                 </div>
               </Link>
@@ -104,17 +104,17 @@ const Header: React.FC = () => {
             </div>
 
             <div className={"flex py-[12px]"}>
-             <Image
-						      src={IMAGES.coin}
-						      quality={100}
-						      blurDataURL={IMAGES.placeholder.src}
-						      loading={"lazy"}
-						      width={20}
-						      height={20}
-						      alt={"coin icon"}
-				      />
-						      <p className={"text-sm text-[white] mr-[33px] ml-[7px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
-                    {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
+              <Image
+                  src={IMAGES.coin}
+                  quality={100}
+                  blurDataURL={IMAGES.placeholder.src}
+                  loading={"lazy"}
+                  width={20}
+                  height={20}
+                  alt={"coin icon"}
+              />
+              <p className={"text-sm text-[white] mr-[33px] ml-[7px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
+                {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
               <div className={"flex cursor-pointer items-center"}>
                 <img className={"mr-[12px] w-[24px] h-[18px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
                 <Image src={ICONS.arrowDown} alt={"arrow down"}/>
@@ -169,11 +169,11 @@ const Header: React.FC = () => {
         {/*</div>*/}
 
 
-        <header className={"container w-full m-auto z-20"}>
+        <header className={"container w-full m-auto sticky md:top-[44px] top-[0px] z-20"}>
           <div
               className={"flex xl:gap-[30px] gap-4 justify-between md:h-[80px]  w-full items-center bg-[#EDEEEF] py-4"}>
             <Link href={"/"}>
-              <div className={"xl:min-w-[312px] min-w-[250px]"}>
+              <div className={"xl:min-w-[312px] min-w-[250px] max-h-[75px]"}>
                 <Image src={IMAGES.logo} alt={"company logo"} width={175} height={75}/>
               </div>
             </Link>
@@ -182,11 +182,11 @@ const Header: React.FC = () => {
               <div/>
               <div className={"md:flex hidden justify-end"}>
                 <div
-                    onClick={()=>Router.push('/')}
-                    className={" group min-w-[46px] h-[46px] relative flex items-center justify-center rounded-[50%] pb-[5px] cursor-pointer mr-5 relative flex items-center justify-center rounded-[50%] py-[5px] cursor-pointer"}
+                    onClick={() => Router.push('/')}
+                    className={"rounded-xl group min-w-[46px] h-[46px] relative flex items-center justify-center pb-[5px] cursor-pointer mr-5 cursor-pointer"}
                     style={{
                       transition: "0.5s",
-                      backgroundColor: "#" + userInfo?.avatar?.code
+                      backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"
                     }}>
                   <img src={getChosenAvatar(userInfo?.avatar?.path)}
                        alt={"avatar"}

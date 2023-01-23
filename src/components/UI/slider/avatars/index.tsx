@@ -74,7 +74,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
           <SwiperSlide>
             <div
                 // onClick={() => setChosenAvatarImg("1")}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%]  cursor-pointer"}
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}
                 style={{
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "1" ? `#${chosenAvatarBg}` : "transparent"
@@ -91,7 +91,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "2" ? `#${chosenAvatarBg}` : "transparent"
                 }}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%] cursor-pointer"}>
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}>
               <img src={IMAGES.avatar2.src} alt={"avatar"}
                    width={77} height={77}
                    style={{objectFit: "cover", height: "100%", width: "auto"}}/>
@@ -100,7 +100,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
           <SwiperSlide>
             <div
                 // onClick={() => setChosenAvatarImg("3")}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%] cursor-pointer"}
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}
                 style={{
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "3" ? `#${chosenAvatarBg}` : "transparent"
@@ -114,7 +114,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
           <SwiperSlide>
             <div
                 // onClick={() => setChosenAvatarImg("4")}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%] cursor-pointer"}
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}
                 style={{
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "4" ? `#${chosenAvatarBg}` : "transparent"
@@ -128,7 +128,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
           <SwiperSlide>
             <div
                 // onClick={() => setChosenAvatarImg("5")}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%] cursor-pointer"}
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}
                 style={{
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "5" ? `#${chosenAvatarBg}` : "transparent"
@@ -142,7 +142,7 @@ export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chos
           <SwiperSlide>
             <div
                 // onClick={() => setChosenAvatarImg("6")}
-                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-[50%] cursor-pointer"}
+                className={"w-[77px] py-1.5 h-[77px] relative flex items-center justify-center rounded-xl cursor-pointer"}
                 style={{
                   transition: "0.5s",
                   backgroundColor: chosenAvatarImg === "6" ? `#${chosenAvatarBg}` : "transparent"
