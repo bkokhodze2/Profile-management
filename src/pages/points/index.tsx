@@ -145,7 +145,7 @@ export default function PointsPage() {
           <div className={"flex justify-between"}>
             {/*onClick={() => setIsModalOpen(true)}*/}
             <h2 className={"text-[32px] text-[#383838] font-bold"}>
-              ჩემი ქულები
+              ჩემი მონეტები
             </h2>
           </div>
 

@@ -78,7 +78,7 @@ const columns: ColumnsType<DataType> = [
         <div className={"md:w-[92px] w-[30px] ml-[auto] h-[8px] rounded-[20px] bg-[#EDEEEF] mr-[8px]"}/> :
         <p className={"pr-[15px] h-full flex justify-end items-center text-dark7"}
            style={{backgroundColor: obj.rang === 100 ? "#F8FAFD" : "transparent"}}
-        >{text} ქულა</p>,
+        >{text} მონეტა</p>,
   }
 ];
 
