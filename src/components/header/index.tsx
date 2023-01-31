@@ -113,12 +113,12 @@ const Header: React.FC = () => {
                   height={20}
                   alt={"coin icon"}
               />
-              <p className={"text-sm text-[white] mr-[33px] ml-[7px] capitalize after:content-[''] after:h-[20px] after:bg-[#ffffffb3] after:rounded-[2px] after:ml-4 after:absolute after:w-[1px] after:text-red-500 aveSofRegular"}>
+              <p className={"text-sm text-[white] ml-[7px] capitalize aveSofRegular"}>
                 {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
-              <div className={"flex cursor-pointer items-center"}>
-                <img className={"mr-[12px] w-[24px] h-[18px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>
-                <Image src={ICONS.arrowDown} alt={"arrow down"}/>
-              </div>
+              {/*<div className={"flex cursor-pointer items-center"}>*/}
+              {/*  <img className={"mr-[12px] w-[24px] h-[18px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>*/}
+              {/*  <Image src={ICONS.arrowDown} alt={"arrow down"}/>*/}
+              {/*</div>*/}
               {/*<p className={"text-sm text-[#ffffffb3] mr-8 capitalize aveSofRegular"}>English</p>*/}
             </div>
           </div>
@@ -183,7 +183,7 @@ const Header: React.FC = () => {
               <div className={"md:flex hidden justify-end"}>
                 <div
                     onClick={() => Router.push('/')}
-                    className={"rounded-xl group min-w-[46px] h-[46px] relative flex items-center justify-center pb-[5px] cursor-pointer mr-5 cursor-pointer"}
+                    className={"rounded-xl group min-w-[46px] h-[46px] relative flex items-center justify-center py-[5px] cursor-pointer cursor-pointer"}
                     style={{
                       transition: "0.5s",
                       backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"

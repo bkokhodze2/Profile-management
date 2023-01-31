@@ -66,7 +66,7 @@ const TransactionsTable = () => {
     },
     {
       title: () => {
-        return <p className={"text-dark text-[14px] font-[500]"}>ქულები</p>
+        return <p className={"text-dark text-[14px] font-[500]"}>მონეტები</p>
       },
       dataIndex: 'genericTransactionValue',
       key: 'genericTransactionValue',

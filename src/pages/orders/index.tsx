@@ -116,12 +116,18 @@ export default function Profile() {
             ჩემი შეკვეთები
           </h2>
 
-          <div className={"space-y-[30px] mt-[40px]"}>
+          <div className={"mt-[40px]"}>
             {
                 Array.isArray(orders) && orders?.map((e: any, index) => {
                   return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
                 })
             }
+
+            {
+              Array.isArray(orders) && orders?.length ===0 && <p>შეკვეთები არ მოიძებნა</p>
+            }
+
+
           </div>
 
         </div>

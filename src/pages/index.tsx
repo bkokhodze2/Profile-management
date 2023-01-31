@@ -145,7 +145,7 @@ export default function Profile() {
           <div
               className={"w-full lg:col-span-1 col-span-2 bg-[white] ph:pt-[24px] pt-5 rounded-xl xl:pr-[24px] ph:pr-4 pr-5 xl:pl-[30px] ph:pl-4 pl-5 ph:pb-[30px] pb-5 relative"}>
             <div className={"flex justify-between items-center"}>
-              <p className={"text-base text-dark font-bold"}>ქულები</p>
+              <p className={"text-base text-dark font-bold"}>მონეტები</p>
               <div className={"rounded-[50%] flex justify-center items-center bg-red w-[44px] h-[44px] hidden ph:flex"}>
                 <Points color={"#FFFFFF"}/>
               </div>
@@ -223,7 +223,7 @@ export default function Profile() {
               className={"w-full col-span-2 removeHeaderBg col-span-2 pt-[30px] bg-[white] rounded-xl md:px-[30px] px-[20px]"}>
 
             <div className={"flex justify-between items-center pb-[px] mb-[19px]"}>
-              <p className={"ph:text-base text-[14px] text-dark font-bold"}>ქულების ტრანზაქციები</p>
+              <p className={"ph:text-base text-[14px] text-dark font-bold"}>მონეტების ტრანზაქციები</p>
               <div
                   className={"hidden ph:flex rounded-[50%] justify-center items-center bg-[#5DB039] w-[44px] h-[44px]"}>
                 <Transaction color={"#FFFFFF"}/>

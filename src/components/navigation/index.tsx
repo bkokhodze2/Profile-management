@@ -84,7 +84,7 @@ const Navigation: React.FC = () => {
                      transition: "0.2s",
                      color: Router.pathname === "/points" ? "#DB0060" : "#383838"
                    }}
-                >ჩემი ქულები</p>
+                >ჩემი მონეტები</p>
               </div>
               {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints &&
 									<div className={"h-full flex justify-center px-2 bg-[#38383833] rounded-[20px] items-center"}>

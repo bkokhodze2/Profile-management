@@ -494,14 +494,11 @@ export default function Profile() {
                 >
                   <Select
                       showSearch
-                      // optionFilterProp={"title"}
-
                       optionFilterProp="title"
                       // @ts-ignore
                       filterOption={(input, option) => (option?.children ?? '').toLowerCase().includes(input)}
                       // @ts-ignore
-                      // filterSort={(optionA, optionB) => (optionA?.children ?? '').toLowerCase().localeCompare((optionB?.children ?? '').toLowerCase())
-                      // }
+
                       placeholder="ქალაქი"
                   >
                     {Array.isArray(cities) && cities?.length > 0 && cities?.map((item, index) => {
