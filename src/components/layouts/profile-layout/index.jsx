@@ -17,15 +17,15 @@ export default function Layout({children}){
 	const baseApi = process.env.baseApi;
 	const Router = useRouter();
 
-/*	axios.interceptors.request.use((config) => {
-		config.headers = {
-			...config.headers,
-			'Access-Control-Allow-Origin': '*',
-			'Content-Type': 'application/json',
-			Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzQ0OTMyMDgsImlhdCI6MTY3NDQ1NzIyNywiYXV0aF90aW1lIjoxNjc0NDU3MjA4LCJqdGkiOiI2MzE1Njk4Yi04M2NiLTQ3OWMtODI2Yy0zYWRmMjEyMjljZDYiLCJpc3MiOiJodHRwczovL2F1dGgucGlydmVsaS5jb20vcmVhbG1zL3hyYWNvb24tZGVtbyIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI1OTc0ZWE2Mi1iMTBiLTQ3NmEtYmViOC01OWVkYWEyMzg0ZDgiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJjcy1jYXJ0Iiwic2Vzc2lvbl9zdGF0ZSI6IjJiNmUyMGFmLWI1NjgtNDQ1MS1iMGY5LTk1ZjdhZTVlOWYwMiIsImFjciI6IjEiLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy14cmFjb29uLWRlbW8iLCJvZmZsaW5lX2FjY2VzcyIsInVtYV9hdXRob3JpemF0aW9uIiwiUFJPVklERVJfQURNSU4iXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6InByb2ZpbGUgZW1haWwiLCJzaWQiOiIyYjZlMjBhZi1iNTY4LTQ0NTEtYjBmOS05NWY3YWU1ZTlmMDIiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsInVzZXJfaWQiOiI1OTc0ZWE2Mi1iMTBiLTQ3NmEtYmViOC01OWVkYWEyMzg0ZDgiLCJuYW1lIjoiaXJhODM2IGlyYTgzNiIsInByZWZlcnJlZF91c2VybmFtZSI6IjU5MTQwMTUxNSIsImdpdmVuX25hbWUiOiJpcmE4MzYiLCJmYW1pbHlfbmFtZSI6ImlyYTgzNiJ9.QJDwKDAzWgBPnTB2cmgqsLL4AtMxZ_Q0uSmxI2RBladE52hHrkZWoirb_ShCmUGpL6COEJh65kyez54fIipP2Mo46F9dfXHLI0mxvao-Ms3LMaY2YXDCmMdNXp1abOCBJHHgZ_dko3He5_yTvJYmEa6FXjl-9pgb4jxf0YQzLu4xOghk3w0-kIKoS9CBmIRaOAlL3V-S_YCjnxlf6R7Oj1v5zoe8pBt9gkDnNK4WQe-BMCOw8vpwsxq_JIR_ZlyGfaChXdJmzmkW7EJwQmXh0RR-rohHD3_7Zy03HNHxUgOB6K8j9aAgDbAa9tlxAJV37a6jNBxoODRKnMZCDRL3qA`
-		};
-		return config;
-	});*/
+	// axios.interceptors.request.use((config) => {
+	// 	config.headers = {
+	// 		...config.headers,
+	// 		'Access-Control-Allow-Origin': '*',
+	// 		'Content-Type': 'application/json',
+	// 		Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzUxODY5NjYsImlhdCI6MTY3NTE1MDk2NiwianRpIjoiYWM5ZTE3N2YtMmFmZC00ZDk3LTg4YmQtZmYyZDk4YTcyZGJlIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnBpcnZlbGkuY29tL3JlYWxtcy94cmFjb29uLWRlbW8iLCJzdWIiOiIxZGUwYTJhOC1kNWQ0LTQ5ZDItODdjNy02NGQyMWFkMDI5Y2EiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJwYXNzd29yZC1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiZDQ4Y2JlNWEtNzI1ZS00ODRjLTlhOWMtZmNlYzA0YTNiYjU1IiwiYWNyIjoiMSIsInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6ImQ0OGNiZTVhLTcyNWUtNDg0Yy05YTljLWZjZWMwNGEzYmI1NSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwidXNlcl9pZCI6IjFkZTBhMmE4LWQ1ZDQtNDlkMi04N2M3LTY0ZDIxYWQwMjljYSIsIm5hbWUiOiJUYXpvIER2YWxpc2h2aWxpIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiNTkyMjUzMjUzIiwiZ2l2ZW5fbmFtZSI6IlRhem8iLCJmYW1pbHlfbmFtZSI6IkR2YWxpc2h2aWxpIn0.CQOPfQUzSdVn9NzayMMjEXwCpts-1dEN3wYkrmOLly7D3imjAOtEBvjj-RLwgMrQGzET0MFqcYlh_9ZaGoIPtK54Gnq3MxTc1VblZZuLQxUlYSwYsaDqUkRI3dpICMaZ53WuQOar2YfqTeVqc5ba_Rbu4sDB_ENGWkwjCDwfyDh-vvsuTpupcO_9imZPg_QXFaajWtnZBb_xqPb0GiUYfoadFZFvcwvpT_4Ts4KQMLVu77HKwPh6iTFS0mWNFuGjVOTH6GFvcdQgueqVOkODbNt9CB-0uWB5_c1dyeD-hXkhtgzt-l-im564LIVWUIqnzhISQtKyIL9Hl1_NT0Ya3A`
+	// 	};
+	// 	return config;
+	// });
 
 	// useEffect(() => {
 	// 	axios.get(`${baseApi}/user/user/detail-info`).then((res) => {
@@ -83,7 +83,7 @@ export default function Layout({children}){
 							   style={{
 								   color:Router.pathname === "/points" ? "#DB0060" : "#383838"
 							   }}
-							>ქულები</p>
+							>მონეტები</p>
 						</div>
 						<div>
 							<div className={"flex flex-col items-center justify-between"}
