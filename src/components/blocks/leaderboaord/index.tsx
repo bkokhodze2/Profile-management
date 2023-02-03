@@ -55,7 +55,7 @@ const LeaderBoard = () => {
           <Image src={ICONS.rangEqual} alt={"equal arrow icon"} className={"ml-[15px]"}/> :
           <div
               className={"pl-[15px] h-full flex items-center text-[#000000] justify-between gap-[30px] pr-[8px] ph:pr-[15px] md:pr-[26px]  "}
-              style={{backgroundColor: obj?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}
+              style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}
           >
             <p className={""}>{obj?.orderId}.</p>
             <Image src={ICONS.rangUp} alt={"up arrow icon"}/>
@@ -68,7 +68,7 @@ const LeaderBoard = () => {
       render: (text, obj) => !obj?.orderId ?
           <div className={"w-[30px] h-[30px] rounded-[50%] ml-[11px] bg-[#EDEEEF] "}/> :
           <div className={"flex items-center h-full"}
-               style={{backgroundColor: obj?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}>
+               style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}>
             <div
                 className={`${obj?.orderId === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
               <div
@@ -91,7 +91,7 @@ const LeaderBoard = () => {
       render: (text, obj) => !obj?.orderId ?
           <div className={"md:w-[133px] w-[40px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
           <p className={"text-[#383838] h-full flex items-center pl-[25px]"}
-             style={{backgroundColor: obj?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}
+             style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}
           >{text}</p>,
     },
 
@@ -103,7 +103,7 @@ const LeaderBoard = () => {
       render: (text, obj) => !obj?.orderId ?
           <div className={"md:w-[92px] w-[30px] ml-[auto] h-[8px] rounded-[20px] bg-[#EDEEEF] mr-[8px]"}/> :
           <p className={"pr-[15px] h-full flex justify-end items-center text-dark7"}
-             style={{backgroundColor: obj?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}
+             style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}
           >{text}
             <span className={"ml-1"}>
                 <Image
@@ -277,7 +277,7 @@ const LeaderBoard = () => {
       {data2?.map((e, index: number) => {
         return <div key={index}
                     className={"flex justify-between flex-row h-[67px] items-center py-[12px] border-b-[1px] border-[#D9D9D94D]"}
-                    style={{backgroundColor: e?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}>
+                    style={{backgroundColor: e?.isAuthorizedUser ? "#898fa078" : "transparent"}}>
           <div className={"flex items-center"}>
             {
               !e?.orderId ?
@@ -289,7 +289,7 @@ const LeaderBoard = () => {
               !e?.orderId ?
                   <div className={"w-[30px] h-[30px] rounded-[50%] ml-[18px] bg-[#EDEEEF] "}/> :
                   <div className={"flex items-center h-full"}
-                       style={{backgroundColor: e?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}>
+                       style={{backgroundColor: e?.isAuthorizedUser ? "#898fa078" : "transparent"}}>
                     <div
                         className={`${e?.orderId === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
                       <div
@@ -309,7 +309,7 @@ const LeaderBoard = () => {
               !e?.orderId ?
                   <div className={"md:w-[133px] w-[80px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
                   <p className={"text-[#383838] h-full flex items-center pl-[18px]"}
-                     style={{backgroundColor: e?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}
+                     style={{backgroundColor: e?.isAuthorizedUser ? "#898fa078" : "transparent"}}
                   >{e?.customerName}</p>
             }
 
@@ -319,7 +319,7 @@ const LeaderBoard = () => {
               !e?.orderId ?
                   <div className={"md:w-[133px] w-[80px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
                   <p className={"pr-[15px] h-full flex justify-end items-center text-dark7"}
-                     style={{backgroundColor: e?.isAuthorizedUser ? "#F8FAFD" : "transparent"}}
+                     style={{backgroundColor: e?.isAuthorizedUser ? "#898fa078" : "transparent"}}
                   >{e?.pointAmount}
                     <span className={"ml-1"}>
                       <Image
