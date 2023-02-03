@@ -110,20 +110,20 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          medicalCards?.product ? isLoaded &&<div className={"w-full"}>
+          medicalCards?.products ? isLoaded && <div className={"w-full"}>
 
-            <div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex"}>
-              <div className={"w-[280px] relative h-min"}>
-                <img src={IMAGES.medCard.src} alt={"medical card"}/>
-                <p className={"absolute left-[30px] bottom-[12px] text-[14px] text-[white] uppercase"}>{medicalCards?.owner?.firstName} {medicalCards?.owner?.lastName}</p>
-              </div>
-              <div className={"flex flex-col items-start justify-center"}>
-                <p className={"text-gray max-w-[430px]"}>თქვენ სარგებლობთ ჯანდაცვის ბარათით. სრული სერვისების სანახავად
-                  გადადით მითთებულ ბმულზე.</p>
-                <p className={"text-[#DB0060] font-bold mt-4 cursor-pointer"}
-                   onClick={() => Router.push('https://medical.pirveli.com')}>ჯანდაცვის პლატფორმაზე გადასვლა</p>
-              </div>
-            </div>
+						<div className={"w-full bg-[white] py-[40px] px-8 rounded-xl space-x-[30px] flex"}>
+							<div className={"w-[280px] relative h-min"}>
+								<img src={IMAGES.medCard.src} alt={"medical card"}/>
+								<p className={"absolute left-[30px] bottom-[12px] text-[14px] text-[white] uppercase"}>{medicalCards?.owner?.firstName} {medicalCards?.owner?.lastName}</p>
+							</div>
+							<div className={"flex flex-col items-start justify-center"}>
+								<p className={"text-gray max-w-[430px]"}>თქვენ სარგებლობთ ჯანდაცვის ბარათით. სრული სერვისების სანახავად
+									გადადით მითთებულ ბმულზე.</p>
+								<p className={"text-[#DB0060] font-bold mt-4 cursor-pointer"}
+								   onClick={() => Router.push('https://medical.pirveli.com')}>ჯანდაცვის პლატფორმაზე გადასვლა</p>
+							</div>
+						</div>
 
             {/*<div*/}
             {/*    className={"md:gap-[30px] gap-[8px] grid lg:grid-cols-3 grid-cols-2 my-[40px] pb-0 mb-[120px] md:mb-0"}>*/}
@@ -166,18 +166,19 @@ export default function MedicalCardsPage() {
 
             {/*</div>*/}
 
-          </div> : isLoaded &&<div className={"w-full bg-[white] h-[560px] rounded-xl flex flex-col items-center py-[92px]"}>
-            <div className={"w-[170px] h-[170px] flex"}>
-              <img src={IMAGES.medicalCard.src} width={170} height={170}/>
-            </div>
-            <p className={"mt-6 text-[18px] text-[#383838]"}>თქვენ ეს ბარათი ჯერ არ გაქვთ შეძენილი</p>
-            <Link href={"https://medical.pirveli.com/buyCardPage/"}>
-              <button type={"submit"}
-                      className={"bg-red px-6 h-[48px] w-min self-end mt-6 rounded-xl cursor-pointer m-auto"}>
-                <p className={"text-[white]"}>შეიძინე</p>
-              </button>
-            </Link>
-          </div>
+					</div> : isLoaded &&
+							<div className={"w-full bg-[white] h-[560px] rounded-xl flex flex-col items-center py-[92px]"}>
+								<div className={"w-[170px] h-[170px] flex"}>
+									<img src={IMAGES.medicalCard.src} width={170} height={170}/>
+								</div>
+								<p className={"mt-6 text-[18px] text-[#383838]"}>თქვენ ეს ბარათი ჯერ არ გაქვთ შეძენილი</p>
+								<Link href={"https://medical.pirveli.com/buyCardPage/"}>
+									<button type={"submit"}
+									        className={"bg-red px-6 h-[48px] w-min self-end mt-6 rounded-xl cursor-pointer m-auto"}>
+										<p className={"text-[white]"}>შეიძინე</p>
+									</button>
+								</Link>
+							</div>
         }
 
       </div>
