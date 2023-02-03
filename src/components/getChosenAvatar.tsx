@@ -3,7 +3,6 @@ import {ICONS, IMAGES} from "public/images";
 
 const getChosenAvatar = (data) => {
 
-  console.log(data);
   switch (parseInt(data)) {
     case 1:
       return IMAGES.avatar1.src

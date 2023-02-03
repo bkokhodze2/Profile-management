@@ -23,12 +23,15 @@ import TransactionsTable from "../components/blocks/transactions-table";
 import Link from "next/link";
 import Lari from "../../public/images/icons/lari";
 import Logout from "../../public/images/icons/nav/navLogout";
+import {Modal} from "antd";
+import AddBalance from "../components/UI/modal/AddBalance";
 
 export default function Profile() {
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [currentPoints, setCurrentPoints] = useState(0);
   const [spentPoints, setSpentPoints] = useState(0);
   const userInfo = useSelector((state: any) => state.user.userInfo);
+  const [isOpenModalAddBalance, setIsOpenModalAddBalance] = useState<boolean>(false);
 
   useEffect(() => {
     setCurrentPoints(userInfo?.accountDetail?.amountOfPoint?.amountOfPoints)
@@ -65,6 +68,7 @@ export default function Profile() {
         </Head>
 
         <ChangeAvatar2 setIsOpenChooseModal={setIsOpenChooseModal} isOpenChooseModal={isOpenChooseModal}/>
+        <AddBalance setIsOpenModalAddBalance={setIsOpenModalAddBalance} isOpenModalAddBalance={isOpenModalAddBalance}/>
 
         <div className={"grid grid-cols-2 xl:gap-[30px] gap-4 md:pb-[30px] pb-[100px]"}>
           <div
@@ -125,7 +129,8 @@ export default function Profile() {
                            decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
                   <Lari classes={"ml-[2px] mt-[3px]"} color={"#383838"} width={18} height={20}/>
                 </div>
-                <span className={"ph:text-[14px] text-[12px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
+                <span onClick={() => setIsOpenModalAddBalance(true)}
+                      className={"ph:text-[14px] text-[12px] text-[#9766F0] cursor-pointer"}>+ ბალანსის შევსება</span>
               </div>
               <div>
                 <p className={"ph:text-base text-[12px] text-dark font-bold"}>ID</p>

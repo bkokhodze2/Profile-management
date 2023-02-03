@@ -21,5 +21,9 @@ export {default as mc} from './mc.svg';
 export {default as visa} from './visa.svg';
 export {default as trash} from './trash.svg';
 
+export {default as tbc} from './tbc.svg';
+export {default as bog} from './bog.svg';
+
+
 
 
