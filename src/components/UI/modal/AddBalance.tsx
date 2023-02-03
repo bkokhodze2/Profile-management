@@ -1,16 +1,10 @@
 import Image from "next/image";
-import ColorsSlider from "../slider/colors";
 import {Modal, notification} from "antd";
 import React, {useEffect, useState} from "react";
 // @ts-ignore
 import {ICONS, IMAGES} from "public/images";
-import axios from "axios";
-import {getUserInfo} from "../../slices/userSlice";
-import {useDispatch, useSelector} from "react-redux";
-import Avatars from "../slider/avatars";
-import getChosenAvatar from "../../../components/getChosenAvatar";
 
-export default function AddBalance({isOpenModalAddBalance, setIsOpenModalAddBalance}) {
+export default function AddBalance({isOpenModalAddBalance, setIsOpenModalAddBalance}:any) {
 
   const [tabIndex, setTabIndex] = useState<number>(1);
 
