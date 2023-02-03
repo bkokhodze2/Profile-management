@@ -120,17 +120,20 @@ const LeaderBoard = () => {
     }
   ];
 
-  console.log("123", data)
 
   const getModifiedData = (dataArr) => {
+
     let data = dataArr?.sort((a, b) => a?.orderId - b?.orderId)
     let index = data?.findIndex((e) => e?.isAuthorizedUser === true);
 
-    if (index > 5) {
-      data?.splice(index - 1, 0, null);
-    } else if (index < 5) {
+    let find = data?.find((e) => e?.isAuthorizedUser === true);
+
+    if (find.orderId > 5) {
+      data?.splice(index, 0, null);
+
+    } else if (find.orderId < 5) {
       return data
-    } else if (index === 5) {
+    } else if (find.orderId === 5) {
       return data
     }
 
