@@ -118,7 +118,7 @@ export default function Profile() {
 
           <div className={"mt-[40px]"}>
             {
-                Array.isArray(orders) && orders?.map((e: any, index) => {
+                Array.isArray(orders) && orders?.map((e: any, index:number) => {
                   return <OrderItem data={e} setIsModalOpen={setIsModalOpen} key={index} evaluated={index % 2 == 0}/>
                 })
             }

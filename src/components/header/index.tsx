@@ -104,6 +104,8 @@ const Header: React.FC = () => {
             </div>
 
             <div className={"flex py-[12px]"}>
+              <p className={"text-sm text-[white] mr-[7px] capitalize aveSofRegular"}>
+                {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
               <Image
                   src={IMAGES.coin}
                   quality={100}
@@ -113,8 +115,6 @@ const Header: React.FC = () => {
                   height={20}
                   alt={"coin icon"}
               />
-              <p className={"text-sm text-[white] ml-[7px] capitalize aveSofRegular"}>
-                {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}</p>
               {/*<div className={"flex cursor-pointer items-center"}>*/}
               {/*  <img className={"mr-[12px] w-[24px] h-[18px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>*/}
               {/*  <Image src={ICONS.arrowDown} alt={"arrow down"}/>*/}
