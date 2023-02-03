@@ -51,22 +51,22 @@ const OrderItem = ({data, evaluated, key, setIsModalOpen}: any) => {
           <div
               className={"md:order-1 order-2 w-full ph:w-[50%] md:w-full flex mb-0 md:mb-[30px] gap-[15px] md:gap-[0px] flex-col md:flex-row md:justify-between"}>
             <div className={"flex flex-row md:flex-col items-center md:items-start xl:w-[200px]"}>
-              <p className={"text-[#38383899] "}>Order Id</p>
+              <p className={"text-[#38383899] "}>შეკვეთის აიდი</p>
               <span className={"text-[#383838] md:text-base text-sm ml-[6px] md:ml-0"}>{data?.voucherId}</span>
             </div>
             <div className={"flex flex-row md:flex-col items-center md:items-start "}>
-              <p className={"text-[#38383899] "}>Date</p>
+              <p className={"text-[#38383899] "}>თარიღი</p>
               <span
                   className={"text-[#383838] md:text-base text-sm ml-[6px] md:ml-0"}>{dayjs(data?.transactionDate).format(dateFormat).toString()}</span>
             </div>
 
             <div className={"flex flex-row md:flex-col items-center md:items-start "}>
-              <p className={"text-[#38383899] "}>Price</p>
+              <p className={"text-[#38383899] "}>ფასი</p>
               <span className={"text-[#383838] md:text-base text-sm ml-[6px] md:ml-0"}>{getPrice()}</span>
             </div>
 
             <div className={"flex flex-row md:flex-col items-center md:items-start "}>
-              <p className={"text-[#38383899]"}>Earn Point</p>
+              <p className={"text-[#38383899]"}>გამომუშავებული ქულები</p>
               <span className={"text-[#56971F] md:text-base text-sm ml-[6px] md:ml-0"}>{data?.earnedPoints}</span>
             </div>
 
