@@ -72,7 +72,7 @@ const LeaderBoard = () => {
             <div
                 className={`${obj?.orderId === 1 && 'rang'} flex h-full justify-center items-center h-[43px] w-[53px]`}>
               <div
-                  className={"w-[28px] h-[28px] flex items-center justify-center rounded-[50%] relative p-[3px]"}
+                  className={"w-[28px] h-[28px] flex items-center justify-center rounded-[8px] relative p-[3px]"}
                   style={{
                     backgroundColor: '#'.concat(obj?.userAvatarDTO?.code)
                   }}
@@ -120,24 +120,89 @@ const LeaderBoard = () => {
     }
   ];
 
+  let dataArr = [
+      {
+        "id": "e1e9a87b-6ff3-4477-b1c7-6114e4febef4",
+        "partyId": 2003502,
+        "pointAmount": 1000,
+        "userId": "8c938636-bb3f-49ef-b3fe-44e542efef72",
+        "userAvatarDTO": {
+          "path": "2",
+          "code": "651FFF"
+        },
+        "customerName": "dato kometiani",
+        "isAuthorizedUser": false,
+        "orderId": 1
+      },
+      {
+        "id": "f4366bbe-7b0a-400d-8de6-4d5f3a79ca60",
+        "partyId": 2003526,
+        "pointAmount": 380,
+        "userId": "f4366bbe-7b0a-400d-8de6-4d5f3a79ca60",
+        "userAvatarDTO": {
+          "path": "4",
+          "code": "004D40"
+        },
+        "customerName": "ირაკლი ზანთარაია",
+        "isAuthorizedUser": false,
+        "orderId": 2
+      },
+      {
+        "id": "7c8512c2-e2d6-47c1-91b1-e35c2b431d8c",
+        "partyId": 2005454,
+        "pointAmount": 300,
+        "userId": "20001057427",
+        "userAvatarDTO": {
+          "path": "4",
+          "code": "EA80FC"
+        },
+        "customerName": "nino lomidze",
+        "isAuthorizedUser": false,
+        "orderId": 3
+      },
+      {
+        "id": "879ab897-1dbf-494f-8768-028ef5f6ac67",
+        "partyId": 2005453,
+        "pointAmount": 230,
+        "userId": "11111111111",
+        "userAvatarDTO": {
+          "path": "5",
+          "code": "C62828"
+        },
+        "customerName": "shako25 shako25",
+        "isAuthorizedUser": false,
+        "orderId": 4
+      },
+      {
+        "id": "23214124124",
+        "partyId": 2005447,
+        "pointAmount": 200,
+        "userId": "23214124124",
+        "userAvatarDTO": {
+          "path": "5",
+          "code": "C62828"
+        },
+        "customerName": "test8 test8",
+        "isAuthorizedUser": false,
+        "orderId": 5
+      }
+  ]
+
 
   const getModifiedData = (dataArr) => {
 
     let data = dataArr?.sort((a, b) => a?.orderId - b?.orderId)
     let index = data?.findIndex((e) => e?.isAuthorizedUser === true);
-
     let find = data?.find((e) => e?.isAuthorizedUser === true);
+    console.log("data", data)
 
-    if (find.orderId > 5) {
-      data?.splice(index, 0, null);
+    if (!find) return data
 
-    } else if (find.orderId < 5) {
+    if (find?.orderId > 5) {
+      data?.splice(index - 1, 0, null);
       return data
-    } else if (find.orderId === 5) {
-      return data
-    }
+    } else return data
 
-    return data
   }
 
 
@@ -145,115 +210,9 @@ const LeaderBoard = () => {
 
     axios.get(`${baseApi}/user/rating`).then((res) => {
 
-      setData2(getModifiedData(res.data))
+      // setData2(getModifiedData(res.data))
+      setData2(getModifiedData(dataArr))
     }).catch(() => {
-      let dataArr = [
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 900,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "5",
-            "code": "cecec3"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 2
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 1000,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "5",
-            "code": "C62828"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 1
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 800,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "5",
-            "code": "ababab"
-          },
-          "customerName": "me mee",
-          "isAuthorizedUser": true,
-          "orderId": 3
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 600,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "2",
-            "code": "C62828"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 5
-        },
-
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 700,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "1",
-            "code": "d3d3d3"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 4
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 70,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "4",
-            "code": "C62828"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 99
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 30,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "4",
-            "code": "000000"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 101
-        },
-        {
-          "id": "12121212121",
-          "partyId": 2003542,
-          "pointAmount": 50,
-          "userId": null,
-          "userAvatarDTO": {
-            "path": "2",
-            "code": "C62828"
-          },
-          "customerName": "test_name test_lastname",
-          "isAuthorizedUser": null,
-          "orderId": 100
-        },
-      ]
 
 
       notification['error']({
