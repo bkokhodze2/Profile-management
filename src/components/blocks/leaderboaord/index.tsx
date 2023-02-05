@@ -179,7 +179,7 @@ const LeaderBoard = () => {
         "pointAmount": 200,
         "userId": "23214124124",
         "userAvatarDTO": {
-          "path": "5",
+          "path": "3",
           "code": "C62828"
         },
         "customerName": "test8 test8",
@@ -209,11 +209,11 @@ const LeaderBoard = () => {
   useEffect(() => {
 
     axios.get(`${baseApi}/user/rating`).then((res) => {
+      setData2(getModifiedData(res.data))
 
-      // setData2(getModifiedData(res.data))
-      setData2(getModifiedData(dataArr))
+      // setData2(getModifiedData())
+
     }).catch(() => {
-
 
       notification['error']({
         message: 'დაფიქსირდა შეცდომა',
