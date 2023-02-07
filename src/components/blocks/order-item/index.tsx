@@ -9,7 +9,13 @@ import Lari from "../../../../public/images/icons/lari";
 
 const dateFormat = 'DD.MM.YYYY';
 
-const OrderItem = ({data, evaluated, key, setIsModalOpen}: any) => {
+interface IOrderItem {
+  data: any;
+  evaluated?: boolean;
+  key?: number;
+}
+
+const OrderItem = ({data, evaluated, key}: IOrderItem) => {
       const [isEvaluated, setIsEvaluated] = useState<boolean>(evaluated);
 
       const getPrice = () => {
@@ -39,15 +45,13 @@ const OrderItem = ({data, evaluated, key, setIsModalOpen}: any) => {
                   classes={"ml-[5px]"}/>
           </div>
         }
-
       }
-
 
       return <Link key={key} href={`https://vouchers.pirveli.com/company/${data?.providerTitle}/voucher/${data?.voucherId}`}
                    passHref={true}>
         <div
             key={key}
-            className={"mb-[30px] md:p-6 p-4 md:pr-[30px] flex flex-col ph:flex-row md:flex-col md:gap-0 gap-[18px] bg-[#F7F7F7] rounded-0 md:rounded-2xl"}>
+            className={"mb-[30px] md:p-5 ph:p-4 p-2 md:pr-[30px] flex flex-col ph:flex-row md:flex-col md:gap-0 gap-[18px] bg-[#F7F7F7] rounded-xl md:rounded-2xl"}>
           <div
               className={"md:order-1 order-2 w-full ph:w-[50%] md:w-full flex mb-0 md:mb-[30px] gap-[15px] md:gap-[0px] flex-col md:flex-row md:justify-between"}>
             <div className={"flex flex-row md:flex-col items-center md:items-start xl:w-[200px]"}>
