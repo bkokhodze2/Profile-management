@@ -10,45 +10,100 @@ import _ from "lodash";
 import Lari from "/public/images/icons/lari";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo} from "../slices/userSlice";
-import getChosenAvatar from "../getChosenAvatar";
+import getChosenAvatar from "../utils/getChosenAvatar";
+import {Dropdown} from "antd";
+import {logout} from "../../../public/images/icons";
 
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
   const dispatch = useDispatch();
   const Router = useRouter();
-  const [IsLoading, setIsLoading] = useState<boolean>(false);
-  const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+  const [isOpenDropdown, setIsOpenDropdown] = useState<boolean>(false);
   const userInfo = useSelector((state: any) => state.user.userInfo);
-
-  // const getChosenAvatar = () => {
-  //
-  //   switch (parseInt(userInfo?.avatar?.path)) {
-  //     case 1:
-  //       return IMAGES.avatar1.src
-  //     case 2:
-  //       return IMAGES.avatar2.src
-  //     case 3:
-  //       return IMAGES.avatar3.src
-  //     case 4:
-  //       return IMAGES.avatar4.src
-  //     case 5:
-  //       return IMAGES.avatar5.src
-  //     case 6:
-  //       return IMAGES.avatar6.src
-  //     default :
-  //       return IMAGES.avatar1.src
-  //   }
-  //
-  // }
 
   useEffect(() => {
     if (!userInfo) {
       // @ts-ignore
       dispatch(getUserInfo())
     }
-
-
   }, [])
+
+  const navTo = (path: string) => {
+    Router.push(path);
+  }
+
+  const dropdownJsx = () => {
+    return <div
+        className={"flex rounded-xl flex-col w-[258px] min-h-[250px] bg-[white] px-6 py-5"}>
+      <p className={"text-[#383838] text-base text-center leading-[18px] aveSofBold"}>{userInfo?.details?.firstName} {userInfo?.details?.lastName}</p>
+
+      <div className={"w-full flex items-center justify-between h-8 bg-[#F7F9FB] rounded-[100px] px-5 mt-5"}>
+        <p className={"text-[12px] text-[#383838] aveSofRegular"}>ბალანსი</p>
+        <div className={"flex items-center"}>
+          <p className={"text-[14px] text-[#383838]"}>27</p>
+          <Lari color={"#383838"} classes={"ml-1"}/>
+        </div>
+      </div>
+
+      <Link href={"https://profile.pirveli.com/"} passHref={true} legacyBehavior>
+        <a>
+          <div className={"flex mt-5 cursor-pointer items-center"}
+          >
+            <Image src={ICONS.liderboard} alt={"leaderboard"}/>
+            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ლიდერბორდი</p>
+          </div>
+        </a>
+      </Link>
+
+      <Link href={"https://profile.pirveli.com/tickets"} passHref={true} legacyBehavior>
+        <a>
+          <div className={"flex mt-5  mt-5 mb-[17px] cursor-pointer"}
+          >
+            <Image src={ICONS.tickets} alt={"tickets"}/>
+            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ბილეთები</p>
+          </div>
+        </a>
+      </Link>
+
+
+      <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
+      <Link href={"https://profile.pirveli.com/orders"} passHref={true} legacyBehavior>
+        <a>
+          <div className={"flex justify-between mt-5 mb-[17px] cursor-pointer"}
+          >
+            <div className={"flex"}>
+              <Image src={ICONS.order} alt={"my vouchers"}/>
+              <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ვაუჩერები</p>
+            </div>
+            <div
+                className={"flex items-center justify-center  h-6 min-w-[24px] min-h-[24px] rounded-[100px] bg-[#FF5440] px-2"}>
+              <span className={"text-[white] aveSofRegular text-[12px]"}>2</span>
+            </div>
+          </div>
+        </a>
+      </Link>
+
+      <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
+
+      <Link href={"https://profile.pirveli.com/profile-edit"} passHref={true} legacyBehavior>
+        <a>
+          <div className={"flex mt-5 cursor-pointer"}
+          >
+            <Image src={ICONS.settings} alt={"settings"}/>
+            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>რედაქტირება</p>
+          </div>
+        </a>
+      </Link>
+
+      <div className={"flex mt-5 cursor-pointer"}>
+        <Image src={ICONS.logout} alt={"logout"}/>
+        <form className={"ml-2"} action="https://vouchers.pirveli.com/logout" method="post">
+          <button className={"text-[#383838] text-[14px]"} type={"submit"}>გასვლა</button>
+        </form>
+      </div>
+
+    </div>
+  }
 
   return (
       <>
@@ -124,51 +179,6 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/*<div className={"flex w-full h-[44px] min-h-[44px] bg-[#1d1d1e] items-center "}>*/}
-        {/*  <div className={"w-full container m-auto flex md:justify-between justify-end"}>*/}
-        {/*    <div className={"flex space-x-8 md:flex hidden"}>*/}
-        {/*      <Link href={"https://shop.pirveli.com"}>*/}
-        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მაღაზია</span>*/}
-        {/*      </Link>*/}
-        {/*      <Link href={"https://medical.pirveli.com"}>*/}
-        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>მედიქალი</span>*/}
-        {/*      </Link>*/}
-        {/*      <Link href={"https://vouchers.pirveli.com"}>*/}
-        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>*/}
-        {/*      </Link>*/}
-
-        {/*      <a href={"http://s3.pirveli.com/v1/api/getFile?id=6555"} target={"_blank"} rel="noopener noreferrer">*/}
-        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>გათამაშება</span>*/}
-        {/*      </a>*/}
-
-        {/*      <a href={"http://s3.pirveli.com/v1/api/getFile?id=6556"} target={"_blank"} rel="noopener noreferrer">*/}
-        {/*        <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>თამაშები</span>*/}
-        {/*      </a>*/}
-        {/*    </div>*/}
-
-        {/*    <div className={"flex"}>*/}
-        {/*      <Image*/}
-        {/*          src={IMAGES.coin}*/}
-        {/*          quality={100}*/}
-        {/*          blurDataURL={IMAGES.placeholder.src}*/}
-        {/*          loading={"lazy"}*/}
-        {/*          width={20}*/}
-        {/*          height={20}*/}
-        {/*          alt={"coin icon"}*/}
-        {/*      />*/}
-        {/*      <p className={"text-sm text-[white] md:mr-8 ml-[5px] capitalize md:after:content-[''] md:after:h-[20px] md:after:bg-[#ffffffb3] md:after:rounded-[2px] md:after:ml-4 md:after:absolute md:after:w-[1px] after:text-red-500 aveSofRegular"}>*/}
-        {/*        {userInfo?.accountDetail?.amountOfPoint?.amountOfPoints}*/}
-        {/*      </p>*/}
-        {/*      <div className={"cursor-pointer md:flex hidden"}>*/}
-        {/*        <img className={"mr-[11px]"} src={ICONS.geoFlag.src} alt={"geo flag"}/>*/}
-        {/*        <Image src={ICONS.arrowDown} alt={"arrow down"}/>*/}
-        {/*      </div>*/}
-        {/*      /!*<p className={"text-sm text-[#ffffffb3] mr-8 capitalize aveSofRegular"}>English</p>*!/*/}
-        {/*    </div>*/}
-        {/*  </div>*/}
-        {/*</div>*/}
-
-
         <header className={"container w-full m-auto sticky md:top-[44px] top-[0px] z-20"}>
           <div
               className={"flex xl:gap-[30px] gap-4 justify-between md:h-[80px]  w-full items-center bg-[#EDEEEF] py-4"}>
@@ -180,25 +190,63 @@ const Header: React.FC = () => {
 
             <div className={"borders w-full grid grid-cols-2 gap-[30px] relative"}>
               <div/>
-              <div className={"md:flex hidden justify-end"}>
-                <div
-                    onClick={() => Router.push('/')}
-                    className={"rounded-xl group min-w-[46px] h-[46px] relative flex items-center justify-center py-[5px] cursor-pointer cursor-pointer"}
-                    style={{
-                      transition: "0.5s",
-                      backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"
-                    }}>
-                  <img src={getChosenAvatar(userInfo?.avatar?.path)}
-                       alt={"avatar"}
-                       style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+              <div id={'dropdownPosition'} className={"flex justify-end"}>
+                <Dropdown
+                    placement="bottomLeft"
+                    trigger={['click']}
+                    onOpenChange={() => setIsOpenDropdown(!isOpenDropdown)}
+                    open={isOpenDropdown}
+                    arrow={true}
+                    className={"cursor-pointer dropdownMenuJsx"}
+                    dropdownRender={() => dropdownJsx()}
+                    getPopupContainer={() => document.getElementById('dropdownPosition') as HTMLElement}
+                >
+                  <div className={"flex items-center h-[46px]"}>
+                    {/*onClick={() => navToProfile()}*/}
+                    <div
+                        className={"group min-w-[46px] h-[46px] relative flex  items-center justify-center rounded-xl py-[5px] cursor-pointer"}
+                        style={{
+                          transition: "0.5s",
+                          backgroundColor: "#" + userInfo?.avatar?.code
+                        }}>
 
-                  {/*<Image src={getChosenAvatar(userInfo?.avatar?.path)} quality={100} alt={"avatar"}*/}
-                  {/*       width={60} height={60}*/}
-                  {/*       style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
-                </div>
+                      <img src={getChosenAvatar(userInfo?.avatar?.path)}
+                           alt={"avatar"}
+                           style={{objectFit: "cover", height: "100%", width: "auto"}}/>
+                    </div>
+
+                    <div className={"h-full flex items-center relative pl-3"}
+                    >
+                      <svg style={{
+                        transition: '0.5s',
+                        transform: isOpenDropdown ? 'rotate(0deg)' : 'rotate(180deg)'
+                      }}
+                           width="8" height="5" viewBox="0 0 8 5" fill="none"
+                           xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.7" d="M0.75 4.25L4 0.75L7.25 4.25" stroke="#383838" strokeWidth="1.5"
+                              strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </Dropdown>
               </div>
 
-              <div className={"flex md:hidden justify-end "}>
+              {/*<div className={"md:flex hidden justify-end"}>*/}
+              {/*  <div*/}
+              {/*      onClick={() => Router.push('/')}*/}
+              {/*      className={"rounded-xl group min-w-[46px] h-[46px] relative flex items-center justify-center py-[5px] cursor-pointer cursor-pointer"}*/}
+              {/*      style={{*/}
+              {/*        transition: "0.5s",*/}
+              {/*        backgroundColor: userInfo?.avatar?.code ? "#" + userInfo?.avatar?.code : "#DB0060"*/}
+              {/*      }}>*/}
+              {/*    <img src={getChosenAvatar(userInfo?.avatar?.path)}*/}
+              {/*         alt={"avatar"}*/}
+              {/*         style={{objectFit: "cover", height: "100%", width: "auto"}}/>*/}
+
+              {/*  </div>*/}
+              {/*</div>*/}
+
+              <div className={"flex md:hidden justify-end"}>
                 <div className={"flex justify-center items-center h-[36px] w-[36px]"}>
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clipPath="url(#clip0_4361_5172)">
