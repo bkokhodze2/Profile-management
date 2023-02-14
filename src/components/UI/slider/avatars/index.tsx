@@ -13,7 +13,7 @@ import Image from "next/image"
 // import required modules
 import {FreeMode, Lazy, Mousewheel, Virtual} from "swiper";
 import {inspect} from "util";
-import colors from "../../../utils/colors";
+import colors from "../../../../utils/colors";
 
 
 export default function Avatars({chosenAvatarImg = "1", setChosenAvatarImg, chosenAvatarBg}) {

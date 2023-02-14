@@ -1,5 +1,6 @@
 import {Provider} from 'react-redux';
 import "../../styles/globals.css"
+import "../../styles/countdown.css"
 import "../../styles/font.css"
 import type {ReactElement, ReactNode} from 'react'
 import type {NextPage} from 'next'
@@ -8,6 +9,9 @@ import Script from 'next/script'
 import store from "../components/store/index"
 import fav from "/public/images/images/fav.png"
 import Head from 'next/head'
+import axios from "axios";
+import {useState} from "react";
+import CountDown from "../components/countdown";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -19,7 +23,23 @@ type AppPropsWithLayout = AppProps & {
 
 export default function MyApp({Component, pageProps}: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
+  const baseApi = process.env.baseApi;
+  // const getLayout = Component.getLayout ?? ((page) => page)
+  const [status, setStatus] = useState(null);
   const getLayout = Component.getLayout ?? ((page) => page)
+
+  async function check() {
+    const response = await axios.post(`${baseApi}/secured-ip`);
+    return response
+  }
+
+  check().then((res) => console.log(res)).catch((error) => {
+    // console.log('resposne status', error.response.status);
+    setStatus(error.response.status)
+  })
+  if (status == null) {
+    return ''
+  }
 
   return getLayout(
       <>
@@ -33,6 +53,7 @@ export default function MyApp({Component, pageProps}: AppPropsWithLayout) {
         </Head>
         <Script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.6/locale/ka.min.js"/>
         <Provider store={store}>
+          {/*{status !== 404 ? <CountDown/> : <Component {...pageProps} />}*/}
           <Component {...pageProps} />
         </Provider>
       </>

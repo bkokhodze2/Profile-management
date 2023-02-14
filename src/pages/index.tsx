@@ -25,13 +25,21 @@ import Lari from "../../public/images/icons/lari";
 import Logout from "../../public/images/icons/nav/navLogout";
 import {Modal} from "antd";
 import AddBalance from "../components/UI/modal/AddBalance";
+import axios from "axios";
+
+var status;
+
 
 export default function Profile() {
+  const baseApi = process.env.baseApi;
+
   const [isOpenChooseModal, setIsOpenChooseModal] = useState<boolean>(false);
   const [currentPoints, setCurrentPoints] = useState(0);
   const [spentPoints, setSpentPoints] = useState(0);
+
   const userInfo = useSelector((state: any) => state.user.userInfo);
   const [isOpenModalAddBalance, setIsOpenModalAddBalance] = useState<boolean>(false);
+
 
   useEffect(() => {
     setCurrentPoints(userInfo?.accountDetail?.amountOfPoint?.amountOfPoints)
@@ -58,6 +66,7 @@ export default function Profile() {
 
     }
   }
+
 
   return (
       <div>
@@ -108,11 +117,27 @@ export default function Profile() {
               <div className={"absolute bg-[white] md:right-6 right-[65px] top-6 cursor-pointer"}>
                 <Image src={ICONS.edit} alt={"edit icon"}/>
               </div>
-              <div className={"flex md:hidden absolute right-[20px] top-6 cursor-pointer"}>
-                <Logout
-                    color={"#DB0060"}/>
-              </div>
             </Link>
+
+
+            <div className={"flex md:hidden absolute right-[20px] top-6 cursor-pointer"}
+                // onClick={() => logOut()}
+            >
+              <div className={""}
+                   style={{
+                     transition: "0.2s",
+                   }}
+              >
+                <form action="https://profile.pirveli.com/logout" method="post">
+                  <button type={"submit"}><Logout
+                      color={"#DB0060"}/></button>
+                </form>
+              </div>
+            </div>
+
+            {/*<div className={"flex md:hidden absolute right-[20px] top-6 cursor-pointer"}>*/}
+
+            {/*</div>*/}
 
           </div>
           <div
@@ -243,6 +268,7 @@ export default function Profile() {
       </div>
   )
 }
+
 
 Profile.getLayout = function getLayout(page: any) {
   return (
