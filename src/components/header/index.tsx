@@ -10,7 +10,7 @@ import _ from "lodash";
 import Lari from "/public/images/icons/lari";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserInfo} from "../slices/userSlice";
-import getChosenAvatar from "../utils/getChosenAvatar";
+import getChosenAvatar from "../../utils/getChosenAvatar";
 import {Dropdown} from "antd";
 import {logout} from "../../../public/images/icons";
 
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       <div className={"w-full flex items-center justify-between h-8 bg-[#F7F9FB] rounded-[100px] px-5 mt-5"}>
         <p className={"text-[12px] text-[#383838] aveSofRegular"}>ბალანსი</p>
         <div className={"flex items-center"}>
-          <p className={"text-[14px] text-[#383838]"}>27</p>
+          <p className={"text-[14px] text-[#383838]"}>{userInfo?.accountDetail?.amountOfGel?.amountOfGel}</p>
           <Lari color={"#383838"} classes={"ml-1"}/>
         </div>
       </div>

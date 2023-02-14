@@ -8,7 +8,7 @@ import axios from "axios";
 import {getUserInfo} from "../../slices/userSlice";
 import {useDispatch, useSelector} from "react-redux";
 import Avatars from "../slider/avatars";
-import getChosenAvatar from "../../utils/getChosenAvatar";
+import getChosenAvatar from "../../../utils/getChosenAvatar";
 
 export default function ChangeAvatar2({isOpenChooseModal, setIsOpenChooseModal}) {
   const baseApi = process.env.baseApi;

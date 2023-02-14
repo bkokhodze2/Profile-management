@@ -7,7 +7,7 @@ import {ColumnsType} from "antd/es/table";
 // @ts-ignore
 import Lari from '/public/images/icons/lari';
 import axios from "axios";
-import getChosenAvatar from "../../utils/getChosenAvatar";
+import getChosenAvatar from "../../../utils/getChosenAvatar";
 
 let arr = {
   "id": "12121212121",
@@ -193,7 +193,6 @@ const LeaderBoard = () => {
     let data = dataArr?.sort((a, b) => a?.orderId - b?.orderId)
     let index = data?.findIndex((e) => e?.isAuthorizedUser === true);
     let find = data?.find((e) => e?.isAuthorizedUser === true);
-    console.log("data", data)
 
     if (!find) return data
 

@@ -1,0 +1,286 @@
+.countdown {
+    background-color: #000;
+    overflow: hidden;
+    position: fixed;
+    z-index: 11111;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+.backgroundC {
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    background-color: #DB0060;
+}
+
+.birds {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+    z-index: 2;
+}
+
+.bird_1 {
+    position: absolute;
+    left: 35px;
+    top: 0;
+}
+
+.bird_1 img {
+    object-fit: contain;
+    width: auto;
+    height: 22vw;
+}
+
+.bird_2 {
+    position: absolute;
+    right: 35px;
+    top: 0;
+}
+
+.bird_2 img {
+    width: auto;
+    height: 95vh;
+    object-fit: contain;
+}
+
+.header {
+    margin-bottom: 80px;
+}
+
+.header h2 {
+    font-family: 'Avenir Next Georgian Medium';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 150%;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.countDownInfo {
+    margin-top: 61px;
+    font-family: 'Avenir Next Georgian';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 150%;
+    max-width: 327px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.countDownComponent {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.countBlock {
+    position: relative;
+    width: 80px;
+    height: 86px;
+    background: rgba(255, 255, 255, 0.84);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.to {
+    background-image: url('/src/assets/countdown/_.svg');
+    background-repeat: no-repeat;
+    width: 8px;
+    height: 15px;
+}
+
+.countBlock h3 {
+    font-family: 'Avenir Next Bold';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: #DB0060;
+    margin: 0;
+}
+
+.countBlock span {
+    font-family: 'Avenir Next Georgian';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 150%;
+    color: #DB0060;
+}
+
+.countBlock:before {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 14.5px;
+    background-image: url('/src/assets/countdown/bird_3.svg');
+    background-size: contain;
+}
+
+.days:before {
+    top: 9px;
+    left: 16px;
+}
+
+.hours:before {
+    top: 31px;
+    left: 12px;
+}
+
+.minutes:before {
+    top: 40px;
+    right: 5px;
+}
+
+.seconds:before {
+    bottom: 9px;
+    right: 6px;
+}
+
+.countDownBar {
+    position: relative;
+    width: 428px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+    margin-top: 45px;
+}
+
+.countDownBarHiddenDiv {
+    position: relative;
+    width: 428px;
+    height: 2px;
+    overflow: hidden;
+}
+
+.countDownBarProgress {
+    position: absolute;
+    height: 2px;
+    background: #FFFFFF;
+    border-radius: 100px;
+    width: 40%;
+    left: 0;
+    top: 0;
+}
+
+.countDownBarBtn {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border: 2px solid #DB0060;
+    background-color: #fff;
+    border-radius: 50%;
+    left: 40%;
+    top: -3px;
+}
+
+.countDonwBird {
+    position: absolute;
+    background-image: url('/src/assets/countdown/bird_4.svg');
+    width: 16px;
+    height: 14.5px;
+    top: 50%;
+    /* left: 39%; */
+    transform: translateY(-50%);
+    margin-top: -15px;
+}
+
+@media only screen and (max-width: 900px) {
+    .bird_1 img {
+        height: 30vh;
+    }
+
+    .bird_2 {
+        bottom: 0;
+        top: unset;
+    }
+
+    .bird_2 img {
+        height: 50vh;
+    }
+}
+
+@media only screen and (max-width: 664px) {
+    .bird_1 {
+        left: 10px;
+    }
+
+    .bird_1 img {
+        height: 30vh;
+    }
+
+    .bird_2 {
+        bottom: 0;
+        right: 0;
+    }
+
+    .bird_2 img {
+        width: auto;
+        height: 54vh;
+        /* transform: scale(.8) */
+    }
+
+    .content {
+        padding: 0 16px;
+    }
+
+    .countBlock {
+        width: 64px;
+        height: 78px;
+    }
+
+    .days:before {
+        left: 6px;
+        top: 7px;
+    }
+
+    .hours:before {
+        left: 5px;
+        top: 14px;
+    }
+
+    .minutes:before {
+        right: 3px;
+        top: 39px;
+    }
+
+    .seconds:before {
+        right: 2px;
+        bottom: 3px;
+    }
+
+    .countDownBar {
+        width: 100%;
+    }
+
+    .header h2 {
+        text-align: center;
+    }
+
+    .countDownInfo {
+        font-size: 18px;
+    }
+
+    .header h2 {
+        font-size: 24px;
+    }
+}

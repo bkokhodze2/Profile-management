@@ -12,7 +12,7 @@ import Image from "next/image"
 
 // import required modules
 import {FreeMode, Lazy, Mousewheel, Virtual} from "swiper";
-import colors from "../../../utils/colors";
+import colors from "../../../../utils/colors";
 
 
 export default function ColorsSlider({chosenAvatarBg, setChosenAvatarBg}) {

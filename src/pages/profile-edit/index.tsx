@@ -20,7 +20,7 @@ import {useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import {getUserInfo} from "../../components/slices/userSlice";
 import {useRouter} from "next/router";
-import getChosenAvatar from "../../components/utils/getChosenAvatar";
+import getChosenAvatar from "../../utils/getChosenAvatar";
 import {ConfigProvider} from 'antd';
 import locale from "antd/lib/locale/ka_GE";
 
