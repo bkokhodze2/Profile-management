@@ -28,18 +28,18 @@ export default function MyApp({Component, pageProps}: AppPropsWithLayout) {
   const [status, setStatus] = useState(null);
   const getLayout = Component.getLayout ?? ((page) => page)
 
-  async function check() {
-    const response = await axios.post(`${baseApi}/secured-ip`);
-    return response
-  }
-
-  check().then((res) => console.log(res)).catch((error) => {
-    // console.log('resposne status', error.response.status);
-    setStatus(error.response.status)
-  })
-  if (status == null) {
-    return ''
-  }
+  // async function check() {
+  //   const response = await axios.post(`${baseApi}/secured-ip`);
+  //   return response
+  // }
+  //
+  // check().then((res) => console.log(res)).catch((error) => {
+  //   // console.log('resposne status', error.response.status);
+  //   setStatus(error.response.status)
+  // })
+  // if (status == null) {
+  //   return ''
+  // }
 
   return getLayout(
       <>
