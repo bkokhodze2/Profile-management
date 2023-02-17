@@ -12,6 +12,7 @@ import Points from "/public/images/icons/nav/navPoints";
 // @ts-ignore// @ts-ignore
 import React from "react";
 import TicketItem from "../../components/blocks/ticket-item";
+import OrderItem from "../../components/blocks/order-item";
 
 export default function Tickets() {
   return (
@@ -28,10 +29,9 @@ export default function Tickets() {
           </h2>
 
           <div className={"space-y-[30px] h-[2000px] mt-[40px]"}>
-            {/*<TicketItem/>*/}
-            {/*<TicketItem/>*/}
-            {/*<TicketItem/>*/}
-            {/*<TicketItem/>*/}
+
+            <p className={"text-[#383838] aveSofRegular"}>მალე დაემატება</p>
+
           </div>
 
         </div>

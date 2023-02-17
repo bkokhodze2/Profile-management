@@ -109,7 +109,7 @@ export default function MedicalCardsPage() {
         </Head>
 
         {
-          medicalCards?.products ? isLoaded && <div className={"w-full"}>
+          medicalCards?.products[0] ? isLoaded && <div className={"w-full"}>
 
 						<div className={"w-full bg-[white] md:p-8 ph:p-4 p-2 rounded-xl space-x-[30px] ph5:flex-row flex-col flex"}>
 							<div className={"w-[280px] relative h-min"}>
@@ -120,7 +120,7 @@ export default function MedicalCardsPage() {
 								<p className={"text-gray max-w-[430px]"}>თქვენ სარგებლობთ ჯანდაცვის ბარათით. სრული სერვისების სანახავად
 									გადადით მითთებულ ბმულზე.</p>
 								<p className={"text-[#DB0060] font-bold mt-4 cursor-pointer"}
-								   onClick={() => Router.push('https://medical.pirveli.com')}>ჯანდაცვის პლატფორმაზე გადასვლა</p>
+								   onClick={() => Router.push('https://medical.pirveli.com/')}>ჯანდაცვის პლატფორმაზე გადასვლა</p>
 							</div>
 						</div>
 

@@ -17,6 +17,14 @@ body {
     font-family: avenirMedium, serif;
 }
 
+.avenirMedium ,.aveSofMedium{
+    font-family: avenirMedium, serif;
+}
+
+.avenirBold ,.aveSofBold{
+    font-family: aveniBol, serif;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;

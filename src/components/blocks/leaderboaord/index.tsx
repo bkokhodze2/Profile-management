@@ -8,6 +8,7 @@ import {ColumnsType} from "antd/es/table";
 import Lari from '/public/images/icons/lari';
 import axios from "axios";
 import getChosenAvatar from "../../../utils/getChosenAvatar";
+import getModifiedNumber from "../../../utils/getModifiedNumber";
 
 interface DataType {
   key?: string;
@@ -75,7 +76,7 @@ const LeaderBoard = () => {
       key: 'customerName',
       render: (text, obj) => !obj?.orderId ?
           <div className={"md:w-[133px] w-[40px] h-[8px] ml-[25px] rounded-[20px] bg-[#EDEEEF]"}/> :
-          <p className={"text-[#383838] h-full flex items-center pl-[5px] md:pl-[25px]"}
+          <p className={"text-[#383838] h-full flex items-center pl-[5px] md:pl-[25px] whitespace-nowrap"}
              style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}
           >{text}</p>,
     },
@@ -89,7 +90,8 @@ const LeaderBoard = () => {
           <div className={"md:w-[92px] w-[30px] ml-[auto] h-[8px] rounded-[20px] bg-[#EDEEEF] mr-[8px]"}/> :
           <p className={"pr-[15px] h-full flex justify-end items-center text-dark7"}
              style={{backgroundColor: obj?.isAuthorizedUser ? "#898fa078" : "transparent"}}
-          >{text}
+          >
+            {getModifiedNumber(text)}
             <span className={"ml-1"}>
                 <Image
                     src={IMAGES.coin}

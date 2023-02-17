@@ -13,6 +13,11 @@ import {getUserInfo} from "../slices/userSlice";
 import getChosenAvatar from "../../utils/getChosenAvatar";
 import {Dropdown} from "antd";
 import {logout} from "../../../public/images/icons";
+import Liderboard from "../../../public/images/icons/dropdown/Liderboard";
+import Tickets from "../../../public/images/icons/dropdown/Tickets";
+import Settings from "../../../public/images/icons/dropdown/Settings";
+import Logout from "../../../public/images/icons/dropdown/Logout";
+import Vouchers from "../../../public/images/icons/dropdown/Vouchers";
 
 const Header: React.FC = () => {
   const baseApi = process.env.baseApi;
@@ -32,11 +37,83 @@ const Header: React.FC = () => {
     Router.push(path);
   }
 
+  // const dropdownJsx = () => {
+  //   return <div
+  //       className={"flex rounded-xl flex-col w-[258px] min-h-[250px] bg-[white] px-6 py-5"}>
+  //     <p className={"text-[#383838] text-base text-center leading-[18px] aveSofBold"}>{userInfo?.details?.firstName} {userInfo?.details?.lastName}</p>
+  //
+  //     <div className={"w-full flex items-center justify-between h-8 bg-[#F7F9FB] rounded-[100px] px-5 mt-5"}>
+  //       <p className={"text-[12px] text-[#383838] aveSofRegular"}>ბალანსი</p>
+  //       <div className={"flex items-center"}>
+  //         <p className={"text-[14px] text-[#383838]"}>{userInfo?.accountDetail?.amountOfGel?.amountOfGel}</p>
+  //         <Lari color={"#383838"} classes={"ml-1"}/>
+  //       </div>
+  //     </div>
+  //
+  //     <Link href={"https://profile.pirveli.com/"} passHref={true} legacyBehavior>
+  //       <a>
+  //         <div className={"flex mt-5 cursor-pointer items-center"}
+  //         >
+  //           <Image src={ICONS.liderboard} alt={"leaderboard"}/>
+  //           <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ლიდერბორდი</p>
+  //         </div>
+  //       </a>
+  //     </Link>
+  //
+  //     <Link href={"https://profile.pirveli.com/tickets/"} passHref={true} legacyBehavior>
+  //       <a>
+  //         <div className={"flex mt-5  mt-5 mb-[17px] cursor-pointer"}
+  //         >
+  //           <Image src={ICONS.tickets} alt={"tickets"}/>
+  //           <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ბილეთები</p>
+  //         </div>
+  //       </a>
+  //     </Link>
+  //
+  //
+  //     <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
+  //     <Link href={"https://profile.pirveli.com/orders/"} passHref={true} legacyBehavior>
+  //       <a>
+  //         <div className={"flex justify-between mt-5 mb-[17px] cursor-pointer"}
+  //         >
+  //           <div className={"flex"}>
+  //             <Image src={ICONS.order} alt={"my vouchers"}/>
+  //             <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ვაუჩერები</p>
+  //           </div>
+  //           <div
+  //               className={"flex items-center justify-center  h-6 min-w-[24px] min-h-[24px] rounded-[100px] bg-[#FF5440] px-2"}>
+  //             <span className={"text-[white] aveSofRegular text-[12px]"}>2</span>
+  //           </div>
+  //         </div>
+  //       </a>
+  //     </Link>
+  //
+  //     <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
+  //
+  //     <Link href={"https://profile.pirveli.com/profile-edit/"} passHref={true} legacyBehavior>
+  //       <a>
+  //         <div className={"flex mt-5 cursor-pointer"}
+  //         >
+  //           <Image src={ICONS.settings} alt={"settings"}/>
+  //           <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>რედაქტირება</p>
+  //         </div>
+  //       </a>
+  //     </Link>
+  //
+  //     <div className={"flex mt-5 cursor-pointer"}>
+  //       <Image src={ICONS.logout} alt={"logout"}/>
+  //       <form className={"ml-2"} action="https://vouchers.pirveli.com/logout" method="post">
+  //         <button className={"text-[#383838] text-[14px]"} type={"submit"}>გასვლა</button>
+  //       </form>
+  //     </div>
+  //
+  //   </div>
+  // }
+
   const dropdownJsx = () => {
     return <div
         className={"flex rounded-xl flex-col w-[258px] min-h-[250px] bg-[white] px-6 py-5"}>
-      <p className={"text-[#383838] text-base text-center leading-[18px] aveSofBold"}>{userInfo?.details?.firstName} {userInfo?.details?.lastName}</p>
-
+      <p className={"text-[#383838] text-base text-center leading-[18px] avenirBold"}>{userInfo?.details?.firstName} {userInfo?.details?.lastName}</p>
       <div className={"w-full flex items-center justify-between h-8 bg-[#F7F9FB] rounded-[100px] px-5 mt-5"}>
         <p className={"text-[12px] text-[#383838] aveSofRegular"}>ბალანსი</p>
         <div className={"flex items-center"}>
@@ -45,38 +122,47 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      <Link href={"https://profile.pirveli.com/"} passHref={true} legacyBehavior>
-        <a>
-          <div className={"flex mt-5 cursor-pointer items-center"}
+      <Link href={"https://profile.pirveli.com/profile-edit/"} passHref={true} legacyBehavior={true}>
+        <a className={"mt-5 "}>
+          <div className={"group flex cursor-pointer"}
           >
-            <Image src={ICONS.liderboard} alt={"leaderboard"}/>
-            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ლიდერბორდი</p>
+            <Settings classes={"group-hover:stroke-brand stroke-[#383838]"}/>
+            <p className={"text-[#383838] group-hover:text-brand text-[14px] ml-2 avenirMedium"}>პროფაილი</p>
           </div>
         </a>
       </Link>
 
-      <Link href={"https://profile.pirveli.com/tickets"} passHref={true} legacyBehavior>
-        <a>
-          <div className={"flex mt-5  mt-5 mb-[17px] cursor-pointer"}
+      <Link href={"https://profile.pirveli.com/"} passHref={true} legacyBehavior={true}>
+        <a className={"mt-5"}>
+          <div className={"group flex cursor-pointer items-center"}
           >
-            <Image src={ICONS.tickets} alt={"tickets"}/>
-            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ბილეთები</p>
+            <Liderboard classes={"group-hover:stroke-brand stroke-[#383838]"}/>
+            <p className={"text-[#383838] group-hover:text-brand text-[14px] ml-2 avenirMedium"}>ლიდერბორდი</p>
           </div>
         </a>
       </Link>
 
+      <Link href={"https://profile.pirveli.com/tickets/"} passHref={true} legacyBehavior={true}>
+        <a className={"mt-5 mb-[17px]"}>
+          <div className={"group flex cursor-pointer"}
+          >
+            <Tickets classes={"group-hover:stroke-brand stroke-[#383838]"}/>
+            <p className={"text-[#383838] group-hover:text-brand text-[14px] ml-2 avenirMedium"}>ჩემი ბილეთები</p>
+          </div>
+        </a>
+      </Link>
 
       <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
-      <Link href={"https://profile.pirveli.com/orders"} passHref={true} legacyBehavior>
-        <a>
-          <div className={"flex justify-between mt-5 mb-[17px] cursor-pointer"}
+      <Link href={"https://profile.pirveli.com/orders/"} passHref={true} legacyBehavior>
+        <a className={"mt-5 mb-[17px] "}>
+          <div className={"group flex justify-between cursor-pointer"}
           >
             <div className={"flex"}>
-              <Image src={ICONS.order} alt={"my vouchers"}/>
-              <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>ჩემი ვაუჩერები</p>
+              <Vouchers classes={"group-hover:stroke-brand stroke-[#383838]"}/>
+              <p className={"text-[#383838] group-hover:text-brand text-[14px] ml-2 aveSofRegular"}>ჩემი ვაუჩერები</p>
             </div>
             <div
-                className={"flex items-center justify-center  h-6 min-w-[24px] min-h-[24px] rounded-[100px] bg-[#FF5440] px-2"}>
+                className={"flex items-center justify-center h-6 min-w-[24px] min-h-[24px] rounded-[100px] bg-[#FF5440] px-2"}>
               <span className={"text-[white] aveSofRegular text-[12px]"}>2</span>
             </div>
           </div>
@@ -85,25 +171,16 @@ const Header: React.FC = () => {
 
       <div className={"w-full h-[1px] bg-[#D9D9D94D]"}/>
 
-      <Link href={"https://profile.pirveli.com/profile-edit"} passHref={true} legacyBehavior>
-        <a>
-          <div className={"flex mt-5 cursor-pointer"}
-          >
-            <Image src={ICONS.settings} alt={"settings"}/>
-            <p className={"text-[#383838] text-[14px] ml-2 aveSofRegular"}>რედაქტირება</p>
-          </div>
-        </a>
-      </Link>
-
-      <div className={"flex mt-5 cursor-pointer"}>
-        <Image src={ICONS.logout} alt={"logout"}/>
-        <form className={"ml-2"} action="https://vouchers.pirveli.com/logout" method="post">
-          <button className={"text-[#383838] text-[14px]"} type={"submit"}>გასვლა</button>
+      <div className={"group flex mt-5 cursor-pointer"}>
+        <Logout classes={"group-hover:stroke-brand stroke-[#383838]"}/>
+        <form className={"ml-2 avenirMedium"} action="https://profile.pirveli.com/logout" method="post">
+          <button className={"text-[#383838] group-hover:text-brand text-[14px]"} type={"submit"}>გასვლა</button>
         </form>
       </div>
 
     </div>
   }
+
 
   return (
       <>
@@ -114,27 +191,27 @@ const Header: React.FC = () => {
             className={"hidden md:flex w-full sticky top-[0px] h-[44px] min-h-[44px] bg-[#1d1d1e] items-center z-[100]"}>
           <div className={"w-full h-full container m-auto flex justify-between"}>
             <div className={"flex space-x-8 items-center links"}>
-              <Link href={"https://pirveli.com"}>
+              <Link href={"https://pirveli.com/"}>
                 <div className={"relative h-full flex items-center group"}>
                 <span
                     className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular "}>მთავარი</span>
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#db0060]"}/>
                 </div>
               </Link>
-              <Link href={"https://shop.pirveli.com"}>
+              <Link href={"https://shop.pirveli.com/"}>
                 <div className={"relative h-full flex items-center group"}>
                   <span
                       className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular "}>მაღაზია</span>
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#5db039]"}/>
                 </div>
               </Link>
-              <Link href={"https://medical.pirveli.com"}>
+              <Link href={"https://medical.pirveli.com/"}>
                 <div className={"relative h-full flex items-center group"}>
                   <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ჯანდაცვა</span>
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#ffbbb6]"}/>
                 </div>
               </Link>
-              <Link href={"https://vouchers.pirveli.com"}>
+              <Link href={"https://vouchers.pirveli.com/"}>
                 <div className={"relative h-full flex items-center group"}>
                   <span className={"text-sm text-[#ffffffb3] cursor-pointer aveSofRegular"}>ვაუჩერები</span>
                   <div className={"absolute bottom-[0px] h-[3px] w-full rounded-t-[3px] group-hover:bg-[#8338EC]"}/>

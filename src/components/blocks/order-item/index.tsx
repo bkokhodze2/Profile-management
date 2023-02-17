@@ -37,7 +37,7 @@ const OrderItem = ({data, evaluated, key}: IOrderItem) => {
             </div>
           </div>
         } else if (_.get(data, 'accountTypeId', null) === 1) { // If the voucher is purchased with money
-          return <div className={"flex items-center"}>
+          return <div className={"flex items-center text-[#8338EC]"}>
             {Math.abs(_.get(data, 'voucherPrice', null))}
             <Lari color={"#8338EC"}
                   width={13.5}
@@ -70,10 +70,24 @@ const OrderItem = ({data, evaluated, key}: IOrderItem) => {
             </div>
 
             <div className={"flex flex-row md:flex-col items-center md:items-start "}>
-              <p className={"text-[#38383899]"}>გამომუშავებული ქულები</p>
-              <span className={"text-[#56971F] md:text-base text-sm ml-[6px] md:ml-0"}>{data?.earnedPoints}</span>
-            </div>
+              <p className={"text-[#38383899]"}>დარიცხული მონეტები</p>
+              <div className={"flex "}>
+                 <span
+                     className={"text-red md:text-base text-sm ml-[6px] md:ml-0"}>{data?.earnedPoints && "+"} {data?.earnedPoints}</span>
 
+                <div className={"ml-1.5 mt-[2px] flex items-center justify-center"}>
+                  <Image
+                      src={IMAGES.coin}
+                      quality={100}
+                      blurDataURL={IMAGES.placeholder.src}
+                      loading={"lazy"}
+                      width={18}
+                      height={18}
+                      alt={"coin icon"}
+                  />
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className={"md:order-2 order-1 w-full ph:w-[50%] md:w-full flex flex-col md:flex-row"}>
