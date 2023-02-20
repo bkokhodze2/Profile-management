@@ -16,17 +16,17 @@ export default function Layout({children}){
 	const baseApi = process.env.baseApi;
 	const Router = useRouter();
 
-	// axios.interceptors.request.use((config) => {
-	// 	config.headers = {
-	// 		...config.headers,
-	// 		mode: 'no-cors',
-	// 		'Access-Control-Allow-Origin': '*',
-	// 		'Content-Type': 'application/json',
-	// 		Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzY2NjAxMjcsImlhdCI6MTY3NjYyNDEyNywianRpIjoiYmVhNWY0YjItNTRlNC00ODI4LTgyYjMtMmI1ZTgzZTlkZjhkIiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnBpcnZlbGkuY29tL3JlYWxtcy94cmFjb29uLWRlbW8iLCJzdWIiOiJmNDM2NmJiZS03YjBhLTQwMGQtOGRlNi00ZDVmM2E3OWNhNjAiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJwYXNzd29yZC1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiNGFhM2E2NzYtMGQ3OS00MjkzLTk0ZGMtMWE1MzhmZDg1NjNkIiwiYWNyIjoiMSIsInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6IjRhYTNhNjc2LTBkNzktNDI5My05NGRjLTFhNTM4ZmQ4NTYzZCIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwidXNlcl9pZCI6ImY0MzY2YmJlLTdiMGEtNDAwZC04ZGU2LTRkNWYzYTc5Y2E2MCIsIm5hbWUiOiLhg5jhg6Dhg5Dhg5nhg5rhg5gg4YOW4YOQ4YOc4YOX4YOQ4YOg4YOQ4YOY4YOQIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiNTE0NTU1MjU1IiwiZ2l2ZW5fbmFtZSI6IuGDmOGDoOGDkOGDmeGDmuGDmCIsImZhbWlseV9uYW1lIjoi4YOW4YOQ4YOc4YOX4YOQ4YOg4YOQ4YOY4YOQIn0.R2jHI1-lbsFu6adtNS39P-lMeObD8XBnj48fuTY4ss7k1tlKhj_VDlO1wW8h1yM73sVcxXH-HxmkMC62t4hijbSaY8vrP8uK2uK4YJj2oT9oiu4EdOT9UXjClTN0viwdE0TbRrqwxRjm0aniePTazx0p6pTB3yoqUb4QLbzSLROkrAtO8-TngbX3mcxpRbWH_kP117xxNol6ijZNHqtq_zEp3g80fMMMY3suSOc2wdDEwaR3HMhaxCzBvYQG97eULxxV3YYgxOPdulQu9tjvdHLchue20dRNNFN-B7yqZ9EcXoKoHuU_ardiAezyXLoSg2EXhP8DRHtY2crvOcAckw`
-	// 	};
-	//
-	// 	return config;
-	// });
+	axios.interceptors.request.use((config) => {
+		config.headers = {
+			...config.headers,
+			mode: 'no-cors',
+			'Access-Control-Allow-Origin': '*',
+			'Content-Type': 'application/json',
+			Authorization: `Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJzRUNseXdhVnNxOURBMU1oMElNLTVFTUNsRU5WM1FMTnhuNlh1bDJoOVBnIn0.eyJleHAiOjE2NzY5MTcwOTgsImlhdCI6MTY3Njg4MTA5OCwianRpIjoiMzVkZWM2MTktZjg5MC00NTljLWE3M2ItOTkyZWRjZTgxZDE3IiwiaXNzIjoiaHR0cHM6Ly9hdXRoLnBpcnZlbGkuY29tL3JlYWxtcy94cmFjb29uLWRlbW8iLCJzdWIiOiJkNzMwMzI1NS1lYjM4LTQ4OWMtYTBjNC1hNWU1YmJjZjVhZTkiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJwYXNzd29yZC1jbGllbnQiLCJzZXNzaW9uX3N0YXRlIjoiNTM1YzhmZWItMjQ3Yy00NjE0LWJjNmYtZTdiZGJjYjA3ZWFmIiwiYWNyIjoiMSIsInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6IjUzNWM4ZmViLTI0N2MtNDYxNC1iYzZmLWU3YmRiY2IwN2VhZiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwidXNlcl9pZCI6ImQ3MzAzMjU1LWViMzgtNDg5Yy1hMGM0LWE1ZTViYmNmNWFlOSIsIm5hbWUiOiLhg5Lhg5jhg53hg6Dhg5Lhg5gg4YOl4YOV4YOa4YOY4YOV4YOY4YOr4YOUIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiNTkyMTEyMTEyIiwiZ2l2ZW5fbmFtZSI6IuGDkuGDmOGDneGDoOGDkuGDmCIsImZhbWlseV9uYW1lIjoi4YOl4YOV4YOa4YOY4YOV4YOY4YOr4YOUIn0.MLYqYXoTuj3yxGAZOdYYmpuXIu8VnG9JCTCxbbNOVewx7Uz_WqXSIkJIKH3MYesWgw4aGhR1DWsJmiUCPhTL_aUFNy1ca1hBVEV3ov3YXvfi-bLAGt_JhS4RgPKTkP1mLl1XPssTT8NJRzqpJSxDcbS9d7LbZVxwcQvjyxbmiIAb9DMinvDzKzwLfS_SaSJpqRok8nAU9ndrY6es6WAAgcDmHkSheF0EChN5zjqsg4aEf1-BhYX9XX7ihJcHr9Cq9JsXiMzpQ6YnwzQc08hw_nUepxyoXDbJ3PaV_bXCRLZbZQN6OCns2-oy2e1Xmo-utrZ9xlywnFpNoQOvrANxQA`
+		};
+
+		return config;
+	});
 
 	const navTo = (path) => {
 		Router.push(path);

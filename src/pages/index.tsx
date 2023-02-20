@@ -41,6 +41,8 @@ export default function Profile() {
   const [isOpenModalAddBalance, setIsOpenModalAddBalance] = useState<boolean>(false);
 
 
+  console.log("userInfo?.accountDetail?.amountOfGel?.amountOfGel", userInfo?.accountDetail?.amountOfGel?.amountOfGel)
+
   useEffect(() => {
     setCurrentPoints(userInfo?.accountDetail?.amountOfPoint?.amountOfPoints)
     setSpentPoints(userInfo?.accountDetail?.amountOfSpentPoints?.amountOfSpentPoints)
@@ -149,8 +151,8 @@ export default function Profile() {
                   <CountUp duration={1}
                            end={userInfo?.accountDetail?.amountOfGel?.amountOfGel}
                            separator=","
-                      // decimals={4}
-                           decimal="," start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
+                      decimals={1}
+                           decimal="." start={userInfo?.accountDetail?.amountOfGel?.amountOfGel * 0.85}/>
                   <Lari classes={"ml-[2px] mt-[3px]"} color={"#383838"} width={18} height={20}/>
                 </div>
                 <span onClick={() => setIsOpenModalAddBalance(true)}
